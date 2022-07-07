@@ -1,3 +1,3 @@
 # JZhou3083.github.io
 
-A place of nowhere. 
+clownote is a personal blog created by CDFMLR，powered by Hexo, themed with Cactus, deployed in GitHub.
