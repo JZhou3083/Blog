@@ -1,3 +1,3 @@
-# JZhou3083.github.io
+# Blog website
 
-clownote is a personal blog created by CDFMLR，powered by Hexo, themed with Cactus, deployed in GitHub.
+A blof of me for study note and project information[seanote](https://jzhou3083.github.io/Blog/).
