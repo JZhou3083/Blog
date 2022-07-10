@@ -1,3 +1,3 @@
-# Blog website
+# Blog
 
-A blof of me for study note and project information[seanote](https://jzhou3083.github.io/Blog/).
+Personal blog [Seanote](https://jzhou3083.github.io/Blog/) powered by [Hexo](https://hexo.io/zh-cn/).  
