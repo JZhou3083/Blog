@@ -8,13 +8,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="description" content="参考: Validate Stack Sequences  QuestionGiven two integer arrays $pushed$ and $popped$ each with distinct values, return $true$ if this could have been the result of a sequence of push and pop operatio">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Validate Stack Sequences">
+<meta property="og:title" content="Validate Stack Sequences-946">
 <meta property="og:url" content="https://jzhou3083.github.io/Blog/2022/07/11/ValidateStack/index.html">
 <meta property="og:site_name" content="SeaNote">
 <meta property="og:description" content="参考: Validate Stack Sequences  QuestionGiven two integer arrays $pushed$ and $popped$ each with distinct values, return $true$ if this could have been the result of a sequence of push and pop operatio">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-07-11T22:08:35.000Z">
-<meta property="article:modified_time" content="2022-07-11T23:09:41.511Z">
+<meta property="article:modified_time" content="2022-07-11T23:28:55.537Z">
 <meta property="article:author" content="Jing Zhou">
 <meta property="article:tag" content="Leedcode">
 <meta name="twitter:card" content="summary">
@@ -37,7 +37,7 @@
       
     
     <!-- title -->
-    <title>Validate Stack Sequences</title>
+    <title>Validate Stack Sequences-946</title>
     <!-- styles -->
     
 <link rel="stylesheet" href="/Blog/css/style.css">
@@ -106,16 +106,16 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://jzhou3083.github.io/Blog/2022/07/11/ValidateStack/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jzhou3083.github.io/Blog/2022/07/11/ValidateStack/&text=Validate Stack Sequences"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jzhou3083.github.io/Blog/2022/07/11/ValidateStack/&title=Validate Stack Sequences"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jzhou3083.github.io/Blog/2022/07/11/ValidateStack/&is_video=false&description=Validate Stack Sequences"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Validate Stack Sequences&body=Check out this article: https://jzhou3083.github.io/Blog/2022/07/11/ValidateStack/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jzhou3083.github.io/Blog/2022/07/11/ValidateStack/&title=Validate Stack Sequences"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/11/ValidateStack/&title=Validate Stack Sequences"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/11/ValidateStack/&title=Validate Stack Sequences"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/11/ValidateStack/&title=Validate Stack Sequences"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jzhou3083.github.io/Blog/2022/07/11/ValidateStack/&name=Validate Stack Sequences&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jzhou3083.github.io/Blog/2022/07/11/ValidateStack/&t=Validate Stack Sequences"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jzhou3083.github.io/Blog/2022/07/11/ValidateStack/&text=Validate Stack Sequences-946"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jzhou3083.github.io/Blog/2022/07/11/ValidateStack/&title=Validate Stack Sequences-946"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jzhou3083.github.io/Blog/2022/07/11/ValidateStack/&is_video=false&description=Validate Stack Sequences-946"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Validate Stack Sequences-946&body=Check out this article: https://jzhou3083.github.io/Blog/2022/07/11/ValidateStack/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jzhou3083.github.io/Blog/2022/07/11/ValidateStack/&title=Validate Stack Sequences-946"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/11/ValidateStack/&title=Validate Stack Sequences-946"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/11/ValidateStack/&title=Validate Stack Sequences-946"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/11/ValidateStack/&title=Validate Stack Sequences-946"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jzhou3083.github.io/Blog/2022/07/11/ValidateStack/&name=Validate Stack Sequences-946&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jzhou3083.github.io/Blog/2022/07/11/ValidateStack/&t=Validate Stack Sequences-946"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -132,7 +132,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        Validate Stack Sequences
+        Validate Stack Sequences-946
     </h1>
 
 
@@ -216,16 +216,16 @@
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://jzhou3083.github.io/Blog/2022/07/11/ValidateStack/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jzhou3083.github.io/Blog/2022/07/11/ValidateStack/&text=Validate Stack Sequences"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jzhou3083.github.io/Blog/2022/07/11/ValidateStack/&title=Validate Stack Sequences"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jzhou3083.github.io/Blog/2022/07/11/ValidateStack/&is_video=false&description=Validate Stack Sequences"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Validate Stack Sequences&body=Check out this article: https://jzhou3083.github.io/Blog/2022/07/11/ValidateStack/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jzhou3083.github.io/Blog/2022/07/11/ValidateStack/&title=Validate Stack Sequences"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/11/ValidateStack/&title=Validate Stack Sequences"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/11/ValidateStack/&title=Validate Stack Sequences"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/11/ValidateStack/&title=Validate Stack Sequences"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jzhou3083.github.io/Blog/2022/07/11/ValidateStack/&name=Validate Stack Sequences&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jzhou3083.github.io/Blog/2022/07/11/ValidateStack/&t=Validate Stack Sequences"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jzhou3083.github.io/Blog/2022/07/11/ValidateStack/&text=Validate Stack Sequences-946"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jzhou3083.github.io/Blog/2022/07/11/ValidateStack/&title=Validate Stack Sequences-946"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jzhou3083.github.io/Blog/2022/07/11/ValidateStack/&is_video=false&description=Validate Stack Sequences-946"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Validate Stack Sequences-946&body=Check out this article: https://jzhou3083.github.io/Blog/2022/07/11/ValidateStack/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jzhou3083.github.io/Blog/2022/07/11/ValidateStack/&title=Validate Stack Sequences-946"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/11/ValidateStack/&title=Validate Stack Sequences-946"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/11/ValidateStack/&title=Validate Stack Sequences-946"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/11/ValidateStack/&title=Validate Stack Sequences-946"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jzhou3083.github.io/Blog/2022/07/11/ValidateStack/&name=Validate Stack Sequences-946&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jzhou3083.github.io/Blog/2022/07/11/ValidateStack/&t=Validate Stack Sequences-946"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
