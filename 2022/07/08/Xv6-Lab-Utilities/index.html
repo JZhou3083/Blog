@@ -15,7 +15,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://assets.leetcode.com/uploads/2018/10/22/rainwatertrap.png">
 <meta property="article:published_time" content="2022-07-08T01:53:31.000Z">
-<meta property="article:modified_time" content="2022-07-15T11:43:03.622Z">
+<meta property="article:modified_time" content="2022-07-17T10:45:48.601Z">
 <meta property="article:author" content="Jing Zhou">
 <meta property="article:tag" content="Xv6">
 <meta name="twitter:card" content="summary">
@@ -267,7 +267,7 @@
 <ul>
 <li>数组名只有在$sizeof(数组名)$ 和$&amp;数组名$ 两种情况表示整个数组的地址， 其他情况表示数组首元素的地址。</li>
 <li>故而: $&amp;a$和$&amp;a[0]$虽然值是一样，但是返回的类型不一样，前者是指向数组的地址，后者是指向数组首元素的地址，前者的指针+1 指向下一个数组，后者+1指向该数组的第二个元素。但是$a$与$&amp;a[0]$是一样的。</li>
-<li>$int *p[3]$ 声明p是一个数组，包含三个指针元素， 元素都指向integer; $\int(*p)[3]$声明一个指针p，指向一个数组，数组包含三个integer。</li>
+<li>$int *p[3]$ 声明p是一个数组，包含三个指针元素， 元素都指向integer; $int(*p)[3]$声明一个指针p，指向一个数组，数组包含三个integer。</li>
 </ul>
 <p>运行：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> hello too | xargs <span class="built_in">echo</span> <span class="built_in">bye</span></span><br><span class="line"><span class="built_in">bye</span> hello too</span><br><span class="line">$ find . b</span><br><span class="line">./b</span><br><span class="line">./a/b</span><br><span class="line">$ find . b | xargs <span class="built_in">echo</span> hello</span><br><span class="line">hello ./b</span><br><span class="line">hello ./a/b</span><br></pre></td></tr></table></figure>
