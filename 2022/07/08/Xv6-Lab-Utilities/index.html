@@ -6,20 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="参考: Lab: Xv6 and Unix utilities  sleepImplement the UNIX program sleep for xv6; your sleep should pause for a user-specified number of ticks. A tick is a notion of time defined by the xv6 kernel, na">
+    <meta name="description" content="参考: Lab: Xv6 and Unix utilities  sleepImplement the UNIX program sleep for xv6; your sleep should pause for a user-specified number of ticks. A tick is a notion of time defined by the xv6 kernel, nam">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Xv6 Lab Utilities">
 <meta property="og:url" content="https://jzhou3083.github.io/Blog/2022/07/08/Xv6-Lab-Utilities/index.html">
 <meta property="og:site_name" content="SeaNote">
-<meta property="og:description" content="参考: Lab: Xv6 and Unix utilities  sleepImplement the UNIX program sleep for xv6; your sleep should pause for a user-specified number of ticks. A tick is a notion of time defined by the xv6 kernel, na">
+<meta property="og:description" content="参考: Lab: Xv6 and Unix utilities  sleepImplement the UNIX program sleep for xv6; your sleep should pause for a user-specified number of ticks. A tick is a notion of time defined by the xv6 kernel, nam">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://assets.leetcode.com/uploads/2018/10/22/rainwatertrap.png">
 <meta property="article:published_time" content="2022-07-08T01:53:31.000Z">
-<meta property="article:modified_time" content="2022-07-17T10:45:48.601Z">
+<meta property="article:modified_time" content="2022-07-17T11:16:28.815Z">
 <meta property="article:author" content="Jing Zhou">
 <meta property="article:tag" content="Xv6">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://assets.leetcode.com/uploads/2018/10/22/rainwatertrap.png">
     
     
       
@@ -166,8 +164,7 @@
   
 
   <div class="content" itemprop="articleBody">
-    <p><img src="https://assets.leetcode.com/uploads/2018/10/22/rainwatertrap.png" alt="Meaning Unknown&#39;s Head Image"></p>
-<blockquote>
+    <blockquote>
 <p>参考: <a target="_blank" rel="noopener" href="https://clownote.github.io/2021/02/24/xv6/Xv6-Lab-Utilities/">Lab: Xv6 and Unix utilities</a></p>
 </blockquote>
 <h2 id="sleep"><a href="#sleep" class="headerlink" title="sleep"></a>sleep</h2><p>Implement the UNIX program <code>sleep</code> for xv6; your <code>sleep</code> should pause for a user-specified number of ticks. A tick is a notion of time defined by the xv6 kernel, namely the time between two interrupts from the timer chip. Your solution should be in the file <code>user/sleep.c</code>.</p>
@@ -267,7 +264,7 @@
 <ul>
 <li>数组名只有在$sizeof(数组名)$ 和$&amp;数组名$ 两种情况表示整个数组的地址， 其他情况表示数组首元素的地址。</li>
 <li>故而: $&amp;a$和$&amp;a[0]$虽然值是一样，但是返回的类型不一样，前者是指向数组的地址，后者是指向数组首元素的地址，前者的指针+1 指向下一个数组，后者+1指向该数组的第二个元素。但是$a$与$&amp;a[0]$是一样的。</li>
-<li>$int *p[3]$ 声明p是一个数组，包含三个指针元素， 元素都指向integer; $int(*p)[3]$声明一个指针p，指向一个数组，数组包含三个integer。</li>
+<li>$int *p[3]$ 声明一个数组p，包含三个指针元素， 指针元素各都指向一个integer; $int(*p)[3]$声明一个数组指针p，数组包含三个integer。</li>
 </ul>
 <p>运行：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> hello too | xargs <span class="built_in">echo</span> <span class="built_in">bye</span></span><br><span class="line"><span class="built_in">bye</span> hello too</span><br><span class="line">$ find . b</span><br><span class="line">./b</span><br><span class="line">./a/b</span><br><span class="line">$ find . b | xargs <span class="built_in">echo</span> hello</span><br><span class="line">hello ./b</span><br><span class="line">hello ./a/b</span><br></pre></td></tr></table></figure>
