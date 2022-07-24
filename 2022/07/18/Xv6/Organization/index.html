@@ -13,14 +13,14 @@
 <meta property="og:site_name" content="SeaNote">
 <meta property="og:description" content="Operating System Organization 参考  xv6-riscv-book Chapter 2 Operating system organization  Three requirements for OS:  multiplexing isolation interaction  Abstracting physical resources Transparency: s">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://jzhou3083.github.io/Blog/Xv6-operating-system-organization/kernel.png">
-<meta property="og:image" content="https://jzhou3083.github.io/Blog/Xv6-operating-system-organization/microkernel.png">
+<meta property="og:image" content="https://jzhou3083.github.io/Blog/.io//Xv6-operating-system-organization/kernel.png">
+<meta property="og:image" content="https://jzhou3083.github.io/Blog/.io//Xv6-operating-system-organization/microkernel.png">
 <meta property="article:published_time" content="2022-07-18T06:53:00.375Z">
 <meta property="article:modified_time" content="2022-07-18T09:39:47.184Z">
 <meta property="article:author" content="Jing Zhou">
 <meta property="article:tag" content="Xv6">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://jzhou3083.github.io/Blog/Xv6-operating-system-organization/kernel.png">
+<meta name="twitter:image" content="https://jzhou3083.github.io/Blog/.io//Xv6-operating-system-organization/kernel.png">
     
     
       
@@ -186,7 +186,7 @@
 <li>Applications don’t have to be aware of time sharing</li>
 <li>Allows the OS to decide the usage of memory</li>
 </ul>
-<h2 id="User-mode-supervisor-mode-and-system-calls"><a href="#User-mode-supervisor-mode-and-system-calls" class="headerlink" title="User mode, supervisor mode, and system calls"></a>User mode, supervisor mode, and system calls</h2><p><img src="/Blog/Xv6-operating-system-organization/kernel.png" alt="A kernel and two user processes"></p>
+<h2 id="User-mode-supervisor-mode-and-system-calls"><a href="#User-mode-supervisor-mode-and-system-calls" class="headerlink" title="User mode, supervisor mode, and system calls"></a>User mode, supervisor mode, and system calls</h2><p><img src="/Blog/.io//Xv6-operating-system-organization/kernel.png" alt="A kernel and two user processes"></p>
 <h2 id="Kernel-organization"><a href="#Kernel-organization" class="headerlink" title="Kernel organization"></a>Kernel organization</h2><table>
 <thead>
 <tr>
@@ -199,17 +199,17 @@
 <tbody><tr>
 <td>monolithic kernel</td>
 <td>the entire OS resides in the kernel with full privilege</td>
-<td>convenient, <br />easier for different parts of the OS to cooperate</td>
-<td>complex interfaces, <br />easy to make a mistake, <br />a mistake is fatal</td>
+<td>convenient, <br>easier for different parts of the OS to cooperate</td>
+<td>complex interfaces, <br>easy to make a mistake, <br>a mistake is fatal</td>
 </tr>
 <tr>
 <td>microkernel</td>
-<td>minimize the code that runs in supervisor mode, <br />execute the bulk of the OS in user mode</td>
+<td>minimize the code that runs in supervisor mode, <br>execute the bulk of the OS in user mode</td>
 <td>reduce the risk of mistakes in the kernel</td>
 <td></td>
 </tr>
 </tbody></table>
-<p><img src="/Blog/Xv6-operating-system-organization/microkernel.png" alt="A microkernel with a file-system server"></p>
+<p><img src="/Blog/.io//Xv6-operating-system-organization/microkernel.png" alt="A microkernel with a file-system server"></p>
 <p>(NOTE&gt; OS services running as processes are called servers)</p>
 <h2 id="Xv6-organization"><a href="#Xv6-organization" class="headerlink" title="Xv6 organization"></a>Xv6 organization</h2><p>Xv6 kernel source files:</p>
 <table>
