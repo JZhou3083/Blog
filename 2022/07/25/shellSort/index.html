@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Reference  Intro常见的基础排序算法如冒泡排序，插入排序和选择排序都是$O(n^2)$ 的算法， 为了加速排序，早期一些优化算法将其加速到$O(nlogn)$. 希尔既是如此。 直接插入排序在本身逆序存在较少的情况下效率很高，如果逆序较多时则不理想。 这是因为如果一个最大的元素在第一位，直接插入需要所有元素都向右边移动一位。 能否减少这样的位移呢？ 答案是可以的：希尔排序算法会设置">
+<meta property="og:type" content="article">
+<meta property="og:title" content="shell Sort">
+<meta property="og:url" content="https://jzhou3083.github.io/Blog/2022/07/25/shellSort/index.html">
+<meta property="og:site_name" content="SeaNote">
+<meta property="og:description" content="Reference  Intro常见的基础排序算法如冒泡排序，插入排序和选择排序都是$O(n^2)$ 的算法， 为了加速排序，早期一些优化算法将其加速到$O(nlogn)$. 希尔既是如此。 直接插入排序在本身逆序存在较少的情况下效率很高，如果逆序较多时则不理想。 这是因为如果一个最大的元素在第一位，直接插入需要所有元素都向右边移动一位。 能否减少这样的位移呢？ 答案是可以的：希尔排序算法会设置">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-07-25T09:43:13.000Z">
+<meta property="article:modified_time" content="2022-07-25T10:20:36.173Z">
+<meta property="article:author" content="Jing Zhou">
+<meta property="article:tag" content="Algorithms">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/Blog/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/Blog/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/Blog/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>shell Sort</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/Blog/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/Blog/">Home</a></li><!--
+     --><!--
+       --><li><a href="/Blog/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/Blog/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/JZhou3083">Projects</a></li><!--
+     --><!--
+       --><li><a href="/Blog/search/">Search</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/Blog/2022/07/25/insertionSort/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&text=shell Sort"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&title=shell Sort"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&is_video=false&description=shell Sort"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=shell Sort&body=Check out this article: https://jzhou3083.github.io/Blog/2022/07/25/shellSort/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&title=shell Sort"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&title=shell Sort"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&title=shell Sort"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&title=shell Sort"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&name=shell Sort&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&t=shell Sort"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Intro"><span class="toc-number">1.</span> <span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Algorithm"><span class="toc-number">2.</span> <span class="toc-text">Algorithm</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Code"><span class="toc-number">3.</span> <span class="toc-text">Code</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        shell Sort
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Jing Zhou</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-07-25T09:43:13.000Z" itemprop="datePublished">2022-07-25</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/Blog/tags/Algorithms/" rel="tag">Algorithms</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/jsgnadsj/p/3458054.html">Reference</a></p>
+</blockquote>
+<h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>常见的基础排序算法如冒泡排序，插入排序和选择排序都是$O(n^2)$ 的算法， 为了加速排序，早期一些优化算法将其加速到$O(nlogn)$. 希尔既是如此。 直接插入排序在本身逆序存在较少的情况下效率很高，如果逆序较多时则不理想。 这是因为如果一个最大的元素在第一位，直接插入需要所有元素都向右边移动一位。</p>
+<p>能否减少这样的位移呢？ 答案是可以的：希尔排序算法会设置一个间隔，同一间隔的所有元素被设置成一组，在组内进行插入排序从而实现了大步排序。然后逐步缩小间隔到1,此时希尔排序就变成了直接插入排序。</p>
+<p>故而，希尔排序可以看成家了预处理的直接插入排序，或者多步长的插入排序。那么如何选择步长序列呢？ 希尔最先提出的是不断二分， 但是这种情况会出现极端情况造成希尔排序比直接插入还要慢：当所有预处理并没有任何改变原序列的情况。 为了避免，步长序列通常选择互质（既除了1没有别的公约数），然后保证最后一个步长为1. 这样可以防止预处理出现盲区而没做任何优化。一个常见的步长序列是$3n+1$,$n$从1开始。</p>
+<h1 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h1><ol>
+<li>Select the increment sequence $t_1, t_2, …, t_k$, where $t_k&#x3D;1$;</li>
+<li>Do insertion sort with the increment foot long $t_1$</li>
+<li>Repeat step 2 with the decreasing foot long until $t_k$</li>
+</ol>
+<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">shellSort</span>(<span class="params">arr</span>):</span><br><span class="line">  <span class="comment"># select increemnt sequence</span></span><br><span class="line">  gap = <span class="number">1</span></span><br><span class="line">  N = <span class="built_in">len</span>(arr)</span><br><span class="line">  <span class="keyword">while</span>(gap &lt; N/<span class="number">3</span>):</span><br><span class="line">    gap = gap*<span class="number">3</span>+<span class="number">1</span></span><br><span class="line">  <span class="comment"># start insertation</span></span><br><span class="line">  <span class="keyword">while</span> gap&gt;<span class="number">0</span>:</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(gap,N):</span><br><span class="line">      temp = arr[i]</span><br><span class="line">      j = i - gap</span><br><span class="line">      <span class="keyword">while</span> j&gt;=<span class="number">0</span> <span class="keyword">and</span> arr[j]&gt;temp:</span><br><span class="line">        arr[j+gap] = arr[j]</span><br><span class="line">        j-=gap</span><br><span class="line">      arr[j+gap] = temp</span><br><span class="line">    gap = gap//<span class="number">3</span></span><br><span class="line">  <span class="keyword">return</span> arr</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/Blog/">Home</a></li>
+         
+          <li><a href="/Blog/about/">About</a></li>
+         
+          <li><a href="/Blog/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/JZhou3083">Projects</a></li>
+         
+          <li><a href="/Blog/search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Intro"><span class="toc-number">1.</span> <span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Algorithm"><span class="toc-number">2.</span> <span class="toc-text">Algorithm</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Code"><span class="toc-number">3.</span> <span class="toc-text">Code</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&text=shell Sort"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&title=shell Sort"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&is_video=false&description=shell Sort"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=shell Sort&body=Check out this article: https://jzhou3083.github.io/Blog/2022/07/25/shellSort/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&title=shell Sort"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&title=shell Sort"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&title=shell Sort"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&title=shell Sort"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&name=shell Sort&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&t=shell Sort"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2021-2022
+    Jing Zhou
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/Blog/">Home</a></li><!--
+     --><!--
+       --><li><a href="/Blog/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/Blog/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/JZhou3083">Projects</a></li><!--
+     --><!--
+       --><li><a href="/Blog/search/">Search</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/Blog/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
