@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="Reference  Intro常见的基础排序算法如冒泡排序，插入排序和选择排序都是$O(n^2)$ 的算法， 为了加速排序，早期一些优化算法将其加速到$O(nlogn)$. 希尔既是如此。 直接插入排序在本身逆序存在较少的情况下效率很高，如果逆序较多时则不理想。 这是因为如果一个最大的元素在第一位，直接插入需要所有元素都向右边移动一位。 能否减少这样的位移呢？ 答案是可以的：希尔排序算法会设置">
+    <meta name="description" content="Reference: 算法学习记录-希尔排序  Intro常见的基础排序算法如冒泡排序，插入排序和选择排序都是$O(n^2)$ 的算法， 为了加速排序，早期一些优化算法将其加速到$O(nlogn)$. 希尔既是如此。直接插入排序在本身逆序存在较少的情况下效率很高，如果逆序较多时则不理想。这是因为如果一个最大的元素在第一位，直接插入需要所有元素都向右边移动一位。 能否减少这样的位移呢？ 答案是可以">
 <meta property="og:type" content="article">
 <meta property="og:title" content="shell Sort">
 <meta property="og:url" content="https://jzhou3083.github.io/Blog/2022/07/25/shellSort/index.html">
 <meta property="og:site_name" content="SeaNote">
-<meta property="og:description" content="Reference  Intro常见的基础排序算法如冒泡排序，插入排序和选择排序都是$O(n^2)$ 的算法， 为了加速排序，早期一些优化算法将其加速到$O(nlogn)$. 希尔既是如此。 直接插入排序在本身逆序存在较少的情况下效率很高，如果逆序较多时则不理想。 这是因为如果一个最大的元素在第一位，直接插入需要所有元素都向右边移动一位。 能否减少这样的位移呢？ 答案是可以的：希尔排序算法会设置">
+<meta property="og:description" content="Reference: 算法学习记录-希尔排序  Intro常见的基础排序算法如冒泡排序，插入排序和选择排序都是$O(n^2)$ 的算法， 为了加速排序，早期一些优化算法将其加速到$O(nlogn)$. 希尔既是如此。直接插入排序在本身逆序存在较少的情况下效率很高，如果逆序较多时则不理想。这是因为如果一个最大的元素在第一位，直接插入需要所有元素都向右边移动一位。 能否减少这样的位移呢？ 答案是可以">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-07-25T09:43:13.000Z">
-<meta property="article:modified_time" content="2022-07-25T10:20:36.173Z">
+<meta property="article:modified_time" content="2022-07-25T22:41:43.274Z">
 <meta property="article:author" content="Jing Zhou">
 <meta property="article:tag" content="Algorithms">
 <meta name="twitter:card" content="summary">
@@ -91,6 +91,8 @@
     <span id="actions">
       <ul>
         
+        <li><a class="icon" aria-label="Previous post" href="/Blog/2022/07/25/mergeSort/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
         
         <li><a class="icon" aria-label="Next post" href="/Blog/2022/07/25/insertionSort/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
@@ -165,11 +167,11 @@
 
   <div class="content" itemprop="articleBody">
     <blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/jsgnadsj/p/3458054.html">Reference</a></p>
+<p>Reference: <a target="_blank" rel="noopener" href="https://www.cnblogs.com/jsgnadsj/p/3458054.html">算法学习记录-希尔排序</a></p>
 </blockquote>
-<h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>常见的基础排序算法如冒泡排序，插入排序和选择排序都是$O(n^2)$ 的算法， 为了加速排序，早期一些优化算法将其加速到$O(nlogn)$. 希尔既是如此。 直接插入排序在本身逆序存在较少的情况下效率很高，如果逆序较多时则不理想。 这是因为如果一个最大的元素在第一位，直接插入需要所有元素都向右边移动一位。</p>
+<h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>常见的基础排序算法如冒泡排序，插入排序和选择排序都是$O(n^2)$ 的算法， 为了加速排序，早期一些优化算法将其加速到$O(nlogn)$. 希尔既是如此。直接插入排序在本身逆序存在较少的情况下效率很高，如果逆序较多时则不理想。这是因为如果一个最大的元素在第一位，直接插入需要所有元素都向右边移动一位。</p>
 <p>能否减少这样的位移呢？ 答案是可以的：希尔排序算法会设置一个间隔，同一间隔的所有元素被设置成一组，在组内进行插入排序从而实现了大步排序。然后逐步缩小间隔到1,此时希尔排序就变成了直接插入排序。</p>
-<p>故而，希尔排序可以看成家了预处理的直接插入排序，或者多步长的插入排序。那么如何选择步长序列呢？ 希尔最先提出的是不断二分， 但是这种情况会出现极端情况造成希尔排序比直接插入还要慢：当所有预处理并没有任何改变原序列的情况。 为了避免，步长序列通常选择互质（既除了1没有别的公约数），然后保证最后一个步长为1. 这样可以防止预处理出现盲区而没做任何优化。一个常见的步长序列是$3n+1$,$n$从1开始。</p>
+<p>故而，希尔排序可以看成家了预处理的直接插入排序，或者多步长的插入排序。那么如何选择步长序列呢？ 希尔最先提出的是不断二分，但是这种情况会出现极端情况造成希尔排序比直接插入还要慢：当所有预处理并没有任何改变原序列的情况。为了避免，步长序列通常选择互质（既除了1没有别的公约数），然后保证最后一个步长为1。这样可以防止预处理出现盲区而没做任何优化。一个常见的步长序列是$3n+1$,$n$从1开始。</p>
 <h1 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h1><ol>
 <li>Select the increment sequence $t_1, t_2, …, t_k$, where $t_k&#x3D;1$;</li>
 <li>Do insertion sort with the increment foot long $t_1$</li>

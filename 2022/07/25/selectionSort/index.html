@@ -6,16 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="介绍选择排序简单直观，无论什么数据进去都是$O(n^2)$ 的时间复杂度。所以用的时候数据规模越小越好。 唯一的好处是不占用额外的内存空间。 算法步骤 首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置 在从剩余未排序元素中寻找最小（大）元素，然后放到已排序序列的末尾 重复第二步，直到排序完毕  动图演示 代码实现12345678910# 无非是从地一个到倒数第二个位置，逐一在后面未排">
+    <meta name="description" content="介绍选择排序简单直观，无论什么数据进去都是$O(n^2)$ 的时间复杂度。所以用的时候数据规模越小越好。唯一的好处是不占用额外的内存空间。 算法步骤 首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置 在从剩余未排序元素中寻找最小（大）元素，然后放到已排序序列的末尾 重复第二步，直到排序完毕。  动图演示 代码实现12345678910# 无非是从地一个到倒数第二个位置，逐一在后面未排">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Selection Sort">
 <meta property="og:url" content="https://jzhou3083.github.io/Blog/2022/07/25/selectionSort/index.html">
 <meta property="og:site_name" content="SeaNote">
-<meta property="og:description" content="介绍选择排序简单直观，无论什么数据进去都是$O(n^2)$ 的时间复杂度。所以用的时候数据规模越小越好。 唯一的好处是不占用额外的内存空间。 算法步骤 首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置 在从剩余未排序元素中寻找最小（大）元素，然后放到已排序序列的末尾 重复第二步，直到排序完毕  动图演示 代码实现12345678910# 无非是从地一个到倒数第二个位置，逐一在后面未排">
+<meta property="og:description" content="介绍选择排序简单直观，无论什么数据进去都是$O(n^2)$ 的时间复杂度。所以用的时候数据规模越小越好。唯一的好处是不占用额外的内存空间。 算法步骤 首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置 在从剩余未排序元素中寻找最小（大）元素，然后放到已排序序列的末尾 重复第二步，直到排序完毕。  动图演示 代码实现12345678910# 无非是从地一个到倒数第二个位置，逐一在后面未排">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://jzhou3083.github.io/Blog/images/selectionSort.gif">
 <meta property="article:published_time" content="2022-07-25T08:55:26.000Z">
-<meta property="article:modified_time" content="2022-07-25T09:20:23.386Z">
+<meta property="article:modified_time" content="2022-07-25T10:22:34.911Z">
 <meta property="article:author" content="Jing Zhou">
 <meta property="article:tag" content="Algorithms">
 <meta name="twitter:card" content="summary">
@@ -168,11 +168,11 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>选择排序简单直观，无论什么数据进去都是$O(n^2)$ 的时间复杂度。所以用的时候数据规模越小越好。 唯一的好处是不占用额外的内存空间。</p>
+    <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>选择排序简单直观，无论什么数据进去都是$O(n^2)$ 的时间复杂度。所以用的时候数据规模越小越好。唯一的好处是不占用额外的内存空间。</p>
 <h1 id="算法步骤"><a href="#算法步骤" class="headerlink" title="算法步骤"></a>算法步骤</h1><ol>
 <li>首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置</li>
 <li>在从剩余未排序元素中寻找最小（大）元素，然后放到已排序序列的末尾</li>
-<li>重复第二步，直到排序完毕</li>
+<li>重复第二步，直到排序完毕。</li>
 </ol>
 <h1 id="动图演示"><a href="#动图演示" class="headerlink" title="动图演示"></a>动图演示</h1><p><img src="/Blog/images/selectionSort.gif" alt="GIF"></p>
 <h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 无非是从地一个到倒数第二个位置，逐一在后面未排序的数列里面选最小元素而已</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">selectionSort</span>(<span class="params">arr</span>):</span><br><span class="line">    N = <span class="built_in">len</span>(arr)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N-<span class="number">1</span>):</span><br><span class="line">        <span class="built_in">min</span> = arr[i]</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i, N):</span><br><span class="line">            <span class="keyword">if</span> arr[j]&lt;<span class="built_in">min</span>:</span><br><span class="line">                <span class="built_in">min</span> = arr[j]</span><br><span class="line">                arr[i],arr[j] = arr[j], arr[i]</span><br><span class="line">    <span class="keyword">return</span> arr</span><br></pre></td></tr></table></figure>
