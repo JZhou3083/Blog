@@ -4,11 +4,30 @@
   
     
     <entry>
+      <title>Bubble Sort</title>
+      <link href="/Blog/2022/07/25/bubbleSort/"/>
+      <url>/Blog/2022/07/25/bubbleSort/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Bubble-Sort"><a href="#Bubble-Sort" class="headerlink" title="Bubble Sort"></a>Bubble Sort</h1><p>The method is easy to understand: it repeatedly iterate the array and compares the coherent two elements. If the order of the two elements conflicts with the requirement, switch their positions. The name is because the maximum values will gradually bubble out to the end of the array.</p><h1 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h1><ol><li>Compare the neighbor elements, if the first element is greater, switch the position.</li><li>Continue the step 1 until the maximum element bubbles to the end, this element is considered sorted and will not join the comparing any more.</li><li>Repeated step 1 and step 2 and the number of sorted elements at the end increments by 1 every time, until all elements are sorted</li></ol><h1 id="GIF-Demonstration"><a href="#GIF-Demonstration" class="headerlink" title="GIF Demonstration"></a>GIF Demonstration</h1><p><img src="https://github.com/hustcc/JS-Sorting-Algorithm/blob/master/res/bubbleSort.gif?raw=true" alt="GIF"></p><h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">bubbleSort</span>(<span class="params">arr</span>):</span><br><span class="line">  N = <span class="built_in">len</span>(arr)</span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,N):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,N-<span class="number">1</span>):</span><br><span class="line">      <span class="keyword">if</span> arr[j] &gt; arr[j+<span class="number">1</span>]:</span><br><span class="line">        arr[j], arr[j+<span class="number">1</span>] = arr[j+<span class="number">1</span>], arr[j] <span class="comment"># switch</span></span><br><span class="line">  <span class="keyword">return</span> arr</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Algorithms </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Sorting</title>
       <link href="/Blog/2022/07/24/Sorting/"/>
       <url>/Blog/2022/07/24/Sorting/</url>
       
-        <content type="html"><![CDATA[<blockquote><p>[参考]（<a href="https://github.com/hustcc/JS-Sorting-Algorithm%EF%BC%89">https://github.com/hustcc/JS-Sorting-Algorithm）</a></p></blockquote><h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>排序算法是数据结构和算法中最基本的算法之一，最常碰见的包括：冒泡排序，选择排序，插入排序，归并排序，快速排序，堆排序，基数排序，希尔排序等。 用一张图概括：</p><p><img src="https://raw.githubusercontent.com/hustcc/JS-Sorting-Algorithm/master/res/sort.png" alt="sort"></p>]]></content>
+        <content type="html"><![CDATA[<blockquote><p>[参考]（<a href="https://github.com/hustcc/JS-Sorting-Algorithm.git%EF%BC%89">https://github.com/hustcc/JS-Sorting-Algorithm.git）</a></p></blockquote><h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>排序算法是数据结构和算法中最基本的算法之一，最常碰见的包括：冒泡排序，选择排序，插入排序，归并排序，快速排序，堆排序，基数排序，希尔排序等。 用一张图概括：</p><p><img src="https://raw.githubusercontent.com/hustcc/JS-Sorting-Algorithm/master/res/sort.png" alt="sort"></p><h1 id="Time-Complexity"><a href="#Time-Complexity" class="headerlink" title="Time Complexity"></a>Time Complexity</h1><ol><li>$O(n^2)$: Bubble Sort, Selection Sort and Insertion Sort.</li><li>$O(nlog_2n)$: Quick Sort, Heap Sort and Merge Sort</li><li>$O(n^{1+{\theta}} )$ where ${\theta} \in [0,1]$ between 0 and 1: Shell Sort</li><li>$O(n)$ Radix Sort<br>and Bucket Sort</li></ol><h1 id="Stability"><a href="#Stability" class="headerlink" title="Stability"></a>Stability</h1><ul><li>Stable: Bubble Sort, Insertion Sort, Merge Sort and Radix Sort</li><li>Unstable: Selection Sort, Quick Sort, Shell Sort, Heap Sort</li></ul><hr><ol><li><a href="bubbleSort.md">冒泡排序</a></li><li><a href="2.selectionSort.md">选择排序</a></li><li><a href="3.insertionSort.md">插入排序</a></li><li><a href="4.shellSort.md">希尔排序</a></li><li><a href="5.mergeSort.md">归并排序</a></li><li><a href="6.quickSort.md">快速排序</a></li><li><a href="7.heapSort.md">堆排序</a></li><li><a href="8.countingSort.md">计数排序</a></li><li><a href="9.bucketSort.md">桶排序</a></li><li><a href="10.radixSort.md">基数排序</a></li></ol><hr>]]></content>
       
       
       
