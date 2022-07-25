@@ -4,6 +4,44 @@
   
     
     <entry>
+      <title>Insertion Sort</title>
+      <link href="/Blog/2022/07/25/insertionSort/"/>
+      <url>/Blog/2022/07/25/insertionSort/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>插入排序跟打牌一样，没抽到一张新牌，与前面排好序的拍对比，插入到相应位置即可。常见的插入方法即把新牌从后往前冒泡。时间复杂度为$O(n^2)$.</p><h1 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h1><ol><li>把第一个数字当成已经排列完毕，直接从第二个元素开始往前冒泡。</li><li>如上从第二个元素到结尾，将新元素从已排序序列的尾段往前冒泡</li></ol><h1 id="GIF"><a href="#GIF" class="headerlink" title="GIF"></a>GIF</h1><p><img src="/Blog/images/insertionSort.gif" alt="GIF"></p><h1 id="Python-code"><a href="#Python-code" class="headerlink" title="Python code"></a>Python code</h1><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">insertionSort</span>(<span class="params">arr</span>):</span><br><span class="line">  N = <span class="built_in">len</span>(arr)</span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,N):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i,<span class="number">0</span>,-<span class="number">1</span>):</span><br><span class="line">      <span class="keyword">if</span> arr[j]&lt;arr[j-<span class="number">1</span>]:</span><br><span class="line">        arr[j],arr[j-<span class="number">1</span>] = arr[j-<span class="number">1</span>], arr[j]</span><br><span class="line">      <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">  <span class="keyword">return</span> arr</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Algorithms </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Selection Sort</title>
+      <link href="/Blog/2022/07/25/selectionSort/"/>
+      <url>/Blog/2022/07/25/selectionSort/</url>
+      
+        <content type="html"><![CDATA[<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>选择排序简单直观，无论什么数据进去都是$O(n^2)$ 的时间复杂度。所以用的时候数据规模越小越好。 唯一的好处是不占用额外的内存空间。</p><h1 id="算法步骤"><a href="#算法步骤" class="headerlink" title="算法步骤"></a>算法步骤</h1><ol><li>首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置</li><li>在从剩余未排序元素中寻找最小（大）元素，然后放到已排序序列的末尾</li><li>重复第二步，直到排序完毕</li></ol><h1 id="动图演示"><a href="#动图演示" class="headerlink" title="动图演示"></a>动图演示</h1><p><img src="/Blog/images/selectionSort.gif" alt="GIF"></p><h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 无非是从地一个到倒数第二个位置，逐一在后面未排序的数列里面选最小元素而已</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">selectionSort</span>(<span class="params">arr</span>):</span><br><span class="line">    N = <span class="built_in">len</span>(arr)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N-<span class="number">1</span>):</span><br><span class="line">        <span class="built_in">min</span> = arr[i]</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i, N):</span><br><span class="line">            <span class="keyword">if</span> arr[j]&lt;<span class="built_in">min</span>:</span><br><span class="line">                <span class="built_in">min</span> = arr[j]</span><br><span class="line">                arr[i],arr[j] = arr[j], arr[i]</span><br><span class="line">    <span class="keyword">return</span> arr</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Algorithms </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Bubble Sort</title>
       <link href="/Blog/2022/07/25/bubbleSort/"/>
       <url>/Blog/2022/07/25/bubbleSort/</url>
@@ -27,7 +65,7 @@
       <link href="/Blog/2022/07/24/Sorting/Sorting/"/>
       <url>/Blog/2022/07/24/Sorting/Sorting/</url>
       
-        <content type="html"><![CDATA[<blockquote><p>[参考]（<a href="https://github.com/hustcc/JS-Sorting-Algorithm.git%EF%BC%89">https://github.com/hustcc/JS-Sorting-Algorithm.git）</a></p></blockquote><h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>排序算法是数据结构和算法中最基本的算法之一，最常碰见的包括：冒泡排序，选择排序，插入排序，归并排序，快速排序，堆排序，基数排序，希尔排序等。 用一张图概括：</p><img src="/Blog/images/sort.png" class="[sort]" title="[3][3] " alt="Sort Algorithms"><!-- ![sort](/images/sort.png) --><h1 id="Time-Complexity"><a href="#Time-Complexity" class="headerlink" title="Time Complexity"></a>Time Complexity</h1><ol><li>$O(n^2)$: Bubble Sort, Selection Sort and Insertion Sort.</li><li>$O(nlog_2n)$: Quick Sort, Heap Sort and Merge Sort</li><li>$O(n^{1+{\theta}} )$ where ${\theta} \in [0,1]$ between 0 and 1: Shell Sort</li><li>$O(n)$ Radix Sort<br>and Bucket Sort</li></ol><h1 id="Stability"><a href="#Stability" class="headerlink" title="Stability"></a>Stability</h1><ul><li>Stable: Bubble Sort, Insertion Sort, Merge Sort and Radix Sort</li><li>Unstable: Selection Sort, Quick Sort, Shell Sort, Heap Sort</li></ul><hr><a href="/Blog/2022/07/25/bubbleSort/" title="1.冒泡排序">1.冒泡排序</a><ol start="2"><li><a href="2.selectionSort.md">选择排序</a></li><li><a href="3.insertionSort.md">插入排序</a></li><li><a href="4.shellSort.md">希尔排序</a></li><li><a href="5.mergeSort.md">归并排序</a></li><li><a href="6.quickSort.md">快速排序</a></li><li><a href="7.heapSort.md">堆排序</a></li><li><a href="8.countingSort.md">计数排序</a></li><li><a href="9.bucketSort.md">桶排序</a></li><li><a href="10.radixSort.md">基数排序</a></li></ol><hr>]]></content>
+        <content type="html"><![CDATA[<blockquote><p>[参考]（<a href="https://github.com/hustcc/JS-Sorting-Algorithm.git%EF%BC%89">https://github.com/hustcc/JS-Sorting-Algorithm.git）</a></p></blockquote><h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>排序算法是数据结构和算法中最基本的算法之一，最常碰见的包括：冒泡排序，选择排序，插入排序，归并排序，快速排序，堆排序，基数排序，希尔排序等。 用一张图概括：</p><img src="/Blog/images/sort.png" class="[sort]" title="[3][3] " alt="Sort Algorithms"><!-- ![sort](/images/sort.png) --><h1 id="Time-Complexity"><a href="#Time-Complexity" class="headerlink" title="Time Complexity"></a>Time Complexity</h1><ol><li>$O(n^2)$: Bubble Sort, Selection Sort and Insertion Sort.</li><li>$O(nlog_2n)$: Quick Sort, Heap Sort and Merge Sort</li><li>$O(n^{1+{\theta}} )$ where ${\theta} \in [0,1]$ between 0 and 1: Shell Sort</li><li>$O(n)$ Radix Sort<br>and Bucket Sort</li></ol><h1 id="Stability"><a href="#Stability" class="headerlink" title="Stability"></a>Stability</h1><ul><li>Stable: Bubble Sort, Insertion Sort, Merge Sort and Radix Sort</li><li>Unstable: Selection Sort, Quick Sort, Shell Sort, Heap Sort</li></ul><h1 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h1><a href="/Blog/2022/07/25/bubbleSort/" title="1.冒泡排序">1.冒泡排序</a><a href="/Blog/2022/07/25/bubbleSort/" title="2.选择排序">2.选择排序</a><a href="/Blog/2022/07/25/bubbleSort/" title="3.插入排序">3.插入排序</a><ol start="4"><li><a href="4.shellSort.md">希尔排序</a></li><li><a href="5.mergeSort.md">归并排序</a></li><li><a href="6.quickSort.md">快速排序</a></li><li><a href="7.heapSort.md">堆排序</a></li><li><a href="8.countingSort.md">计数排序</a></li><li><a href="9.bucketSort.md">桶排序</a></li><li><a href="10.radixSort.md">基数排序</a></li></ol>]]></content>
       
       
       
