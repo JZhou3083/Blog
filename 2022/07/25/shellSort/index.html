@@ -8,13 +8,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="description" content="Reference: 算法学习记录-希尔排序  Intro常见的基础排序算法如冒泡排序，插入排序和选择排序都是$O(n^2)$ 的算法， 为了加速排序，早期一些优化算法将其加速到$O(nlogn)$. 希尔既是如此。直接插入排序在本身逆序存在较少的情况下效率很高，如果逆序较多时则不理想。这是因为如果一个最大的元素在第一位，直接插入需要所有元素都向右边移动一位。 能否减少这样的位移呢？ 答案是可以">
 <meta property="og:type" content="article">
-<meta property="og:title" content="shell Sort">
+<meta property="og:title" content="Sorting - Shell Sort">
 <meta property="og:url" content="https://jzhou3083.github.io/Blog/2022/07/25/shellSort/index.html">
 <meta property="og:site_name" content="SeaNote">
 <meta property="og:description" content="Reference: 算法学习记录-希尔排序  Intro常见的基础排序算法如冒泡排序，插入排序和选择排序都是$O(n^2)$ 的算法， 为了加速排序，早期一些优化算法将其加速到$O(nlogn)$. 希尔既是如此。直接插入排序在本身逆序存在较少的情况下效率很高，如果逆序较多时则不理想。这是因为如果一个最大的元素在第一位，直接插入需要所有元素都向右边移动一位。 能否减少这样的位移呢？ 答案是可以">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-07-25T09:43:13.000Z">
-<meta property="article:modified_time" content="2022-07-25T22:41:43.274Z">
+<meta property="article:modified_time" content="2022-07-29T15:35:31.712Z">
 <meta property="article:author" content="Jing Zhou">
 <meta property="article:tag" content="Algorithms">
 <meta name="twitter:card" content="summary">
@@ -37,7 +37,7 @@
       
     
     <!-- title -->
-    <title>shell Sort</title>
+    <title>Sorting - Shell Sort</title>
     <!-- styles -->
     
 <link rel="stylesheet" href="/Blog/css/style.css">
@@ -77,9 +77,9 @@
         <!--
        --><li><a href="/Blog/">Home</a></li><!--
      --><!--
-       --><li><a href="/Blog/about/">About</a></li><!--
+       --><li><a href="/Blog/resume/">About</a></li><!--
      --><!--
-       --><li><a href="/Blog/archives/">Writing</a></li><!--
+       --><li><a href="/Blog/categories/">Topics</a></li><!--
      --><!--
        --><li><a target="_blank" rel="noopener" href="https://github.com/JZhou3083">Projects</a></li><!--
      --><!--
@@ -108,16 +108,16 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&text=shell Sort"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&title=shell Sort"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&is_video=false&description=shell Sort"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=shell Sort&body=Check out this article: https://jzhou3083.github.io/Blog/2022/07/25/shellSort/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&title=shell Sort"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&title=shell Sort"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&title=shell Sort"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&title=shell Sort"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&name=shell Sort&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&t=shell Sort"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&text=Sorting - Shell Sort"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&title=Sorting - Shell Sort"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&is_video=false&description=Sorting - Shell Sort"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Sorting - Shell Sort&body=Check out this article: https://jzhou3083.github.io/Blog/2022/07/25/shellSort/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&title=Sorting - Shell Sort"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&title=Sorting - Shell Sort"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&title=Sorting - Shell Sort"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&title=Sorting - Shell Sort"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&name=Sorting - Shell Sort&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&t=Sorting - Shell Sort"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -134,7 +134,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        shell Sort
+        Sorting - Shell Sort
     </h1>
 
 
@@ -153,6 +153,11 @@
 
 
       
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/Blog/categories/Leedcode/">Leedcode</a>
+    </div>
+
 
       
     <div class="article-tag">
@@ -193,9 +198,9 @@
          
           <li><a href="/Blog/">Home</a></li>
          
-          <li><a href="/Blog/about/">About</a></li>
+          <li><a href="/Blog/resume/">About</a></li>
          
-          <li><a href="/Blog/archives/">Writing</a></li>
+          <li><a href="/Blog/categories/">Topics</a></li>
          
           <li><a target="_blank" rel="noopener" href="https://github.com/JZhou3083">Projects</a></li>
          
@@ -211,16 +216,16 @@
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&text=shell Sort"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&title=shell Sort"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&is_video=false&description=shell Sort"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=shell Sort&body=Check out this article: https://jzhou3083.github.io/Blog/2022/07/25/shellSort/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&title=shell Sort"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&title=shell Sort"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&title=shell Sort"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&title=shell Sort"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&name=shell Sort&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&t=shell Sort"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&text=Sorting - Shell Sort"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&title=Sorting - Shell Sort"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&is_video=false&description=Sorting - Shell Sort"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Sorting - Shell Sort&body=Check out this article: https://jzhou3083.github.io/Blog/2022/07/25/shellSort/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&title=Sorting - Shell Sort"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&title=Sorting - Shell Sort"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&title=Sorting - Shell Sort"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&title=Sorting - Shell Sort"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&name=Sorting - Shell Sort&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jzhou3083.github.io/Blog/2022/07/25/shellSort/&t=Sorting - Shell Sort"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -250,9 +255,9 @@
         <!--
        --><li><a href="/Blog/">Home</a></li><!--
      --><!--
-       --><li><a href="/Blog/about/">About</a></li><!--
+       --><li><a href="/Blog/resume/">About</a></li><!--
      --><!--
-       --><li><a href="/Blog/archives/">Writing</a></li><!--
+       --><li><a href="/Blog/categories/">Topics</a></li><!--
      --><!--
        --><li><a target="_blank" rel="noopener" href="https://github.com/JZhou3083">Projects</a></li><!--
      --><!--

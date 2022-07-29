@@ -8,14 +8,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="description" content="介绍选择排序简单直观，无论什么数据进去都是$O(n^2)$ 的时间复杂度。所以用的时候数据规模越小越好。唯一的好处是不占用额外的内存空间。 算法步骤 首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置 在从剩余未排序元素中寻找最小（大）元素，然后放到已排序序列的末尾 重复第二步，直到排序完毕。  动图演示 代码实现12345678910# 无非是从地一个到倒数第二个位置，逐一在后面未排">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Selection Sort">
+<meta property="og:title" content="Sorting - Selection Sort">
 <meta property="og:url" content="https://jzhou3083.github.io/Blog/2022/07/25/selectionSort/index.html">
 <meta property="og:site_name" content="SeaNote">
 <meta property="og:description" content="介绍选择排序简单直观，无论什么数据进去都是$O(n^2)$ 的时间复杂度。所以用的时候数据规模越小越好。唯一的好处是不占用额外的内存空间。 算法步骤 首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置 在从剩余未排序元素中寻找最小（大）元素，然后放到已排序序列的末尾 重复第二步，直到排序完毕。  动图演示 代码实现12345678910# 无非是从地一个到倒数第二个位置，逐一在后面未排">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://jzhou3083.github.io/Blog/images/selectionSort.gif">
 <meta property="article:published_time" content="2022-07-25T08:55:26.000Z">
-<meta property="article:modified_time" content="2022-07-25T10:22:34.911Z">
+<meta property="article:modified_time" content="2022-07-29T15:35:41.980Z">
 <meta property="article:author" content="Jing Zhou">
 <meta property="article:tag" content="Algorithms">
 <meta name="twitter:card" content="summary">
@@ -39,7 +39,7 @@
       
     
     <!-- title -->
-    <title>Selection Sort</title>
+    <title>Sorting - Selection Sort</title>
     <!-- styles -->
     
 <link rel="stylesheet" href="/Blog/css/style.css">
@@ -79,9 +79,9 @@
         <!--
        --><li><a href="/Blog/">Home</a></li><!--
      --><!--
-       --><li><a href="/Blog/about/">About</a></li><!--
+       --><li><a href="/Blog/resume/">About</a></li><!--
      --><!--
-       --><li><a href="/Blog/archives/">Writing</a></li><!--
+       --><li><a href="/Blog/categories/">Topics</a></li><!--
      --><!--
        --><li><a target="_blank" rel="noopener" href="https://github.com/JZhou3083">Projects</a></li><!--
      --><!--
@@ -110,16 +110,16 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://jzhou3083.github.io/Blog/2022/07/25/selectionSort/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jzhou3083.github.io/Blog/2022/07/25/selectionSort/&text=Selection Sort"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jzhou3083.github.io/Blog/2022/07/25/selectionSort/&title=Selection Sort"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jzhou3083.github.io/Blog/2022/07/25/selectionSort/&is_video=false&description=Selection Sort"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Selection Sort&body=Check out this article: https://jzhou3083.github.io/Blog/2022/07/25/selectionSort/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jzhou3083.github.io/Blog/2022/07/25/selectionSort/&title=Selection Sort"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/25/selectionSort/&title=Selection Sort"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/25/selectionSort/&title=Selection Sort"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/25/selectionSort/&title=Selection Sort"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jzhou3083.github.io/Blog/2022/07/25/selectionSort/&name=Selection Sort&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jzhou3083.github.io/Blog/2022/07/25/selectionSort/&t=Selection Sort"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jzhou3083.github.io/Blog/2022/07/25/selectionSort/&text=Sorting - Selection Sort"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jzhou3083.github.io/Blog/2022/07/25/selectionSort/&title=Sorting - Selection Sort"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jzhou3083.github.io/Blog/2022/07/25/selectionSort/&is_video=false&description=Sorting - Selection Sort"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Sorting - Selection Sort&body=Check out this article: https://jzhou3083.github.io/Blog/2022/07/25/selectionSort/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jzhou3083.github.io/Blog/2022/07/25/selectionSort/&title=Sorting - Selection Sort"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/25/selectionSort/&title=Sorting - Selection Sort"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/25/selectionSort/&title=Sorting - Selection Sort"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/25/selectionSort/&title=Sorting - Selection Sort"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jzhou3083.github.io/Blog/2022/07/25/selectionSort/&name=Sorting - Selection Sort&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jzhou3083.github.io/Blog/2022/07/25/selectionSort/&t=Sorting - Selection Sort"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -136,7 +136,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        Selection Sort
+        Sorting - Selection Sort
     </h1>
 
 
@@ -155,6 +155,11 @@
 
 
       
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/Blog/categories/Leedcode/">Leedcode</a>
+    </div>
+
 
       
     <div class="article-tag">
@@ -191,9 +196,9 @@
          
           <li><a href="/Blog/">Home</a></li>
          
-          <li><a href="/Blog/about/">About</a></li>
+          <li><a href="/Blog/resume/">About</a></li>
          
-          <li><a href="/Blog/archives/">Writing</a></li>
+          <li><a href="/Blog/categories/">Topics</a></li>
          
           <li><a target="_blank" rel="noopener" href="https://github.com/JZhou3083">Projects</a></li>
          
@@ -209,16 +214,16 @@
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://jzhou3083.github.io/Blog/2022/07/25/selectionSort/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jzhou3083.github.io/Blog/2022/07/25/selectionSort/&text=Selection Sort"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jzhou3083.github.io/Blog/2022/07/25/selectionSort/&title=Selection Sort"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jzhou3083.github.io/Blog/2022/07/25/selectionSort/&is_video=false&description=Selection Sort"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Selection Sort&body=Check out this article: https://jzhou3083.github.io/Blog/2022/07/25/selectionSort/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jzhou3083.github.io/Blog/2022/07/25/selectionSort/&title=Selection Sort"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/25/selectionSort/&title=Selection Sort"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/25/selectionSort/&title=Selection Sort"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/25/selectionSort/&title=Selection Sort"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jzhou3083.github.io/Blog/2022/07/25/selectionSort/&name=Selection Sort&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jzhou3083.github.io/Blog/2022/07/25/selectionSort/&t=Selection Sort"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jzhou3083.github.io/Blog/2022/07/25/selectionSort/&text=Sorting - Selection Sort"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jzhou3083.github.io/Blog/2022/07/25/selectionSort/&title=Sorting - Selection Sort"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jzhou3083.github.io/Blog/2022/07/25/selectionSort/&is_video=false&description=Sorting - Selection Sort"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Sorting - Selection Sort&body=Check out this article: https://jzhou3083.github.io/Blog/2022/07/25/selectionSort/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jzhou3083.github.io/Blog/2022/07/25/selectionSort/&title=Sorting - Selection Sort"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/25/selectionSort/&title=Sorting - Selection Sort"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/25/selectionSort/&title=Sorting - Selection Sort"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/25/selectionSort/&title=Sorting - Selection Sort"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jzhou3083.github.io/Blog/2022/07/25/selectionSort/&name=Sorting - Selection Sort&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jzhou3083.github.io/Blog/2022/07/25/selectionSort/&t=Sorting - Selection Sort"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -248,9 +253,9 @@
         <!--
        --><li><a href="/Blog/">Home</a></li><!--
      --><!--
-       --><li><a href="/Blog/about/">About</a></li><!--
+       --><li><a href="/Blog/resume/">About</a></li><!--
      --><!--
-       --><li><a href="/Blog/archives/">Writing</a></li><!--
+       --><li><a href="/Blog/categories/">Topics</a></li><!--
      --><!--
        --><li><a target="_blank" rel="noopener" href="https://github.com/JZhou3083">Projects</a></li><!--
      --><!--

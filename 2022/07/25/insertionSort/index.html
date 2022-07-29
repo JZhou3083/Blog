@@ -8,14 +8,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="description" content="Intro插入排序跟打牌一样，没抽到一张新牌，与前面排好序的拍对比，插入到相应位置即可。常见的插入方法即把新牌从后往前冒泡。时间复杂度为$O(n^2)$. Algorithm 把第一个数字当成已经排列完毕，直接从第二个元素开始往前冒泡。 如上从第二个元素到结尾，将新元素从已排序序列的尾段往前冒泡  GIF Python code123456789def insertionSort(arr):  N">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Insertion Sort">
+<meta property="og:title" content="Sorting - Insertion Sort">
 <meta property="og:url" content="https://jzhou3083.github.io/Blog/2022/07/25/insertionSort/index.html">
 <meta property="og:site_name" content="SeaNote">
 <meta property="og:description" content="Intro插入排序跟打牌一样，没抽到一张新牌，与前面排好序的拍对比，插入到相应位置即可。常见的插入方法即把新牌从后往前冒泡。时间复杂度为$O(n^2)$. Algorithm 把第一个数字当成已经排列完毕，直接从第二个元素开始往前冒泡。 如上从第二个元素到结尾，将新元素从已排序序列的尾段往前冒泡  GIF Python code123456789def insertionSort(arr):  N">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://jzhou3083.github.io/Blog/images/insertionSort.gif">
 <meta property="article:published_time" content="2022-07-25T09:19:22.000Z">
-<meta property="article:modified_time" content="2022-07-25T09:32:47.288Z">
+<meta property="article:modified_time" content="2022-07-29T15:26:15.857Z">
 <meta property="article:author" content="Jing Zhou">
 <meta property="article:tag" content="Algorithms">
 <meta name="twitter:card" content="summary">
@@ -39,7 +39,7 @@
       
     
     <!-- title -->
-    <title>Insertion Sort</title>
+    <title>Sorting - Insertion Sort</title>
     <!-- styles -->
     
 <link rel="stylesheet" href="/Blog/css/style.css">
@@ -79,9 +79,9 @@
         <!--
        --><li><a href="/Blog/">Home</a></li><!--
      --><!--
-       --><li><a href="/Blog/about/">About</a></li><!--
+       --><li><a href="/Blog/resume/">About</a></li><!--
      --><!--
-       --><li><a href="/Blog/archives/">Writing</a></li><!--
+       --><li><a href="/Blog/categories/">Topics</a></li><!--
      --><!--
        --><li><a target="_blank" rel="noopener" href="https://github.com/JZhou3083">Projects</a></li><!--
      --><!--
@@ -110,16 +110,16 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://jzhou3083.github.io/Blog/2022/07/25/insertionSort/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jzhou3083.github.io/Blog/2022/07/25/insertionSort/&text=Insertion Sort"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jzhou3083.github.io/Blog/2022/07/25/insertionSort/&title=Insertion Sort"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jzhou3083.github.io/Blog/2022/07/25/insertionSort/&is_video=false&description=Insertion Sort"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Insertion Sort&body=Check out this article: https://jzhou3083.github.io/Blog/2022/07/25/insertionSort/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jzhou3083.github.io/Blog/2022/07/25/insertionSort/&title=Insertion Sort"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/25/insertionSort/&title=Insertion Sort"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/25/insertionSort/&title=Insertion Sort"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/25/insertionSort/&title=Insertion Sort"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jzhou3083.github.io/Blog/2022/07/25/insertionSort/&name=Insertion Sort&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jzhou3083.github.io/Blog/2022/07/25/insertionSort/&t=Insertion Sort"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jzhou3083.github.io/Blog/2022/07/25/insertionSort/&text=Sorting - Insertion Sort"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jzhou3083.github.io/Blog/2022/07/25/insertionSort/&title=Sorting - Insertion Sort"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jzhou3083.github.io/Blog/2022/07/25/insertionSort/&is_video=false&description=Sorting - Insertion Sort"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Sorting - Insertion Sort&body=Check out this article: https://jzhou3083.github.io/Blog/2022/07/25/insertionSort/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jzhou3083.github.io/Blog/2022/07/25/insertionSort/&title=Sorting - Insertion Sort"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/25/insertionSort/&title=Sorting - Insertion Sort"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/25/insertionSort/&title=Sorting - Insertion Sort"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/25/insertionSort/&title=Sorting - Insertion Sort"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jzhou3083.github.io/Blog/2022/07/25/insertionSort/&name=Sorting - Insertion Sort&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jzhou3083.github.io/Blog/2022/07/25/insertionSort/&t=Sorting - Insertion Sort"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -136,7 +136,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        Insertion Sort
+        Sorting - Insertion Sort
     </h1>
 
 
@@ -155,6 +155,11 @@
 
 
       
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/Blog/categories/Leedcode/">Leedcode</a>
+    </div>
+
 
       
     <div class="article-tag">
@@ -190,9 +195,9 @@
          
           <li><a href="/Blog/">Home</a></li>
          
-          <li><a href="/Blog/about/">About</a></li>
+          <li><a href="/Blog/resume/">About</a></li>
          
-          <li><a href="/Blog/archives/">Writing</a></li>
+          <li><a href="/Blog/categories/">Topics</a></li>
          
           <li><a target="_blank" rel="noopener" href="https://github.com/JZhou3083">Projects</a></li>
          
@@ -208,16 +213,16 @@
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://jzhou3083.github.io/Blog/2022/07/25/insertionSort/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jzhou3083.github.io/Blog/2022/07/25/insertionSort/&text=Insertion Sort"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jzhou3083.github.io/Blog/2022/07/25/insertionSort/&title=Insertion Sort"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jzhou3083.github.io/Blog/2022/07/25/insertionSort/&is_video=false&description=Insertion Sort"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Insertion Sort&body=Check out this article: https://jzhou3083.github.io/Blog/2022/07/25/insertionSort/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jzhou3083.github.io/Blog/2022/07/25/insertionSort/&title=Insertion Sort"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/25/insertionSort/&title=Insertion Sort"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/25/insertionSort/&title=Insertion Sort"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/25/insertionSort/&title=Insertion Sort"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jzhou3083.github.io/Blog/2022/07/25/insertionSort/&name=Insertion Sort&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jzhou3083.github.io/Blog/2022/07/25/insertionSort/&t=Insertion Sort"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jzhou3083.github.io/Blog/2022/07/25/insertionSort/&text=Sorting - Insertion Sort"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jzhou3083.github.io/Blog/2022/07/25/insertionSort/&title=Sorting - Insertion Sort"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jzhou3083.github.io/Blog/2022/07/25/insertionSort/&is_video=false&description=Sorting - Insertion Sort"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Sorting - Insertion Sort&body=Check out this article: https://jzhou3083.github.io/Blog/2022/07/25/insertionSort/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jzhou3083.github.io/Blog/2022/07/25/insertionSort/&title=Sorting - Insertion Sort"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/25/insertionSort/&title=Sorting - Insertion Sort"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/25/insertionSort/&title=Sorting - Insertion Sort"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jzhou3083.github.io/Blog/2022/07/25/insertionSort/&title=Sorting - Insertion Sort"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jzhou3083.github.io/Blog/2022/07/25/insertionSort/&name=Sorting - Insertion Sort&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jzhou3083.github.io/Blog/2022/07/25/insertionSort/&t=Sorting - Insertion Sort"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -247,9 +252,9 @@
         <!--
        --><li><a href="/Blog/">Home</a></li><!--
      --><!--
-       --><li><a href="/Blog/about/">About</a></li><!--
+       --><li><a href="/Blog/resume/">About</a></li><!--
      --><!--
-       --><li><a href="/Blog/archives/">Writing</a></li><!--
+       --><li><a href="/Blog/categories/">Topics</a></li><!--
      --><!--
        --><li><a target="_blank" rel="noopener" href="https://github.com/JZhou3083">Projects</a></li><!--
      --><!--
