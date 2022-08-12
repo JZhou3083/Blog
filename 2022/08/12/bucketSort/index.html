@@ -6,17 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="Bucket虽然这篇文章标题是桶排序，但是我打算把计数排序，桶排序和基数排序一块儿总结了。因为本质上他们都是运用了桶的概念，只是对桶的使用上有明显差异：  计数排序：每个桶只存储一个键值 桶排序：每个桶存储一定范围的键值 基数排序：根据键值的美味数字来分配桶引入桶其实本质上是为了构建一个从键值到index的映射函数，毕竟排序的本质其实就是根据键值的大小关系来重新决定index。桶方法都是空间换时间">
+    <meta name="description" content="Bucket虽然这篇文章标题是桶排序，但是我打算把计数排序，桶排序和基数排序一块儿总结了。因为本质上他们都是运用了桶的概念，只是对桶的使用上有点差异：  计数排序：每个桶只存储一个键值 桶排序：每个桶存储一定范围的键值 基数排序：根据键值的美味数字来分配桶  引入桶是为了构建一个从键值到index的映射函数，毕竟排序的本质其实就是根据键值的大小关系来重新决定index。桶方法都是空间换时间。如果现">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Sorting - bucket">
+<meta property="og:title" content="Sorting - Bucket">
 <meta property="og:url" content="https://jzhou3083.github.io/Blog/2022/08/12/bucketSort/index.html">
 <meta property="og:site_name" content="SeaNote">
-<meta property="og:description" content="Bucket虽然这篇文章标题是桶排序，但是我打算把计数排序，桶排序和基数排序一块儿总结了。因为本质上他们都是运用了桶的概念，只是对桶的使用上有明显差异：  计数排序：每个桶只存储一个键值 桶排序：每个桶存储一定范围的键值 基数排序：根据键值的美味数字来分配桶引入桶其实本质上是为了构建一个从键值到index的映射函数，毕竟排序的本质其实就是根据键值的大小关系来重新决定index。桶方法都是空间换时间">
+<meta property="og:description" content="Bucket虽然这篇文章标题是桶排序，但是我打算把计数排序，桶排序和基数排序一块儿总结了。因为本质上他们都是运用了桶的概念，只是对桶的使用上有点差异：  计数排序：每个桶只存储一个键值 桶排序：每个桶存储一定范围的键值 基数排序：根据键值的美味数字来分配桶  引入桶是为了构建一个从键值到index的映射函数，毕竟排序的本质其实就是根据键值的大小关系来重新决定index。桶方法都是空间换时间。如果现">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://jzhou3083.github.io/Blog/images/countingSort.gif">
 <meta property="og:image" content="https://jzhou3083.github.io/Blog/images/radixSort.gif">
 <meta property="article:published_time" content="2022-08-11T23:31:20.000Z">
-<meta property="article:modified_time" content="2022-08-12T00:16:38.258Z">
+<meta property="article:modified_time" content="2022-08-12T00:21:59.642Z">
 <meta property="article:author" content="Jing Zhou">
 <meta property="article:tag" content="Algorithms">
 <meta name="twitter:card" content="summary">
@@ -40,7 +40,7 @@
       
     
     <!-- title -->
-    <title>Sorting - bucket</title>
+    <title>Sorting - Bucket</title>
     <!-- styles -->
     
 <link rel="stylesheet" href="/Blog/css/style.css">
@@ -109,16 +109,16 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://jzhou3083.github.io/Blog/2022/08/12/bucketSort/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jzhou3083.github.io/Blog/2022/08/12/bucketSort/&text=Sorting - bucket"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jzhou3083.github.io/Blog/2022/08/12/bucketSort/&title=Sorting - bucket"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jzhou3083.github.io/Blog/2022/08/12/bucketSort/&is_video=false&description=Sorting - bucket"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Sorting - bucket&body=Check out this article: https://jzhou3083.github.io/Blog/2022/08/12/bucketSort/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jzhou3083.github.io/Blog/2022/08/12/bucketSort/&title=Sorting - bucket"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/12/bucketSort/&title=Sorting - bucket"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/12/bucketSort/&title=Sorting - bucket"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/12/bucketSort/&title=Sorting - bucket"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jzhou3083.github.io/Blog/2022/08/12/bucketSort/&name=Sorting - bucket&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jzhou3083.github.io/Blog/2022/08/12/bucketSort/&t=Sorting - bucket"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jzhou3083.github.io/Blog/2022/08/12/bucketSort/&text=Sorting - Bucket"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jzhou3083.github.io/Blog/2022/08/12/bucketSort/&title=Sorting - Bucket"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jzhou3083.github.io/Blog/2022/08/12/bucketSort/&is_video=false&description=Sorting - Bucket"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Sorting - Bucket&body=Check out this article: https://jzhou3083.github.io/Blog/2022/08/12/bucketSort/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jzhou3083.github.io/Blog/2022/08/12/bucketSort/&title=Sorting - Bucket"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/12/bucketSort/&title=Sorting - Bucket"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/12/bucketSort/&title=Sorting - Bucket"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/12/bucketSort/&title=Sorting - Bucket"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jzhou3083.github.io/Blog/2022/08/12/bucketSort/&name=Sorting - Bucket&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jzhou3083.github.io/Blog/2022/08/12/bucketSort/&t=Sorting - Bucket"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -135,7 +135,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        Sorting - bucket
+        Sorting - Bucket
     </h1>
 
 
@@ -172,21 +172,22 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h1 id="Bucket"><a href="#Bucket" class="headerlink" title="Bucket"></a>Bucket</h1><p>虽然这篇文章标题是桶排序，但是我打算把计数排序，桶排序和基数排序一块儿总结了。因为本质上他们都是运用了桶的概念，只是对桶的使用上有明显差异：</p>
+    <h1 id="Bucket"><a href="#Bucket" class="headerlink" title="Bucket"></a>Bucket</h1><p>虽然这篇文章标题是桶排序，但是我打算把计数排序，桶排序和基数排序一块儿总结了。因为本质上他们都是运用了桶的概念，只是对桶的使用上有点差异：</p>
 <ul>
 <li>计数排序：每个桶只存储一个键值</li>
 <li>桶排序：每个桶存储一定范围的键值</li>
-<li>基数排序：根据键值的美味数字来分配桶<br>引入桶其实本质上是为了构建一个从键值到index的映射函数，毕竟排序的本质其实就是根据键值的大小关系来重新决定index。桶方法都是空间换时间。如果现在难以理解可以继续看下去，然后回来对照这里的总结就可以明白了。</li>
+<li>基数排序：根据键值的美味数字来分配桶</li>
 </ul>
+<p>引入桶是为了构建一个从键值到index的映射函数，毕竟排序的本质其实就是根据键值的大小关系来重新决定index。桶方法都是空间换时间。如果现在难以理解可以继续看下去，然后回来对照这里的总结就可以明白了。</p>
 <h1 id="Counting-Sort"><a href="#Counting-Sort" class="headerlink" title="Counting Sort"></a>Counting Sort</h1><p>计数排序最容易理解，根据输入的数据值将其存在额外开辟的数组空间。比如一个数是55,那么它被存在新的数组空间的第55个位置。这样键值的大小直接与其在新数组的位置对应起来，最后只需要按序把新数组的数字提取出来就可以了。计数算法是一种线性算法（毕竟只需要存储和提取各一次即可）。但是它要求数据必须是有确定范围的整数，因为index不能为小数，而且一开始新数组的大小最好就确定。一个动图如下：<br><img src="/Blog/images/countingSort.gif" alt="GIF"></p>
 <p>它的实现代码：</p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">countingSort</span>(<span class="params">arr,maxValue</span>):</span><br><span class="line">  bucketlen = maxValue+<span class="number">1</span></span><br><span class="line">  bucket=[<span class="number">0</span>]*bucketlen</span><br><span class="line">  sortedIndex = <span class="number">0</span></span><br><span class="line">  <span class="keyword">for</span> num <span class="keyword">in</span> arr: <span class="comment">#构建存储数组</span></span><br><span class="line">    bucket[num] += <span class="number">1</span></span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(bucketlen):</span><br><span class="line">    <span class="keyword">while</span> bucket[i]:</span><br><span class="line">      arr[sortedIndex] = i</span><br><span class="line">      sortedIndex += <span class="number">1</span></span><br><span class="line">      bucket[i] -= <span class="number">1</span></span><br><span class="line">  <span class="keyword">return</span> arr</span><br></pre></td></tr></table></figure>
-<h1 id="Bucket-Sort"><a href="#Bucket-Sort" class="headerlink" title="Bucket Sort"></a>Bucket Sort</h1><p>桶排序其实是一种方法论，计数排序一个桶只村一个值，桶则存一定范围。桶的范围可以我们根据需要自己决定。当把所有数分配到桶之后，在桶内执行排序，当然你可以在桶里继续分（递归）都取决与你。理想状态下，数据被均匀的分配，可以大幅度降低时间复杂度，最差的情况则是所有数据分到一个桶。其次，桶选的太多也会占用不必要的额外空间。还有如果你的数据分布非常不均匀的话，桶排序就时间收益不大同时又消耗更多空间。为了使其高效，通常需要：</p>
+<h1 id="Bucket-Sort"><a href="#Bucket-Sort" class="headerlink" title="Bucket Sort"></a>Bucket Sort</h1><p>桶排序其实是一种方法论，计数排序一个桶只存储一个值，桶则存一定范围。桶的范围可以我们根据需要自己决定。当把所有数分配到桶之后，在桶内执行排序，当然你可以在桶里继续分（递归）都取决与你。理想状态下，数据被均匀的分配，可以大幅度降低时间复杂度，最差的情况则是所有数据分到一个桶。其次，桶选的太多也会占用不必要的额外空间。还有如果你的数据分布非常不均匀的话，桶排序就时间收益不大同时又消耗无谓的空间。为了使其高效，通常需要：</p>
 <ol>
 <li>在额外空间重组的情况下，尽量增大桶的数量</li>
 <li>使用的映射函数能够将输入的$N$个数据尽可能均匀地分布在$K$个桶中。<br>同时，对桶内的排序的算法也很重要。</li>
 </ol>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># bucket_sort 代码实现</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">List</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">bucket_sort</span>(<span class="params">arr:<span class="type">List</span>[<span class="built_in">int</span>]</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;桶排序&quot;&quot;&quot;</span></span><br><span class="line">    min_num = <span class="built_in">min</span>(arr)</span><br><span class="line">    max_num = <span class="built_in">max</span>(arr)</span><br><span class="line">    <span class="comment"># 桶的大小</span></span><br><span class="line">    bucket_range = (max_num-min_num) / <span class="built_in">len</span>(arr)</span><br><span class="line">    <span class="comment"># 桶数组</span></span><br><span class="line">    count_list = [ [] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(arr) + <span class="number">1</span>)]</span><br><span class="line">    <span class="comment"># 向桶数组填数</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> arr:</span><br><span class="line">        count_list[<span class="built_in">int</span>((i-min_num)//bucket_range)].append(i)</span><br><span class="line">    arr.clear()</span><br><span class="line">    <span class="comment"># 回填，这里桶内部排序直接调用了sorted</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> count_list:</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">sorted</span>(i):<span class="comment">#这里直接用list的排序O(nlogn)来桶内排序</span></span><br><span class="line">            arr.append(j)</span><br></pre></td></tr></table></figure>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># bucket_sort 代码实现</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">List</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">bucket_sort</span>(<span class="params">arr:<span class="type">List</span>[<span class="built_in">int</span>]</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;桶排序&quot;&quot;&quot;</span></span><br><span class="line">    min_num = <span class="built_in">min</span>(arr)</span><br><span class="line">    max_num = <span class="built_in">max</span>(arr)</span><br><span class="line">    <span class="comment"># 桶的大小</span></span><br><span class="line">    bucket_range = (max_num-min_num) / <span class="built_in">len</span>(arr)<span class="comment"># 如果分布不均匀，映射函数也可以是非线性的</span></span><br><span class="line">    <span class="comment"># 桶数组</span></span><br><span class="line">    count_list = [ [] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(arr) + <span class="number">1</span>)]</span><br><span class="line">    <span class="comment"># 向桶数组填数</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> arr:</span><br><span class="line">        count_list[<span class="built_in">int</span>((i-min_num)//bucket_range)].append(i)</span><br><span class="line">    arr.clear()</span><br><span class="line">    <span class="comment"># 回填，这里桶内部排序直接调用了sorted</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> count_list:</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">sorted</span>(i):<span class="comment">#这里直接用list的排序O(nlogn)来桶内排序</span></span><br><span class="line">            arr.append(j)</span><br></pre></td></tr></table></figure>
 <p>这里不对桶排序的时间复杂度进行分析，对此有兴趣的可参考<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000022767400">这篇文章</a>。</p>
 <h1 id="Radix-Sort"><a href="#Radix-Sort" class="headerlink" title="Radix Sort"></a>Radix Sort</h1><p>基数排序也是整数非比较型排序，起源历史将整数按位数切割，用位数来进行比较。因为整数也可以用来表达字符串或特定格式的浮点数，所以基数排序不是只能用于整数：</p>
 <p><img src="/Blog/images/radixSort.gif" alt="GIF"></p>
@@ -227,16 +228,16 @@
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://jzhou3083.github.io/Blog/2022/08/12/bucketSort/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jzhou3083.github.io/Blog/2022/08/12/bucketSort/&text=Sorting - bucket"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jzhou3083.github.io/Blog/2022/08/12/bucketSort/&title=Sorting - bucket"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jzhou3083.github.io/Blog/2022/08/12/bucketSort/&is_video=false&description=Sorting - bucket"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Sorting - bucket&body=Check out this article: https://jzhou3083.github.io/Blog/2022/08/12/bucketSort/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jzhou3083.github.io/Blog/2022/08/12/bucketSort/&title=Sorting - bucket"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/12/bucketSort/&title=Sorting - bucket"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/12/bucketSort/&title=Sorting - bucket"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/12/bucketSort/&title=Sorting - bucket"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jzhou3083.github.io/Blog/2022/08/12/bucketSort/&name=Sorting - bucket&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jzhou3083.github.io/Blog/2022/08/12/bucketSort/&t=Sorting - bucket"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jzhou3083.github.io/Blog/2022/08/12/bucketSort/&text=Sorting - Bucket"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jzhou3083.github.io/Blog/2022/08/12/bucketSort/&title=Sorting - Bucket"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jzhou3083.github.io/Blog/2022/08/12/bucketSort/&is_video=false&description=Sorting - Bucket"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Sorting - Bucket&body=Check out this article: https://jzhou3083.github.io/Blog/2022/08/12/bucketSort/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jzhou3083.github.io/Blog/2022/08/12/bucketSort/&title=Sorting - Bucket"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/12/bucketSort/&title=Sorting - Bucket"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/12/bucketSort/&title=Sorting - Bucket"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/12/bucketSort/&title=Sorting - Bucket"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jzhou3083.github.io/Blog/2022/08/12/bucketSort/&name=Sorting - Bucket&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jzhou3083.github.io/Blog/2022/08/12/bucketSort/&t=Sorting - Bucket"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
