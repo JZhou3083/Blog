@@ -6,17 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="Bucket虽然这篇文章标题是桶排序，但是我打算把计数排序，桶排序和基数排序一块儿总结了。因为本质上他们都是运用了桶的概念，只是对桶的使用上有点差异：  计数排序：每个桶只存储一个键值 桶排序：每个桶存储一定范围的键值 基数排序：根据键值的位值来分配桶  引入桶是为了构建一个从键值到index的映射函数，毕竟排序的本质其实就是根据键值的大小关系来重新决定index。桶方法都是空间换时间。如果没理解">
+    <meta name="description" content="Bucket虽然这篇文章标题是桶排序，但是我打算把计数排序，桶排序和基数排序一块儿总结了。因为实际上他们都是运用了桶的概念，只是对桶的使用上有点差异：  计数排序：每个桶只存储一个键值 桶排序：每个桶存储一定范围的键值 基数排序：根据键值的位值来分配桶  引入桶是为了构建一个从键值到index的映射函数，毕竟排序的本质其实就是根据键值的大小关系来重新决定index。桶方法都是空间换时间。如果没理解">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Sorting - Bucket">
 <meta property="og:url" content="https://jzhou3083.github.io/Blog/2022/08/12/bucketSort/index.html">
 <meta property="og:site_name" content="SeaNote">
-<meta property="og:description" content="Bucket虽然这篇文章标题是桶排序，但是我打算把计数排序，桶排序和基数排序一块儿总结了。因为本质上他们都是运用了桶的概念，只是对桶的使用上有点差异：  计数排序：每个桶只存储一个键值 桶排序：每个桶存储一定范围的键值 基数排序：根据键值的位值来分配桶  引入桶是为了构建一个从键值到index的映射函数，毕竟排序的本质其实就是根据键值的大小关系来重新决定index。桶方法都是空间换时间。如果没理解">
+<meta property="og:description" content="Bucket虽然这篇文章标题是桶排序，但是我打算把计数排序，桶排序和基数排序一块儿总结了。因为实际上他们都是运用了桶的概念，只是对桶的使用上有点差异：  计数排序：每个桶只存储一个键值 桶排序：每个桶存储一定范围的键值 基数排序：根据键值的位值来分配桶  引入桶是为了构建一个从键值到index的映射函数，毕竟排序的本质其实就是根据键值的大小关系来重新决定index。桶方法都是空间换时间。如果没理解">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://jzhou3083.github.io/Blog/images/countingSort.gif">
 <meta property="og:image" content="https://jzhou3083.github.io/Blog/images/radixSort.gif">
 <meta property="article:published_time" content="2022-08-11T23:31:20.000Z">
-<meta property="article:modified_time" content="2022-08-12T11:35:22.927Z">
+<meta property="article:modified_time" content="2022-08-12T11:37:53.860Z">
 <meta property="article:author" content="Jing Zhou">
 <meta property="article:tag" content="Algorithms">
 <meta name="twitter:card" content="summary">
@@ -172,7 +172,7 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h1 id="Bucket"><a href="#Bucket" class="headerlink" title="Bucket"></a>Bucket</h1><p>虽然这篇文章标题是桶排序，但是我打算把计数排序，桶排序和基数排序一块儿总结了。因为本质上他们都是运用了桶的概念，只是对桶的使用上有点差异：</p>
+    <h1 id="Bucket"><a href="#Bucket" class="headerlink" title="Bucket"></a>Bucket</h1><p>虽然这篇文章标题是桶排序，但是我打算把计数排序，桶排序和基数排序一块儿总结了。因为实际上他们都是运用了桶的概念，只是对桶的使用上有点差异：</p>
 <ul>
 <li>计数排序：每个桶只存储一个键值</li>
 <li>桶排序：每个桶存储一定范围的键值</li>
