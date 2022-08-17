@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Intro这篇文章是leetcode刷题日记：在数组中选出几个元素其和为一个目标值。这种类型的题目由简入深可以通过增加元素的个数，从两数之和到四数之和。也可以变动一下条件到与target最接近。这种题目的暴力解法就是穷举法，但是可以通过排序+双指针大大减小时间复杂度。 Two Sum（Leetcode 1)Given an array of integers $nums$ and an integ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sum of Elements">
+<meta property="og:url" content="https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/index.html">
+<meta property="og:site_name" content="SeaNote">
+<meta property="og:description" content="Intro这篇文章是leetcode刷题日记：在数组中选出几个元素其和为一个目标值。这种类型的题目由简入深可以通过增加元素的个数，从两数之和到四数之和。也可以变动一下条件到与target最接近。这种题目的暴力解法就是穷举法，但是可以通过排序+双指针大大减小时间复杂度。 Two Sum（Leetcode 1)Given an array of integers $nums$ and an integ">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-08-17T12:37:02.000Z">
+<meta property="article:modified_time" content="2022-08-17T15:46:21.975Z">
+<meta property="article:author" content="Jing Zhou">
+<meta property="article:tag" content="Algorithms">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/Blog/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/Blog/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/Blog/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Sum of Elements</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/Blog/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/Blog/">Home</a></li><!--
+     --><!--
+       --><li><a href="/Blog/resume/">Resume</a></li><!--
+     --><!--
+       --><li><a href="/Blog/categories/">Topics</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/JZhou3083">Projects</a></li><!--
+     --><!--
+       --><li><a href="/Blog/search/">Search</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/Blog/2022/08/12/bucketSort/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&text=Sum of Elements"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&title=Sum of Elements"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&is_video=false&description=Sum of Elements"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Sum of Elements&body=Check out this article: https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&title=Sum of Elements"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&title=Sum of Elements"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&title=Sum of Elements"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&title=Sum of Elements"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&name=Sum of Elements&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&t=Sum of Elements"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Intro"><span class="toc-number">1.</span> <span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Two-Sum%EF%BC%88Leetcode-1"><span class="toc-number">2.</span> <span class="toc-text">Two Sum（Leetcode 1)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution"><span class="toc-number">2.1.</span> <span class="toc-text">Solution</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Better-solution"><span class="toc-number">2.2.</span> <span class="toc-text">Better solution</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Three-sum-leetcode-15"><span class="toc-number">3.</span> <span class="toc-text">Three sum (leetcode 15)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution-1"><span class="toc-number">3.1.</span> <span class="toc-text">Solution</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Complex-variants"><span class="toc-number">4.</span> <span class="toc-text">Complex variants</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Three-sum-closest-leetcode-16"><span class="toc-number">4.1.</span> <span class="toc-text">Three sum closest (leetcode 16)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution-2"><span class="toc-number">4.2.</span> <span class="toc-text">Solution</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Four-sum"><span class="toc-number">4.3.</span> <span class="toc-text">Four sum()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution-3"><span class="toc-number">4.4.</span> <span class="toc-text">Solution</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Summary"><span class="toc-number">5.</span> <span class="toc-text">Summary</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Sum of Elements
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Jing Zhou</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-08-17T12:37:02.000Z" itemprop="datePublished">2022-08-17</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/Blog/categories/Leetcode/">Leetcode</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/Blog/tags/Algorithms/" rel="tag">Algorithms</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>这篇文章是leetcode刷题日记：在数组中选出几个元素其和为一个目标值。这种类型的题目由简入深可以通过增加元素的个数，从两数之和到四数之和。也可以变动一下条件到与target最接近。这种题目的暴力解法就是穷举法，但是可以通过排序+双指针大大减小时间复杂度。</p>
+<h1 id="Two-Sum（Leetcode-1"><a href="#Two-Sum（Leetcode-1" class="headerlink" title="Two Sum（Leetcode 1)"></a>Two Sum（Leetcode 1)</h1><p>Given an array of integers $nums$ and an integer $target$, return indices of the two numbers such that they add up to $target$. You may assume that each input would be <em>have exactly one solution</em> and you may not use the same elements twice. (Can you come up with an algorithm that is less than $O(n^2) time complexity$.</p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>As sorting of array in Python has $O(nlogn)$ time complexity, and using double pointers has $O(n)$ time complexity, it is easy to solve the problem with $O(nlogn)$ time complexity overall:</p>
+<ul>
+<li>Make a hash table to save the original index</li>
+<li>Sort the array using sort() method in Python</li>
+<li>Have a pointer $left$ pointing at the first element and a pointer $right$ pointing at the end of array</li>
+<li>Calculate the sum of elements pointed by the pointers, if:</li>
+</ul>
+<ul>
+<li>The sum equals to the target, add the element index to the output</li>
+<li>The sum is smaller than the target, move the pointer $left$ one step to the right</li>
+<li>The sum is greater than the target, move the pointer $right$ a step to the left.</li>
+</ul>
+<ul>
+<li>Stop when two pointers meet</li>
+</ul>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">twoSum</span>(<span class="params">self,nums:<span class="type">List</span>[<span class="built_in">int</span>],target:<span class="built_in">int</span></span>)-&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(nums)&lt;<span class="number">2</span>:</span><br><span class="line">      <span class="keyword">return</span> []</span><br><span class="line">    <span class="comment"># Construct hashtable</span></span><br><span class="line">    hashtable = <span class="built_in">dict</span>()</span><br><span class="line">    <span class="keyword">for</span> i,num <span class="keyword">in</span> <span class="built_in">enumerate</span>(nums):</span><br><span class="line">      <span class="keyword">if</span> num <span class="keyword">in</span> hashtable:</span><br><span class="line">        hashtable[num].append(i) <span class="comment"># if repetitive numbers</span></span><br><span class="line">      <span class="keyword">else</span>:</span><br><span class="line">        hashtable[num] = [i]</span><br><span class="line">    nums.sort()</span><br><span class="line">    l,r = <span class="number">0</span>, <span class="built_in">len</span>(nums)-<span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> l&lt;r:</span><br><span class="line">      total = nums[l]+nums[r]</span><br><span class="line">      <span class="keyword">if</span> total == target:</span><br><span class="line">        <span class="keyword">if</span> nums[l]==nums[r]:</span><br><span class="line">          <span class="keyword">return</span> hashtable[nums[l]][:<span class="number">2</span>]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">          <span class="keyword">return</span> hashtable[nums[l]][<span class="number">0</span>],hashtable[nums[r]][<span class="number">0</span>]</span><br><span class="line">      <span class="keyword">elif</span> total&lt;target:</span><br><span class="line">        l += <span class="number">1</span></span><br><span class="line">      <span class="keyword">else</span>:</span><br><span class="line">        r -= <span class="number">1</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>The total time complexity is therefore $O(nlogn)$ and space complexity: $O(n)$. However, the time complexity is due to the sorting instead of traversing, are there even better solution? The answer is yes.</p>
+<h2 id="Better-solution"><a href="#Better-solution" class="headerlink" title="Better solution"></a>Better solution</h2><p>Since we use a hash table, why not just loop over the numbers and look for the another element from its precedents so that we don’t need to sort the array? Dictionary structure allows $O(1)$ time complexity of ‘checking back’ therefore sorting is no longer necessary:</p>
+<ul>
+<li>Create a hash table in the form of a dictionary</li>
+<li>Loop over the array, at the $i$th element:</li>
+</ul>
+<ul>
+<li>If there isn’t another index of element in the hash table that can get the target by summing with $nums[i]$, store $i$ into the harsh table</li>
+<li>If there is another, output its index and $i$ as solution</li>
+</ul>
+<p>In such way, no sorting is required and we only need to traverse the array once, leading to a time complexity $O(n)$ and space complexity $O(n)$.</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">twoSum</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], target: <span class="built_in">int</span></span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        hashtable = <span class="built_in">dict</span>()</span><br><span class="line">        <span class="keyword">for</span> i, num <span class="keyword">in</span> <span class="built_in">enumerate</span>(nums):</span><br><span class="line">            <span class="keyword">if</span> target- num <span class="keyword">in</span> hashtable:</span><br><span class="line">                <span class="keyword">return</span> hashtable[target-num], i</span><br><span class="line">            hashtable[num] = i</span><br><span class="line">        <span class="keyword">return</span> []</span><br></pre></td></tr></table></figure>
+
+<h1 id="Three-sum-leetcode-15"><a href="#Three-sum-leetcode-15" class="headerlink" title="Three sum (leetcode 15)"></a>Three sum (leetcode 15)</h1><p>Now spice it up! Given an integer array sums, return all the triplets $nums[i], nums[j], nums[k]$ such that $nums[i]+nums[j]+nums[k] &#x3D; 0$. Notice that the solution set must not contain duplicate triplets.</p>
+<p>Example 1:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = [-1,0,1,2,-1,-4]</span><br><span class="line">Output: [[-1,-1,2],[-1,0,1]]</span><br><span class="line">Explanation:</span><br><span class="line">nums[0] + nums[1] + nums[2] = (-1) + 0 + 1 = 0.</span><br><span class="line">nums[1] + nums[2] + nums[4] = 0 + 1 + (-1) = 0.</span><br><span class="line">nums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0.</span><br><span class="line">The distinct triplets are [-1,0,1] and [-1,-1,2].</span><br><span class="line">Notice that the order of the output and the order of the triplets does not matter.</span><br></pre></td></tr></table></figure>
+
+<h2 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution"></a>Solution</h2><p>Easily it can be observed that the time complexity of Brute force method is $O(n^3)$. We can simply it by loop over only the first element then use the same method used for twoSum problem looking for the next two elements, which is sorting+double pointers. In such way, the time complexity is reduced to $O(n^2+nlogn)&#x3D;O(n^2)$, where the $nlogn$ comes from the sorting:</p>
+<ul>
+<li>Sort the array</li>
+<li>Loop over the array for the first, also the smallest element among three $nums[i]$</li>
+<li>Use the two pointers $left$ and $right$ to locate the other elements, look for the steps in the previous problem</li>
+</ul>
+<p>Cuttings can be achieved by early stopping. For instance, when the first element $nums[i]$ is greater than the target 0 already, we can stop the algorithm. Also, if for $nums[i]$, the maximum summation: $nums[i]+nums[n-2]+nums[n-1]$ is smaller than target, or the minimum summation: $nums[i]+nums[i+1]+nums[i+2]$ is greater than target, we can safetly say not further looking for suitable $left$ and $right$ is needed.</p>
+<p>However, this two checking will be done at the end of traversing for the two pointers anyway so it is your job to check if the “jumped checking” is saving much calculation. In the problem “Four Sum” this is certainly the case, which will be demonstrated in the later section.</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">threeSum</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums <span class="keyword">or</span> <span class="built_in">len</span>(nums)&lt;<span class="number">3</span>:</span><br><span class="line">            <span class="keyword">return</span> []        </span><br><span class="line">        nums.sort() <span class="comment"># sorting first:O(nlogn)</span></span><br><span class="line"></span><br><span class="line">        N = <span class="built_in">len</span>(nums)</span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N):</span><br><span class="line">            <span class="comment"># early stop since no way the later elements will make the sum smaller</span></span><br><span class="line">            <span class="keyword">if</span> nums[i]&gt;<span class="number">0</span>:</span><br><span class="line">                <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line">            <span class="comment"># jump over repeating elements as there won&#x27;t be new solutions for the same\\</span></span><br><span class="line">            <span class="comment"># 1st number</span></span><br><span class="line">            <span class="keyword">if</span> i&gt;<span class="number">0</span> <span class="keyword">and</span> nums[i]==nums[i-<span class="number">1</span>]:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">            L = i+<span class="number">1</span></span><br><span class="line">            R = N-<span class="number">1</span></span><br><span class="line">            <span class="keyword">while</span> L&lt;R:</span><br><span class="line">                total = nums[i]+nums[L]+nums[R]</span><br><span class="line">                <span class="keyword">if</span> total&lt;<span class="number">0</span>:</span><br><span class="line">                    L +=<span class="number">1</span></span><br><span class="line">                <span class="keyword">elif</span> total&gt;<span class="number">0</span>:</span><br><span class="line">                    R -=<span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    res.append([nums[i],nums[L],nums[R]])</span><br><span class="line">                    <span class="keyword">while</span> L&lt;R <span class="keyword">and</span> nums[L]==nums[L+<span class="number">1</span>]:</span><br><span class="line">                        L+=<span class="number">1</span></span><br><span class="line">                    <span class="keyword">while</span> L&lt;R <span class="keyword">and</span> nums[R]==nums[R-<span class="number">1</span>]:</span><br><span class="line">                        R-=<span class="number">1</span></span><br><span class="line">                    L+=<span class="number">1</span></span><br><span class="line">                    R-=<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+<h1 id="Complex-variants"><a href="#Complex-variants" class="headerlink" title="Complex variants"></a>Complex variants</h1><h2 id="Three-sum-closest-leetcode-16"><a href="#Three-sum-closest-leetcode-16" class="headerlink" title="Three sum closest (leetcode 16)"></a>Three sum closest (leetcode 16)</h2><p>Given an integer array $nums$ of length $n$ and an integer $target$, find the three integers in nums such that the sum is closest to the $target$. Return the sum of the three integer and you may assume a sole solution.</p>
+<p>Example 1:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = [-1,2,1,-4], target = 1</span><br><span class="line">Output: 2</span><br><span class="line">Explanation: The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).</span><br></pre></td></tr></table></figure>
+
+<h2 id="Solution-2"><a href="#Solution-2" class="headerlink" title="Solution"></a>Solution</h2><p>The difference is just now we need to keep a record of the best solution and tried all the solutions:</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">threeSumClosest</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], target: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        nums.sort()</span><br><span class="line">        n = <span class="built_in">len</span>(nums)</span><br><span class="line">        best = <span class="number">10</span>**<span class="number">7</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 根据差值的绝对值来更新答案</span></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">update</span>(<span class="params">cur</span>):</span><br><span class="line">            <span class="keyword">nonlocal</span> best</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">abs</span>(cur - target) &lt; <span class="built_in">abs</span>(best - target):</span><br><span class="line">                best = cur</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 枚举 a</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            <span class="comment"># 保证和上一次枚举的元素不相等</span></span><br><span class="line">            <span class="keyword">if</span> i &gt; <span class="number">0</span> <span class="keyword">and</span> nums[i] == nums[i - <span class="number">1</span>]:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            <span class="comment"># 使用双指针枚举 b 和 c</span></span><br><span class="line">            j, k = i + <span class="number">1</span>, n - <span class="number">1</span></span><br><span class="line">            <span class="keyword">while</span> j &lt; k:</span><br><span class="line">                s = nums[i] + nums[j] + nums[k]</span><br><span class="line">                <span class="comment"># 如果和为 target 直接返回答案</span></span><br><span class="line">                <span class="keyword">if</span> s == target:</span><br><span class="line">                    <span class="keyword">return</span> target</span><br><span class="line">                update(s)</span><br><span class="line">                <span class="keyword">if</span> s &gt; target:</span><br><span class="line">                    <span class="comment"># 如果和大于 target，移动 c 对应的指针</span></span><br><span class="line">                    k0 = k - <span class="number">1</span></span><br><span class="line">                    <span class="comment"># 移动到下一个不相等的元素</span></span><br><span class="line">                    <span class="keyword">while</span> j &lt; k0 <span class="keyword">and</span> nums[k0] == nums[k]:</span><br><span class="line">                        k0 -= <span class="number">1</span></span><br><span class="line">                    k = k0</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    <span class="comment"># 如果和小于 target，移动 b 对应的指针</span></span><br><span class="line">                    j0 = j + <span class="number">1</span></span><br><span class="line">                    <span class="comment"># 移动到下一个不相等的元素</span></span><br><span class="line">                    <span class="keyword">while</span> j0 &lt; k <span class="keyword">and</span> nums[j0] == nums[j]:</span><br><span class="line">                        j0 += <span class="number">1</span></span><br><span class="line">                    j = j0</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> best</span><br></pre></td></tr></table></figure>
+
+<h2 id="Four-sum"><a href="#Four-sum" class="headerlink" title="Four sum()"></a>Four sum()</h2><p>Given an array nums of n integers, return an array of all the unique quadruplets [nums[a], nums[b], nums[c], nums[d]] such that:</p>
+<ul>
+<li>0 &lt;&#x3D; a, b, c, d &lt; n</li>
+<li>a, b, c, and d are distinct.</li>
+<li>nums[a] + nums[b] + nums[c] + nums[d] &#x3D;&#x3D; target</li>
+</ul>
+<p>You may return the answer in any order.</p>
+<h2 id="Solution-3"><a href="#Solution-3" class="headerlink" title="Solution"></a>Solution</h2><p>The idea is the same. We just need to find as much as cutting we can do to speed up the searching:</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">fourSum</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], target: <span class="built_in">int</span></span>) -&gt; <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums <span class="keyword">or</span> <span class="built_in">len</span>(nums)&lt;<span class="number">4</span>:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        res = []</span><br><span class="line">        N = <span class="built_in">len</span>(nums)</span><br><span class="line">        nums.sort()</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N-<span class="number">3</span>):</span><br><span class="line">            <span class="comment"># if i==2: print(nums[i])</span></span><br><span class="line">            <span class="keyword">if</span> i&gt;<span class="number">0</span> <span class="keyword">and</span> nums[i]==nums[i-<span class="number">1</span>]:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            <span class="comment"># early stop</span></span><br><span class="line">            <span class="keyword">if</span> nums[i] + nums[i + <span class="number">1</span>] + nums[i + <span class="number">2</span>] + nums[i + <span class="number">3</span>] &gt; target:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i+<span class="number">1</span>,N-<span class="number">2</span>):</span><br><span class="line">                <span class="keyword">if</span> j&gt;i+<span class="number">1</span> <span class="keyword">and</span> nums[j]==nums[j-<span class="number">1</span>]:</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                <span class="comment"># early stop</span></span><br><span class="line">                <span class="keyword">if</span> nums[i] + nums[j] + nums[j+<span class="number">1</span>] + nums[j + <span class="number">2</span>] &gt; target:</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">                <span class="keyword">if</span> nums[i] + nums[j] + nums[N - <span class="number">2</span>] + nums[N - <span class="number">1</span>] &lt; target:</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                l, r = j+<span class="number">1</span>, N-<span class="number">1</span></span><br><span class="line">                <span class="keyword">while</span> l&lt;r:</span><br><span class="line">                    total = nums[i]+nums[j]+nums[l]+nums[r]</span><br><span class="line">                    <span class="keyword">if</span> total==target:</span><br><span class="line">                        res.append([nums[i],nums[j],nums[l],nums[r]])</span><br><span class="line">                        <span class="keyword">while</span> l&lt;r <span class="keyword">and</span> nums[l]==nums[l+<span class="number">1</span>]:</span><br><span class="line">                            l+=<span class="number">1</span></span><br><span class="line">                        <span class="keyword">while</span> l&lt;r <span class="keyword">and</span> nums[r]==nums[r-<span class="number">1</span>]:</span><br><span class="line">                            r-=<span class="number">1</span></span><br><span class="line">                        l+=<span class="number">1</span></span><br><span class="line">                        r-=<span class="number">1</span></span><br><span class="line">                    <span class="keyword">elif</span> total&lt;target:</span><br><span class="line">                        l+=<span class="number">1</span></span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        r-=<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> res     </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h1><p>We need to be extra careful to distinguish when to stop the whole looping and when to jump over the current iteration only when we are cutting the traversing. Such questions all follows the same idea: sorting+double pointers. Any better methodologies I can come up in the future I will add them up to this post. </p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/Blog/">Home</a></li>
+         
+          <li><a href="/Blog/resume/">Resume</a></li>
+         
+          <li><a href="/Blog/categories/">Topics</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/JZhou3083">Projects</a></li>
+         
+          <li><a href="/Blog/search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Intro"><span class="toc-number">1.</span> <span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Two-Sum%EF%BC%88Leetcode-1"><span class="toc-number">2.</span> <span class="toc-text">Two Sum（Leetcode 1)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution"><span class="toc-number">2.1.</span> <span class="toc-text">Solution</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Better-solution"><span class="toc-number">2.2.</span> <span class="toc-text">Better solution</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Three-sum-leetcode-15"><span class="toc-number">3.</span> <span class="toc-text">Three sum (leetcode 15)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution-1"><span class="toc-number">3.1.</span> <span class="toc-text">Solution</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Complex-variants"><span class="toc-number">4.</span> <span class="toc-text">Complex variants</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Three-sum-closest-leetcode-16"><span class="toc-number">4.1.</span> <span class="toc-text">Three sum closest (leetcode 16)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution-2"><span class="toc-number">4.2.</span> <span class="toc-text">Solution</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Four-sum"><span class="toc-number">4.3.</span> <span class="toc-text">Four sum()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution-3"><span class="toc-number">4.4.</span> <span class="toc-text">Solution</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Summary"><span class="toc-number">5.</span> <span class="toc-text">Summary</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&text=Sum of Elements"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&title=Sum of Elements"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&is_video=false&description=Sum of Elements"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Sum of Elements&body=Check out this article: https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&title=Sum of Elements"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&title=Sum of Elements"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&title=Sum of Elements"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&title=Sum of Elements"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&name=Sum of Elements&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&t=Sum of Elements"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2021-2022
+    Jing Zhou
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/Blog/">Home</a></li><!--
+     --><!--
+       --><li><a href="/Blog/resume/">Resume</a></li><!--
+     --><!--
+       --><li><a href="/Blog/categories/">Topics</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/JZhou3083">Projects</a></li><!--
+     --><!--
+       --><li><a href="/Blog/search/">Search</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/Blog/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
