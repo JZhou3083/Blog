@@ -8,13 +8,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="description" content="Intro这篇文章是leetcode刷题日记：在数组中选出几个元素其和为一个目标值。这种类型的题目由简入深可以通过增加元素的个数，从两数之和到四数之和。也可以变动一下条件到与target最接近。这种题目的暴力解法就是穷举法，但是可以通过排序+双指针大大减小时间复杂度。 Two Sum（Leetcode 1)Given an array of integers $nums$ and an integ">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Sum of Elements(leetcode 16)">
+<meta property="og:title" content="Sum of Elements(leetcode 1)">
 <meta property="og:url" content="https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/index.html">
 <meta property="og:site_name" content="SeaNote">
 <meta property="og:description" content="Intro这篇文章是leetcode刷题日记：在数组中选出几个元素其和为一个目标值。这种类型的题目由简入深可以通过增加元素的个数，从两数之和到四数之和。也可以变动一下条件到与target最接近。这种题目的暴力解法就是穷举法，但是可以通过排序+双指针大大减小时间复杂度。 Two Sum（Leetcode 1)Given an array of integers $nums$ and an integ">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-08-17T12:37:02.000Z">
-<meta property="article:modified_time" content="2022-08-18T17:21:44.388Z">
+<meta property="article:modified_time" content="2022-08-18T17:33:24.161Z">
 <meta property="article:author" content="Jing Zhou">
 <meta property="article:tag" content="Algorithms">
 <meta name="twitter:card" content="summary">
@@ -37,7 +37,7 @@
       
     
     <!-- title -->
-    <title>Sum of Elements(leetcode 16)</title>
+    <title>Sum of Elements(leetcode 1)</title>
     <!-- styles -->
     
 <link rel="stylesheet" href="/Blog/css/style.css">
@@ -108,16 +108,16 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&text=Sum of Elements(leetcode 16)"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&title=Sum of Elements(leetcode 16)"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&is_video=false&description=Sum of Elements(leetcode 16)"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Sum of Elements(leetcode 16)&body=Check out this article: https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&title=Sum of Elements(leetcode 16)"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&title=Sum of Elements(leetcode 16)"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&title=Sum of Elements(leetcode 16)"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&title=Sum of Elements(leetcode 16)"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&name=Sum of Elements(leetcode 16)&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&t=Sum of Elements(leetcode 16)"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&text=Sum of Elements(leetcode 1)"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&title=Sum of Elements(leetcode 1)"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&is_video=false&description=Sum of Elements(leetcode 1)"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Sum of Elements(leetcode 1)&body=Check out this article: https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&title=Sum of Elements(leetcode 1)"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&title=Sum of Elements(leetcode 1)"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&title=Sum of Elements(leetcode 1)"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&title=Sum of Elements(leetcode 1)"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&name=Sum of Elements(leetcode 1)&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&t=Sum of Elements(leetcode 1)"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -134,7 +134,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        Sum of Elements(leetcode 16)
+        Sum of Elements(leetcode 1)
     </h1>
 
 
@@ -267,16 +267,16 @@
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&text=Sum of Elements(leetcode 16)"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&title=Sum of Elements(leetcode 16)"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&is_video=false&description=Sum of Elements(leetcode 16)"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Sum of Elements(leetcode 16)&body=Check out this article: https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&title=Sum of Elements(leetcode 16)"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&title=Sum of Elements(leetcode 16)"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&title=Sum of Elements(leetcode 16)"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&title=Sum of Elements(leetcode 16)"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&name=Sum of Elements(leetcode 16)&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&t=Sum of Elements(leetcode 16)"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&text=Sum of Elements(leetcode 1)"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&title=Sum of Elements(leetcode 1)"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&is_video=false&description=Sum of Elements(leetcode 1)"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Sum of Elements(leetcode 1)&body=Check out this article: https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&title=Sum of Elements(leetcode 1)"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&title=Sum of Elements(leetcode 1)"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&title=Sum of Elements(leetcode 1)"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&title=Sum of Elements(leetcode 1)"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&name=Sum of Elements(leetcode 1)&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jzhou3083.github.io/Blog/2022/08/17/ElementSum/&t=Sum of Elements(leetcode 1)"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

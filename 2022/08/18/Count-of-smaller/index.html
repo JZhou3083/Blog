@@ -6,18 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="Introduction这是一道leetcode的困难题目，直接给我做麻了。两个解法都看了很久，只好一边写总结一边整理思路希望能帮助理解和记忆。话不多说，直接上题目： 给你一个整数数组 nums ，按要求返回一个新数组 counts 。数组 counts 有该性质： counts[i] 的值是  nums[i] 右侧小于 nums[i] 的元素的数量。 Given an integer array">
+    <meta name="description" content="Introduction这是一道leetcode的困难题目，直接给我做麻了。两个解法都看了很久，只好一边写总结一边整理思路希望能帮助理解和记忆。话不多说，直接上题目： 给你一个整数数组 nums ，按要求返回一个新数组 counts 。数组 counts 有该性质： counts[i] 的值是  nums[i] 右侧小于 nums[i] 的元素的数量。Given an integer array">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Count_of_smaller">
+<meta property="og:title" content="Count_of_smaller(leetcode 315)">
 <meta property="og:url" content="https://jzhou3083.github.io/Blog/2022/08/18/Count-of-smaller/index.html">
 <meta property="og:site_name" content="SeaNote">
-<meta property="og:description" content="Introduction这是一道leetcode的困难题目，直接给我做麻了。两个解法都看了很久，只好一边写总结一边整理思路希望能帮助理解和记忆。话不多说，直接上题目： 给你一个整数数组 nums ，按要求返回一个新数组 counts 。数组 counts 有该性质： counts[i] 的值是  nums[i] 右侧小于 nums[i] 的元素的数量。 Given an integer array">
+<meta property="og:description" content="Introduction这是一道leetcode的困难题目，直接给我做麻了。两个解法都看了很久，只好一边写总结一边整理思路希望能帮助理解和记忆。话不多说，直接上题目： 给你一个整数数组 nums ，按要求返回一个新数组 counts 。数组 counts 有该性质： counts[i] 的值是  nums[i] 右侧小于 nums[i] 的元素的数量。Given an integer array">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://jzhou3083.github.io/Blog/images/leetcode315_1.png">
 <meta property="og:image" content="https://jzhou3083.github.io/Blog/images/leetcode315_2.png">
 <meta property="og:image" content="https://jzhou3083.github.io/Blog/images/leetcode315_3.png">
 <meta property="article:published_time" content="2022-08-18T15:47:52.000Z">
-<meta property="article:modified_time" content="2022-08-18T17:32:01.664Z">
+<meta property="article:modified_time" content="2022-08-18T17:36:37.742Z">
 <meta property="article:author" content="Jing Zhou">
 <meta property="article:tag" content="Algorithms">
 <meta name="twitter:card" content="summary">
@@ -41,7 +41,7 @@
       
     
     <!-- title -->
-    <title>Count_of_smaller</title>
+    <title>Count_of_smaller(leetcode 315)</title>
     <!-- styles -->
     
 <link rel="stylesheet" href="/Blog/css/style.css">
@@ -110,16 +110,16 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://jzhou3083.github.io/Blog/2022/08/18/Count-of-smaller/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jzhou3083.github.io/Blog/2022/08/18/Count-of-smaller/&text=Count_of_smaller"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jzhou3083.github.io/Blog/2022/08/18/Count-of-smaller/&title=Count_of_smaller"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jzhou3083.github.io/Blog/2022/08/18/Count-of-smaller/&is_video=false&description=Count_of_smaller"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Count_of_smaller&body=Check out this article: https://jzhou3083.github.io/Blog/2022/08/18/Count-of-smaller/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jzhou3083.github.io/Blog/2022/08/18/Count-of-smaller/&title=Count_of_smaller"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/18/Count-of-smaller/&title=Count_of_smaller"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/18/Count-of-smaller/&title=Count_of_smaller"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/18/Count-of-smaller/&title=Count_of_smaller"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jzhou3083.github.io/Blog/2022/08/18/Count-of-smaller/&name=Count_of_smaller&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jzhou3083.github.io/Blog/2022/08/18/Count-of-smaller/&t=Count_of_smaller"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jzhou3083.github.io/Blog/2022/08/18/Count-of-smaller/&text=Count_of_smaller(leetcode 315)"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jzhou3083.github.io/Blog/2022/08/18/Count-of-smaller/&title=Count_of_smaller(leetcode 315)"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jzhou3083.github.io/Blog/2022/08/18/Count-of-smaller/&is_video=false&description=Count_of_smaller(leetcode 315)"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Count_of_smaller(leetcode 315)&body=Check out this article: https://jzhou3083.github.io/Blog/2022/08/18/Count-of-smaller/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jzhou3083.github.io/Blog/2022/08/18/Count-of-smaller/&title=Count_of_smaller(leetcode 315)"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/18/Count-of-smaller/&title=Count_of_smaller(leetcode 315)"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/18/Count-of-smaller/&title=Count_of_smaller(leetcode 315)"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/18/Count-of-smaller/&title=Count_of_smaller(leetcode 315)"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jzhou3083.github.io/Blog/2022/08/18/Count-of-smaller/&name=Count_of_smaller(leetcode 315)&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jzhou3083.github.io/Blog/2022/08/18/Count-of-smaller/&t=Count_of_smaller(leetcode 315)"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -136,7 +136,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        Count_of_smaller
+        Count_of_smaller(leetcode 315)
     </h1>
 
 
@@ -169,12 +169,11 @@
 
   <div class="content" itemprop="articleBody">
     <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>这是一道leetcode的困难题目，直接给我做麻了。两个解法都看了很久，只好一边写总结一边整理思路希望能帮助理解和记忆。话不多说，直接上题目：</p>
-<p>给你一个整数数组 nums ，按要求返回一个新数组 counts 。数组 counts 有该性质： counts[i] 的值是  nums[i] 右侧小于 nums[i] 的元素的数量。</p>
-<p>Given an integer array nums, return an integer array counts where counts[i] is the number of smaller elements to the right of nums[i].</p>
+<p>给你一个整数数组 nums ，按要求返回一个新数组 counts 。数组 counts 有该性质： counts[i] 的值是  nums[i] 右侧小于 nums[i] 的元素的数量。<br>Given an integer array nums, return an integer array counts where counts[i] is the number of smaller elements to the right of nums[i].</p>
 <p>Example 1:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = [5,2,6,1]</span><br><span class="line">Output: [2,1,1,0]</span><br><span class="line">Explanation:</span><br><span class="line">To the right of 5 there are 2 smaller elements (2 and 1).</span><br><span class="line">To the right of 2 there is only 1 smaller element (1).</span><br><span class="line">To the right of 6 there is 1 smaller element (1).</span><br><span class="line">To the right of 1 there is 0 smaller element.</span><br></pre></td></tr></table></figure>
 
-<p>这道题的解决思路有两个： 离散化树状结构和合并排序。离散化是为了利用桶的概念，树状结构则是为了方便计算累加和。这边博客会提供具体解释。</p>
+<p>这道题的解决思路有两个：离散化树状结构和合并排序。离散化是为了利用桶的概念，树状结构则是为了方便计算累加和。这边博客会提供具体解释。</p>
 <h1 id="思路1：离散化树状结构"><a href="#思路1：离散化树状结构" class="headerlink" title="思路1：离散化树状结构"></a>思路1：离散化树状结构</h1><h2 id="离散化（桶）"><a href="#离散化（桶）" class="headerlink" title="离散化（桶）"></a>离散化（桶）</h2><p>我们一步步来，什么是离散化，为什么我们要离散化呢？离散化其实就是桶排序的变种。众所周知桶排序的缺陷是对待排序的数值有限制，比如不能是负数，不适用分布过于不均匀或者数值大小分布范围过大的序列。离散化就是针对这个问题的优化：如果我们直接对序列的每个元素建立一个映射函数，也就是每个元素作为一个桶，那么我最多只需要跟原序列一样长的桶的个数即可。</p>
 <p>现在我们把原序列进行去重离散的到了对应的桶，我们可以对其桶排列，为什么就能做这道题呢？想一下，我们需要知道原序列每个元素后面比它小的数的个数，假如我对原序列从后往前遍历，将其放进对应的桶，并且计算之前的桶里面的元素个数，就可以得到我们想要的个数。最直观的理解可以去看leetcode<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/count-of-smaller-numbers-after-self/solution/ji-suan-you-ce-xiao-yu-dang-qian-yuan-su-de-ge-s-7/">官方答案</a>里面的ppt，这里我尽量一步步解释。</p>
 <p>假设我们有个原序列 $nums&#x3D;[3,9,5,2,6,1,3]$，进行离散化建立桶，桶的$Keys&#x3D;[1,2,3,5,6,9]$，同时我们在建立一个哈系表来映射index的对应关系，得到一共六个桶（假设桶号从1开始）：</p>
@@ -234,16 +233,16 @@
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://jzhou3083.github.io/Blog/2022/08/18/Count-of-smaller/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jzhou3083.github.io/Blog/2022/08/18/Count-of-smaller/&text=Count_of_smaller"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jzhou3083.github.io/Blog/2022/08/18/Count-of-smaller/&title=Count_of_smaller"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jzhou3083.github.io/Blog/2022/08/18/Count-of-smaller/&is_video=false&description=Count_of_smaller"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Count_of_smaller&body=Check out this article: https://jzhou3083.github.io/Blog/2022/08/18/Count-of-smaller/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jzhou3083.github.io/Blog/2022/08/18/Count-of-smaller/&title=Count_of_smaller"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/18/Count-of-smaller/&title=Count_of_smaller"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/18/Count-of-smaller/&title=Count_of_smaller"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/18/Count-of-smaller/&title=Count_of_smaller"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jzhou3083.github.io/Blog/2022/08/18/Count-of-smaller/&name=Count_of_smaller&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jzhou3083.github.io/Blog/2022/08/18/Count-of-smaller/&t=Count_of_smaller"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jzhou3083.github.io/Blog/2022/08/18/Count-of-smaller/&text=Count_of_smaller(leetcode 315)"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jzhou3083.github.io/Blog/2022/08/18/Count-of-smaller/&title=Count_of_smaller(leetcode 315)"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jzhou3083.github.io/Blog/2022/08/18/Count-of-smaller/&is_video=false&description=Count_of_smaller(leetcode 315)"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Count_of_smaller(leetcode 315)&body=Check out this article: https://jzhou3083.github.io/Blog/2022/08/18/Count-of-smaller/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jzhou3083.github.io/Blog/2022/08/18/Count-of-smaller/&title=Count_of_smaller(leetcode 315)"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/18/Count-of-smaller/&title=Count_of_smaller(leetcode 315)"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/18/Count-of-smaller/&title=Count_of_smaller(leetcode 315)"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/18/Count-of-smaller/&title=Count_of_smaller(leetcode 315)"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jzhou3083.github.io/Blog/2022/08/18/Count-of-smaller/&name=Count_of_smaller(leetcode 315)&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jzhou3083.github.io/Blog/2022/08/18/Count-of-smaller/&t=Count_of_smaller(leetcode 315)"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
