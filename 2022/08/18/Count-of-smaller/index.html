@@ -17,7 +17,7 @@
 <meta property="og:image" content="https://jzhou3083.github.io/Blog/images/leetcode315_2.png">
 <meta property="og:image" content="https://jzhou3083.github.io/Blog/images/leetcode315_3.png">
 <meta property="article:published_time" content="2022-08-18T15:47:52.000Z">
-<meta property="article:modified_time" content="2022-08-18T16:45:33.307Z">
+<meta property="article:modified_time" content="2022-08-18T17:32:01.664Z">
 <meta property="article:author" content="Jing Zhou">
 <meta property="article:tag" content="Algorithms">
 <meta name="twitter:card" content="summary">
@@ -124,7 +124,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF1%EF%BC%9A%E7%A6%BB%E6%95%A3%E5%8C%96%E6%A0%91%E7%8A%B6%E7%BB%93%E6%9E%84"><span class="toc-number">2.</span> <span class="toc-text">思路1：离散化树状结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A6%BB%E6%95%A3%E5%8C%96%EF%BC%88%E6%A1%B6%EF%BC%89"><span class="toc-number">2.1.</span> <span class="toc-text">离散化（桶）</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF1%EF%BC%9A%E7%A6%BB%E6%95%A3%E5%8C%96%E6%A0%91%E7%8A%B6%E7%BB%93%E6%9E%84"><span class="toc-number">2.</span> <span class="toc-text">思路1：离散化树状结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A6%BB%E6%95%A3%E5%8C%96%EF%BC%88%E6%A1%B6%EF%BC%89"><span class="toc-number">2.1.</span> <span class="toc-text">离散化（桶）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84-Binary-Index-Tree"><span class="toc-number">2.2.</span> <span class="toc-text">树状数组 Binary Index Tree</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Why-BIT"><span class="toc-number">2.2.1.</span> <span class="toc-text">Why BIT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#How-it-work"><span class="toc-number">2.2.2.</span> <span class="toc-text">How it work</span></a></li></ol></li></ol></li></ol>
     </div>
   </span>
 </div>
@@ -183,8 +183,25 @@
 <ol>
 <li>我们拿到原序列最右边元素$3$，放到对应的$3$号桶中。此时$3$号桶有一个元素。注意的是拿到的元素需要经过哈系表找到它的桶号码，假如我拿到$5$，我应该放到 $hashtable[5]&#x3D;4$ 号桶。然后我算一下$3$号桶前面的桶里面的元素个数，就是这个元素的结果，于是对于元素$3$目前是0：<img src="/Blog/images/leetcode315_2.png" class="[bucket]" title="[3][3] " alt="Buckets"></li>
 <li>然后我们继续，这时候拿到了$1$,我们对应哈系表找到是$1$号桶。重复步骤一得到元素$1$的结果：<img src="/Blog/images/leetcode315_3.png" class="[bucket]" title="[3][3] " alt="Buckets"></li>
+<li>重复步骤知道所有元素都遍历完，此处不继续详述。</li>
 </ol>
-
+<p>代码：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">countSmaller</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        unique = <span class="built_in">sorted</span>(<span class="built_in">list</span>(<span class="built_in">set</span>(nums))) <span class="comment">#去重化并且排序</span></span><br><span class="line">        buckets = [<span class="number">0</span>]*<span class="built_in">len</span>(unique) <span class="comment"># 桶来了哦</span></span><br><span class="line">        res = [<span class="number">0</span>]*<span class="built_in">len</span>(nums)</span><br><span class="line">        <span class="string">&quot;&quot;&quot;构建index的哈希表&quot;&quot;&quot;</span></span><br><span class="line">        hashtable = <span class="built_in">dict</span>()</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(unique)):</span><br><span class="line">            hashtable[unique[i]] = i</span><br><span class="line">        <span class="string">&quot;&quot;&quot;遍历&quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums)-<span class="number">1</span>,-<span class="number">1</span>,-<span class="number">1</span>):</span><br><span class="line">            num = nums[i]          </span><br><span class="line">            bucket_index = hashtable[num]</span><br><span class="line">            buckets[bucket_index] +=<span class="number">1</span></span><br><span class="line">            res[i] = <span class="built_in">sum</span>(buckets[:bucket_index])</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<p>结果： 这个算法能算出结果，但是它每个元素都需要计算前面所有桶元素个数的和，也即累计和，所以时间复杂度是$O(n^2)$，跟暴力解法相比只是做了点剪枝，是同一个级别的复杂度，所以跑超时了。所以我们引入了树状数组来优化求累计和的计算。</p>
+<h2 id="树状数组-Binary-Index-Tree"><a href="#树状数组-Binary-Index-Tree" class="headerlink" title="树状数组 Binary Index Tree"></a>树状数组 Binary Index Tree</h2><h3 id="Why-BIT"><a href="#Why-BIT" class="headerlink" title="Why BIT"></a>Why BIT</h3><p>所谓树状数组，是一种用于高效处理对一个存储数字的列表进行更新及求前缀和的数据结构。它想优化的是列表更新操作的时间复杂度并保证求和操作依然高效。这是什么意思呢？假设我们有个长度为$n$的序列，我们想要高效的进行如下操作：</p>
+<ol>
+<li>更新 $update(idx,delta)$：对坐标为$idx$的元素进行更新</li>
+<li>求累计和$prefixSum(idx)$: 求数组到$idx$所有（包含）所有元素的和</li>
+<li>求范围和$rangeSum(from_idx,to_idx)$: 求数组从第$from_idx$到$to_idx$位置的所有数字的和</li>
+</ol>
+<p>对上述问题排除使用暴力累加求和的方法（就是上面我用的），另一种叫简单的方法是使用$O(n)$的时间构造一个前缀数组，即该数组中的第$i$个位置保存原数组前$i$个元素的和，这样我们有：</p>
+<ol>
+<li>更新：只需要更新受次更新影响的前缀和，即从$idx$到最后一个位置的前缀和。时间复杂度为$O(n)$</li>
+<li>求累计和：直接返回累计和。时间复杂度为$O(1)$</li>
+<li>求范围和： 两段累计和相减即可。时间复杂度$O(1)$</li>
+</ol>
+<p>可以看出该方法求和非常高效，单个更新时间为线性时间。但是本题目，我们是从后往前遍历，然后求前面累计和，没办法先构建出前面的累计和，不适用。除此之外，在现实中如果需要更新操作较多，求和较少，这个方法就没那么高效，树状数组结构就是为了优化这种情况，它可以适当降低求和效率但是增强更新效率，使其都为$O(logn)$。</p>
+<h3 id="How-it-work"><a href="#How-it-work" class="headerlink" title="How it work"></a>How it work</h3>
   </div>
 </article>
 
@@ -211,7 +228,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF1%EF%BC%9A%E7%A6%BB%E6%95%A3%E5%8C%96%E6%A0%91%E7%8A%B6%E7%BB%93%E6%9E%84"><span class="toc-number">2.</span> <span class="toc-text">思路1：离散化树状结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A6%BB%E6%95%A3%E5%8C%96%EF%BC%88%E6%A1%B6%EF%BC%89"><span class="toc-number">2.1.</span> <span class="toc-text">离散化（桶）</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF1%EF%BC%9A%E7%A6%BB%E6%95%A3%E5%8C%96%E6%A0%91%E7%8A%B6%E7%BB%93%E6%9E%84"><span class="toc-number">2.</span> <span class="toc-text">思路1：离散化树状结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A6%BB%E6%95%A3%E5%8C%96%EF%BC%88%E6%A1%B6%EF%BC%89"><span class="toc-number">2.1.</span> <span class="toc-text">离散化（桶）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84-Binary-Index-Tree"><span class="toc-number">2.2.</span> <span class="toc-text">树状数组 Binary Index Tree</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Why-BIT"><span class="toc-number">2.2.1.</span> <span class="toc-text">Why BIT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#How-it-work"><span class="toc-number">2.2.2.</span> <span class="toc-text">How it work</span></a></li></ol></li></ol></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
