@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Sub Sort LCCI</title>
+      <link href="/Blog/2022/08/18/subSort/"/>
+      <url>/Blog/2022/08/18/subSort/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Question-leetcode-16"><a href="#Question-leetcode-16" class="headerlink" title="Question leetcode 16"></a>Question leetcode 16</h2><p>Given an array of integers, write a method to find indices m and n such that if you sorted elements m through n, the entire array would be sorted. Minimize n - m (that is, find the smallest such sequence).</p><p>Return [m,n]. If there are no such m and n (e.g. the array is already sorted), return [-1, -1].</p><p>Example:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input:  [1,2,4,7,10,11,7,12,6,7,16,18,19]</span><br><span class="line">Output:  [3,9]</span><br></pre></td></tr></table></figure><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>像这种想一次遍历就解决问题的大多数都要想到双指针了。老规矩，第一步在草稿上写一写找规律，进行思路转换：</p><ol><li>l指向的元素右边有元素比它小，所以只要从右边往左遍历，保存最小的值，与当前值比较。如果当前值比最小值小更新最小值，否则就更新l。</li><li>r也是类似，r左边存在元素比它大，所以只要从左边往右遍历，始终保存最大的值，与当前值比较。如果当前值比前面最大值大则更新最大值，否则更新r。</li></ol><p>故而只要遍历两遍就可以找到l和r。对于边缘情况，比如array是有序数组，l和r都是默认-1。</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">subSort</span>(<span class="params">self, array: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        minn,maxx = <span class="number">10</span>**<span class="number">7</span>, -<span class="number">10</span>**<span class="number">7</span> <span class="comment">#注意这里初始最值的选择</span></span><br><span class="line">        l,r = -<span class="number">1</span>, -<span class="number">1</span></span><br><span class="line">        N = <span class="built_in">len</span>(array)</span><br><span class="line">        <span class="comment"># 从右往左找l</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N-<span class="number">1</span>,-<span class="number">1</span>,-<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> array[i]&lt;=minn:</span><br><span class="line">                minn = array[i]</span><br><span class="line">            <span class="keyword">else</span>: l = i  </span><br><span class="line">        <span class="comment">#从左往右找r</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(N):</span><br><span class="line">            <span class="keyword">if</span> array[j]&gt;=maxx:</span><br><span class="line">                maxx = array[j]</span><br><span class="line">            <span class="keyword">else</span>: r = j</span><br><span class="line">        <span class="keyword">return</span> [l,r]</span><br></pre></td></tr></table></figure><p>The result:</p><img src="/Blog/images/leetcode16.png" class="[leetcode]" title="[3][3] " alt="results">]]></content>
+      
+      
+      <categories>
+          
+          <category> leetcode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Algorithms </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Sum of Elements</title>
       <link href="/Blog/2022/08/17/ElementSum/"/>
       <url>/Blog/2022/08/17/ElementSum/</url>
