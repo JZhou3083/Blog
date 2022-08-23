@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Introduction二分法是一种常见的搜寻算法，常见于在已排序的数列中查找目标值，思想简单，效率也高，能将时间复杂度从$O(n)$降到$O(logn)$，但是二分查找的缺点是边界折磨，即循环中到底是$\leq$还是$\l$，对新边界的定义到底是$+1$还是$-1$，常常容易出错。为什么呢，主要是我们对区间的定义没有树立清楚，也即循环不变量这篇博客就是想整理一下二分法的边界条件，结合循环不变量来">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bisection method">
+<meta property="og:url" content="https://jzhou3083.github.io/Blog/2022/08/23/Bisection_method/index.html">
+<meta property="og:site_name" content="SeaNote">
+<meta property="og:description" content="Introduction二分法是一种常见的搜寻算法，常见于在已排序的数列中查找目标值，思想简单，效率也高，能将时间复杂度从$O(n)$降到$O(logn)$，但是二分查找的缺点是边界折磨，即循环中到底是$\leq$还是$\l$，对新边界的定义到底是$+1$还是$-1$，常常容易出错。为什么呢，主要是我们对区间的定义没有树立清楚，也即循环不变量这篇博客就是想整理一下二分法的边界条件，结合循环不变量来">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-08-23T09:48:53.000Z">
+<meta property="article:modified_time" content="2022-08-23T10:49:51.817Z">
+<meta property="article:author" content="Jing Zhou">
+<meta property="article:tag" content="Algorithms">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/Blog/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/Blog/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/Blog/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Bisection method</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/Blog/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/Blog/">Home</a></li><!--
+     --><!--
+       --><li><a href="/Blog/resume/">Resume</a></li><!--
+     --><!--
+       --><li><a href="/Blog/categories/">Topics</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/JZhou3083">Projects</a></li><!--
+     --><!--
+       --><li><a href="/Blog/search/">Search</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/Blog/2022/08/18/Count-of-smaller/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://jzhou3083.github.io/Blog/2022/08/23/Bisection_method/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jzhou3083.github.io/Blog/2022/08/23/Bisection_method/&text=Bisection method"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jzhou3083.github.io/Blog/2022/08/23/Bisection_method/&title=Bisection method"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jzhou3083.github.io/Blog/2022/08/23/Bisection_method/&is_video=false&description=Bisection method"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Bisection method&body=Check out this article: https://jzhou3083.github.io/Blog/2022/08/23/Bisection_method/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jzhou3083.github.io/Blog/2022/08/23/Bisection_method/&title=Bisection method"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/23/Bisection_method/&title=Bisection method"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/23/Bisection_method/&title=Bisection method"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/23/Bisection_method/&title=Bisection method"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jzhou3083.github.io/Blog/2022/08/23/Bisection_method/&name=Bisection method&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jzhou3083.github.io/Blog/2022/08/23/Bisection_method/&t=Bisection method"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Loop-Invariant"><span class="toc-number">2.</span> <span class="toc-text">Loop Invariant</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bisection-method"><span class="toc-number">3.</span> <span class="toc-text">Bisection method</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Bisection method
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Jing Zhou</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-08-23T09:48:53.000Z" itemprop="datePublished">2022-08-23</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/Blog/categories/Leetcode/">Leetcode</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/Blog/tags/Algorithms/" rel="tag">Algorithms</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>二分法是一种常见的搜寻算法，常见于在已排序的数列中查找目标值，思想简单，效率也高，能将时间复杂度从$O(n)$降到$O(logn)$，但是二分查找的缺点是边界折磨，即循环中到底是$\leq$还是$\l$，对新边界的定义到底是$+1$还是$-1$，常常容易出错。为什么呢，主要是我们对区间的定义没有树立清楚，也即循环不变量这篇博客就是想整理一下二分法的边界条件，结合循环不变量来帮助理解记忆。首先我简略的介绍一下什么是循环不变量，然后在以二分法为例子来梳理理解，最后在整理出网上建议的常见的两个二分法的模板，适用与大多数二分法的问题。</p>
+<h2 id="Loop-Invariant"><a href="#Loop-Invariant" class="headerlink" title="Loop Invariant"></a>Loop Invariant</h2><p>所谓循环不变量，即一个条件在循环的每个迭代都成立，很多时候这个条件并不明显，需要自己整理出来，具体则呢没寻找循环不变量的方法以及一些数学证明这里不涉及，这里只据一些例子方便理解。循环不变量的性质是在以下时刻成立：</p>
+<ol>
+<li>循环刚初始化完，准备开始循环</li>
+<li>每次迭代结束</li>
+<li>下一次迭代开始<br>一个简单的例子：<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">avg</span>(<span class="params">arr:<span class="built_in">list</span></span>):</span><br><span class="line">  total = <span class="number">0</span></span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(arr)): <span class="comment">#loop</span></span><br><span class="line">    total = total + arr[i]</span><br><span class="line">  <span class="keyword">return</span> toal/<span class="built_in">len</span>(arr)</span><br></pre></td></tr></table></figure>
+这个例程的循环不变量是$total &#x3D; \sum_{j&#x3D;0}^iarr[j]$。在循环开始时$i&#x3D;0$，等式成立。要证明循环的正确性，只要证明当$i$时，循环不等式成立的话，$i+1$时，不变量也成立即可。这里不详细讨论怎么证明，感兴趣的同学可以用数学归纳法试试。</li>
+</ol>
+<p>另外一个例子是插入排序，在每次迭代时，我们都假设左边的牌是排好的，从右边没排的牌里面抽出一张插入到左边排序好的牌里去。这里的不变量就是，左边的数列是有序的。</p>
+<p>那么二分法的循环不变量是什么呢，是我们要查找的数字一定在$left$和$right$围成的区间里。边界条件的设置是为了保证这一点在循环中不变。如果我们需要区间边界我们就用闭区间，否则就用开区间。如果现在有点迷糊了就继续往下看。</p>
+<h2 id="Bisection-method"><a href="#Bisection-method" class="headerlink" title="Bisection method"></a>Bisection method</h2><p>我们结合例题来理解，以下来自leetcode 704：</p>
+<p>给定一个$n$个元素有序的整形数组$nums$和一个目标值$target$，写一个搜索函数搜寻$nums$中的$target$，如果存在返回下标，否则返回-1。</p>
+<p>示例1：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入: nums = [-1,0,3,5,9,12], target = 9     </span><br><span class="line">输出: 4       </span><br><span class="line">解释: 9 出现在 nums 中并且下标为 4</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>示例2：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: nums = [-1,0,3,5,9,12], target = 2     </span><br><span class="line">输出: -1        </span><br><span class="line">解释: 2 不存在 nums 中因此返回 -1  </span><br></pre></td></tr></table></figure>
+<p>前面说了我们的循环不变量$target$一定在$left$和$right$组成的区间里，但是我们可以有两种选择来设置这个区间，第一种是是左闭右闭，也即$[left,right]$。循环不变量的区间决定了以下几点：</p>
+<ul>
+<li>$while(left\leqright)$要使用$\leq$，因为此时$left&#x3D;&#x3D;right$是有意义的，表示一个元素</li>
+<li>$if(nums[mid]&gt;target)$的时候$right$要赋值为$mid-1$，因为当前这个$nums[mid]$一定不是$target$，接下来把右边界（有点绕）更新为$mid-1$就好。</li>
+<li>左边界同理<br>图示：</li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/Blog/">Home</a></li>
+         
+          <li><a href="/Blog/resume/">Resume</a></li>
+         
+          <li><a href="/Blog/categories/">Topics</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/JZhou3083">Projects</a></li>
+         
+          <li><a href="/Blog/search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Loop-Invariant"><span class="toc-number">2.</span> <span class="toc-text">Loop Invariant</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bisection-method"><span class="toc-number">3.</span> <span class="toc-text">Bisection method</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://jzhou3083.github.io/Blog/2022/08/23/Bisection_method/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jzhou3083.github.io/Blog/2022/08/23/Bisection_method/&text=Bisection method"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jzhou3083.github.io/Blog/2022/08/23/Bisection_method/&title=Bisection method"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jzhou3083.github.io/Blog/2022/08/23/Bisection_method/&is_video=false&description=Bisection method"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Bisection method&body=Check out this article: https://jzhou3083.github.io/Blog/2022/08/23/Bisection_method/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jzhou3083.github.io/Blog/2022/08/23/Bisection_method/&title=Bisection method"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/23/Bisection_method/&title=Bisection method"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/23/Bisection_method/&title=Bisection method"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/23/Bisection_method/&title=Bisection method"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jzhou3083.github.io/Blog/2022/08/23/Bisection_method/&name=Bisection method&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jzhou3083.github.io/Blog/2022/08/23/Bisection_method/&t=Bisection method"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2021-2022
+    Jing Zhou
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/Blog/">Home</a></li><!--
+     --><!--
+       --><li><a href="/Blog/resume/">Resume</a></li><!--
+     --><!--
+       --><li><a href="/Blog/categories/">Topics</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/JZhou3083">Projects</a></li><!--
+     --><!--
+       --><li><a href="/Blog/search/">Search</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/Blog/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
