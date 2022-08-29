@@ -6,18 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="Introduction二分法是一种常见的搜寻算法，常见于在已排序的数列中查找目标值，思想简单，效率也高，能将时间复杂度从$O(n)$降到$O(logn)$，但是二分查找的缺点是边界折磨，即循环中到底是$\leq$还是$\l$，对新边界的定义到底是$+1$还是$-1$，常常容易出错。为什么呢，主要是我们对区间的定义没有树立清楚，也即循环不变量这篇博客就是想整理一下二分法的边界条件，结合循环不变量来">
+    <meta name="description" content="Introduction二分法是一种常见的搜寻算法，常见于在已排序的数列中查找目标值，思想简单，效率也高，能将时间复杂度从$O(n)$降到$O(logn)$，但是二分查找的缺点是边界折磨，即循环中到底是$\leq$还是$&lt;$，对新边界的定义到底是$mid+1$还是$mid-1$，常常容易出错。为什么呢，主要是我们对区间的作用不清晰，也即循环不变量的概念。这篇博客就是想整理一下二分法的边界条件">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Bisection method">
 <meta property="og:url" content="https://jzhou3083.github.io/Blog/2022/08/23/Bisection_method/index.html">
 <meta property="og:site_name" content="SeaNote">
-<meta property="og:description" content="Introduction二分法是一种常见的搜寻算法，常见于在已排序的数列中查找目标值，思想简单，效率也高，能将时间复杂度从$O(n)$降到$O(logn)$，但是二分查找的缺点是边界折磨，即循环中到底是$\leq$还是$\l$，对新边界的定义到底是$+1$还是$-1$，常常容易出错。为什么呢，主要是我们对区间的定义没有树立清楚，也即循环不变量这篇博客就是想整理一下二分法的边界条件，结合循环不变量来">
+<meta property="og:description" content="Introduction二分法是一种常见的搜寻算法，常见于在已排序的数列中查找目标值，思想简单，效率也高，能将时间复杂度从$O(n)$降到$O(logn)$，但是二分查找的缺点是边界折磨，即循环中到底是$\leq$还是$&lt;$，对新边界的定义到底是$mid+1$还是$mid-1$，常常容易出错。为什么呢，主要是我们对区间的作用不清晰，也即循环不变量的概念。这篇博客就是想整理一下二分法的边界条件">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://jzhou3083.github.io/Blog/images/bisection.jpg">
 <meta property="article:published_time" content="2022-08-23T09:48:53.000Z">
-<meta property="article:modified_time" content="2022-08-23T10:49:51.817Z">
+<meta property="article:modified_time" content="2022-08-23T17:15:34.410Z">
 <meta property="article:author" content="Jing Zhou">
 <meta property="article:tag" content="Algorithms">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jzhou3083.github.io/Blog/images/bisection.jpg">
     
     
       
@@ -91,6 +93,8 @@
     <span id="actions">
       <ul>
         
+        <li><a class="icon" aria-label="Previous post" href="/Blog/2022/08/27/priorityQueue/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
         
         <li><a class="icon" aria-label="Next post" href="/Blog/2022/08/18/Count-of-smaller/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
@@ -120,7 +124,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Loop-Invariant"><span class="toc-number">2.</span> <span class="toc-text">Loop Invariant</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bisection-method"><span class="toc-number">3.</span> <span class="toc-text">Bisection method</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Loop-Invariant"><span class="toc-number">2.</span> <span class="toc-text">Loop Invariant</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bisection-method"><span class="toc-number">3.</span> <span class="toc-text">Bisection method</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Search-insert-position"><span class="toc-number">4.</span> <span class="toc-text">Search insert position</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">5.</span> <span class="toc-text">Reference</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -169,28 +173,53 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>二分法是一种常见的搜寻算法，常见于在已排序的数列中查找目标值，思想简单，效率也高，能将时间复杂度从$O(n)$降到$O(logn)$，但是二分查找的缺点是边界折磨，即循环中到底是$\leq$还是$\l$，对新边界的定义到底是$+1$还是$-1$，常常容易出错。为什么呢，主要是我们对区间的定义没有树立清楚，也即循环不变量这篇博客就是想整理一下二分法的边界条件，结合循环不变量来帮助理解记忆。首先我简略的介绍一下什么是循环不变量，然后在以二分法为例子来梳理理解，最后在整理出网上建议的常见的两个二分法的模板，适用与大多数二分法的问题。</p>
-<h2 id="Loop-Invariant"><a href="#Loop-Invariant" class="headerlink" title="Loop Invariant"></a>Loop Invariant</h2><p>所谓循环不变量，即一个条件在循环的每个迭代都成立，很多时候这个条件并不明显，需要自己整理出来，具体则呢没寻找循环不变量的方法以及一些数学证明这里不涉及，这里只据一些例子方便理解。循环不变量的性质是在以下时刻成立：</p>
+    <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>二分法是一种常见的搜寻算法，常见于在已排序的数列中查找目标值，思想简单，效率也高，能将时间复杂度从$O(n)$降到$O(logn)$，但是二分查找的缺点是边界折磨，即循环中到底是$\leq$还是$&lt;$，对新边界的定义到底是$mid+1$还是$mid-1$，常常容易出错。为什么呢，主要是我们对区间的作用不清晰，也即循环不变量的概念。这篇博客就是想整理一下二分法的边界条件，结合循环不变量来帮助理解。首先我简略的介绍一下什么是循环不变量，然后在以二分法为例子来梳理，最后在整理出网上大神y总建议的两个二分法模板，适用与大多数二分法的问题。</p>
+<h2 id="Loop-Invariant"><a href="#Loop-Invariant" class="headerlink" title="Loop Invariant"></a>Loop Invariant</h2><p>所谓循环不变量，即一个条件在循环的每个迭代都成立。很多时候这个条件并不明显，需要自己梳理出来，具体的寻找循环不变量的方法以及一些数学证明这里不涉及，这里只举一些例子结合理解。循环不变量的性质是在以下时刻成立：</p>
 <ol>
 <li>循环刚初始化完，准备开始循环</li>
 <li>每次迭代结束</li>
-<li>下一次迭代开始<br>一个简单的例子：<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">avg</span>(<span class="params">arr:<span class="built_in">list</span></span>):</span><br><span class="line">  total = <span class="number">0</span></span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(arr)): <span class="comment">#loop</span></span><br><span class="line">    total = total + arr[i]</span><br><span class="line">  <span class="keyword">return</span> toal/<span class="built_in">len</span>(arr)</span><br></pre></td></tr></table></figure>
-这个例程的循环不变量是$total &#x3D; \sum_{j&#x3D;0}^iarr[j]$。在循环开始时$i&#x3D;0$，等式成立。要证明循环的正确性，只要证明当$i$时，循环不等式成立的话，$i+1$时，不变量也成立即可。这里不详细讨论怎么证明，感兴趣的同学可以用数学归纳法试试。</li>
+<li>下一次迭代开始<br>一个简单的例子：<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">avg</span>(<span class="params">arr:<span class="built_in">list</span></span>):</span><br><span class="line">  total = <span class="number">0</span></span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(arr)): <span class="comment">#loop</span></span><br><span class="line">    total = total + arr[i]</span><br><span class="line">  <span class="keyword">return</span> toal/<span class="built_in">len</span>(arr)</span><br></pre></td></tr></table></figure></li>
 </ol>
+<p>这个例程的循环不变量是$total &#x3D; \sum_{j&#x3D;0}^iarr[j]$。在循环开始时$i&#x3D;0$，等式成立。要证明循环的正确性，只要证明当$i$时，循环不等式成立的话，$i+1$时，不变量也成立即可。这里不展开讨论，感兴趣的同学可以用数学归纳法试试。</p>
 <p>另外一个例子是插入排序，在每次迭代时，我们都假设左边的牌是排好的，从右边没排的牌里面抽出一张插入到左边排序好的牌里去。这里的不变量就是，左边的数列是有序的。</p>
 <p>那么二分法的循环不变量是什么呢，是我们要查找的数字一定在$left$和$right$围成的区间里。边界条件的设置是为了保证这一点在循环中不变。如果我们需要区间边界我们就用闭区间，否则就用开区间。如果现在有点迷糊了就继续往下看。</p>
-<h2 id="Bisection-method"><a href="#Bisection-method" class="headerlink" title="Bisection method"></a>Bisection method</h2><p>我们结合例题来理解，以下来自leetcode 704：</p>
-<p>给定一个$n$个元素有序的整形数组$nums$和一个目标值$target$，写一个搜索函数搜寻$nums$中的$target$，如果存在返回下标，否则返回-1。</p>
+<h2 id="Bisection-method"><a href="#Bisection-method" class="headerlink" title="Bisection method"></a>Bisection method</h2><p>我们结合例题来理解，以下来自leetcode704：给定一个$n$个元素有序的整形数组$nums$和一个目标值$target$，写一个搜索函数搜寻$nums$中的$target$，如果存在返回下标，否则返回-1。</p>
 <p>示例1：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入: nums = [-1,0,3,5,9,12], target = 9     </span><br><span class="line">输出: 4       </span><br><span class="line">解释: 9 出现在 nums 中并且下标为 4</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>示例2：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: nums = [-1,0,3,5,9,12], target = 2     </span><br><span class="line">输出: -1        </span><br><span class="line">解释: 2 不存在 nums 中因此返回 -1  </span><br></pre></td></tr></table></figure>
-<p>前面说了我们的循环不变量$target$一定在$left$和$right$组成的区间里，但是我们可以有两种选择来设置这个区间，第一种是是左闭右闭，也即$[left,right]$。循环不变量的区间决定了以下几点：</p>
+<p>前面说了我们的循环不变量$target$一定在$left$和$right$组成的区间里，但是我们可以有两种选择来设置这个区间，第一种是是左闭右闭，也即循环不变量的区间为$[left,right]$。这个区间决定了以下几点：</p>
 <ul>
-<li>$while(left\leqright)$要使用$\leq$，因为此时$left&#x3D;&#x3D;right$是有意义的，表示一个元素</li>
+<li>初始区间应该为$[0,n-1]$，即$left&#x3D;0$，$right&#x3D;n-1$</li>
+<li>$while(left\leq right)$要使用$\leq$，因为此时$left&#x3D;&#x3D;right$是有意义的</li>
 <li>$if(nums[mid]&gt;target)$的时候$right$要赋值为$mid-1$，因为当前这个$nums[mid]$一定不是$target$，接下来把右边界（有点绕）更新为$mid-1$就好。</li>
-<li>左边界同理<br>图示：</li>
+<li>左边界同理<br>图示：<img src="/Blog/images/bisection.jpg" class="[sort]" title="[3][3] " alt="Bisection method"></li>
 </ul>
+<p>所以解题代码为：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">search</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], target: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        n = <span class="built_in">len</span>(nums)</span><br><span class="line">        left,right = <span class="number">0</span>,n-<span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> left&lt;=right:</span><br><span class="line">            mid = (right-left)//<span class="number">2</span>+left</span><br><span class="line">            <span class="keyword">if</span> nums[mid]==target:</span><br><span class="line">                <span class="keyword">return</span> mid</span><br><span class="line">            <span class="keyword">elif</span> nums[mid]&lt;target:</span><br><span class="line">                left = mid+<span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                right = mid-<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>第二种写法我们定义循环不变量的区间是左闭右开，也就是$[left,right)$，那么：</p>
+<ul>
+<li>初始区间应该为$[0,n)$，即$left&#x3D;0$，$right&#x3D;n$，因为要把最后一个元素包括进去。这一点区别很容易粗心漏掉，造成一开始循环不变量就打破了。。</li>
+<li>$while(left&lt;right)$要使用$&lt;$，因为此时$left&#x3D;&#x3D;right$在区间$[left,right)$是没有意义的。</li>
+<li>$if(nums[mid]&gt;target)$的时候$right$要赋值为$mid$，因为当前$num[mid]$不等于$target$不代表$target$不会在$mid-1$。所以我们要在$[left,mid)$继续寻找，而不是$[left,mid-1)$。从而保证我们的循环不变量（目标值在新的区间里）</li>
+<li>左边则不一样，左边界需要加$1$，因为左边是闭合的。所以此时代码变成：<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">search</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], target: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        n = <span class="built_in">len</span>(nums)</span><br><span class="line">        left,right = <span class="number">0</span>,n</span><br><span class="line">        <span class="keyword">while</span> left&lt;right:</span><br><span class="line">            mid = (right-left)//<span class="number">2</span>+left</span><br><span class="line">            <span class="keyword">if</span> nums[mid]==target:</span><br><span class="line">                <span class="keyword">return</span> mid</span><br><span class="line">            <span class="keyword">elif</span> nums[mid]&lt;target:</span><br><span class="line">                left = mid+<span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                right = mid</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="Search-insert-position"><a href="#Search-insert-position" class="headerlink" title="Search insert position"></a>Search insert position</h2><p>Now let’s spice it up a bit. 有一道很有意思的变种题leetcode35:<br>Given a sorted array of distinct integers and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.</p>
+<p>You must write an algorithm with O(log n) runtime complexity.</p>
+<p>Example 1:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = [1,3,5,6], target = 5</span><br><span class="line">Output: 2</span><br></pre></td></tr></table></figure>
+<p>Example 2:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = [1,3,5,6], target = 2</span><br><span class="line">Output: 1</span><br></pre></td></tr></table></figure>
+<p>Example 3:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = [1,3,5,6], target = 7</span><br><span class="line">Output: 4</span><br></pre></td></tr></table></figure>
+<p>为什么这到题目很有意思呢。因为如果第一反映是我们想要的循环不变量是$target$在$[left,right)$里，但是其实不是，这样会使得问题和解法变得复杂。如果套用上面描述的模板，我们选择的循环不变量其实不是$target$在区间里，而是在$target$的插入坐标在区间里。区别在哪呢，假如$target$在$mid-1$和$mid$间，它的插入坐标是$mid-1$，因此区间$[left,mid-1]$就可以满足要求了。于是我们直接用第一种模板：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">searchInsert</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], target: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        n = <span class="built_in">len</span>(nums)</span><br><span class="line">        left, right = <span class="number">0</span>,n-<span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> left&lt;=right:</span><br><span class="line">            mid = (right-left)//<span class="number">2</span>+left</span><br><span class="line">            <span class="keyword">if</span> nums[mid]==target:</span><br><span class="line">                <span class="keyword">return</span> mid</span><br><span class="line">            <span class="keyword">elif</span> nums[mid]&lt;target:</span><br><span class="line">                left = mid+<span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                right = mid-<span class="number">1</span>            </span><br><span class="line">        <span class="keyword">return</span> left</span><br></pre></td></tr></table></figure>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/141480088">二分法其实很简单，为什么老是写不对</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=IZ7fyyAsOZc">What is a Loop Invairant</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=3YP6NP1_tF0&t=632s">Program Proofs and Loop Invariants</a></li>
+<li>Cormen, T, Leiserso, C.E, Rivest R.L &amp; Stein C 2009, <em>The introduction of algorithms</em>, The thrid edition, The MIT Press, London, pp.18-20.</li>
+</ol>
 
   </div>
 </article>
@@ -218,7 +247,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Loop-Invariant"><span class="toc-number">2.</span> <span class="toc-text">Loop Invariant</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bisection-method"><span class="toc-number">3.</span> <span class="toc-text">Bisection method</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Loop-Invariant"><span class="toc-number">2.</span> <span class="toc-text">Loop Invariant</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bisection-method"><span class="toc-number">3.</span> <span class="toc-text">Bisection method</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Search-insert-position"><span class="toc-number">4.</span> <span class="toc-text">Search insert position</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">5.</span> <span class="toc-text">Reference</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
