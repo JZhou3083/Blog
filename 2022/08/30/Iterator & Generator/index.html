@@ -8,13 +8,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="description" content="Hello, I am Jing Zhou. Here you can my blogs. I write in Chinese and English. Always learning, often tinkering!">
 <meta property="og:type" content="article">
-<meta property="og:title" content="迭代其和生成器">
-<meta property="og:url" content="https://jzhou3083.github.io/Blog/2022/08/30/immutable%20&%20mutable/index.html">
+<meta property="og:title" content="迭代器和生成器">
+<meta property="og:url" content="https://jzhou3083.github.io/Blog/2022/08/30/Iterator%20&%20Generator/index.html">
 <meta property="og:site_name" content="SeaNote">
 <meta property="og:description" content="Hello, I am Jing Zhou. Here you can my blogs. I write in Chinese and English. Always learning, often tinkering!">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-08-30T13:45:23.000Z">
-<meta property="article:modified_time" content="2022-08-30T13:45:23.451Z">
+<meta property="article:modified_time" content="2022-09-07T23:32:52.617Z">
 <meta property="article:author" content="Jing Zhou">
 <meta name="twitter:card" content="summary">
     
@@ -36,7 +36,7 @@
       
     
     <!-- title -->
-    <title>迭代其和生成器</title>
+    <title>迭代器和生成器</title>
     <!-- styles -->
     
 <link rel="stylesheet" href="/Blog/css/style.css">
@@ -106,17 +106,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://jzhou3083.github.io/Blog/2022/08/30/immutable%20&amp;%20mutable/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jzhou3083.github.io/Blog/2022/08/30/immutable%20&amp;%20mutable/&text=迭代其和生成器"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jzhou3083.github.io/Blog/2022/08/30/immutable%20&amp;%20mutable/&title=迭代其和生成器"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jzhou3083.github.io/Blog/2022/08/30/immutable%20&amp;%20mutable/&is_video=false&description=迭代其和生成器"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=迭代其和生成器&body=Check out this article: https://jzhou3083.github.io/Blog/2022/08/30/immutable%20&amp;%20mutable/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jzhou3083.github.io/Blog/2022/08/30/immutable%20&amp;%20mutable/&title=迭代其和生成器"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/30/immutable%20&amp;%20mutable/&title=迭代其和生成器"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/30/immutable%20&amp;%20mutable/&title=迭代其和生成器"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/30/immutable%20&amp;%20mutable/&title=迭代其和生成器"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jzhou3083.github.io/Blog/2022/08/30/immutable%20&amp;%20mutable/&name=迭代其和生成器&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jzhou3083.github.io/Blog/2022/08/30/immutable%20&amp;%20mutable/&t=迭代其和生成器"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://jzhou3083.github.io/Blog/2022/08/30/Iterator%20&amp;%20Generator/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jzhou3083.github.io/Blog/2022/08/30/Iterator%20&amp;%20Generator/&text=迭代器和生成器"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jzhou3083.github.io/Blog/2022/08/30/Iterator%20&amp;%20Generator/&title=迭代器和生成器"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jzhou3083.github.io/Blog/2022/08/30/Iterator%20&amp;%20Generator/&is_video=false&description=迭代器和生成器"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=迭代器和生成器&body=Check out this article: https://jzhou3083.github.io/Blog/2022/08/30/Iterator%20&amp;%20Generator/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jzhou3083.github.io/Blog/2022/08/30/Iterator%20&amp;%20Generator/&title=迭代器和生成器"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/30/Iterator%20&amp;%20Generator/&title=迭代器和生成器"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/30/Iterator%20&amp;%20Generator/&title=迭代器和生成器"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/30/Iterator%20&amp;%20Generator/&title=迭代器和生成器"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jzhou3083.github.io/Blog/2022/08/30/Iterator%20&amp;%20Generator/&name=迭代器和生成器&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jzhou3083.github.io/Blog/2022/08/30/Iterator%20&amp;%20Generator/&t=迭代器和生成器"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -133,7 +133,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        迭代其和生成器
+        迭代器和生成器
     </h1>
 
 
@@ -192,17 +192,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://jzhou3083.github.io/Blog/2022/08/30/immutable%20&amp;%20mutable/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jzhou3083.github.io/Blog/2022/08/30/immutable%20&amp;%20mutable/&text=迭代其和生成器"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jzhou3083.github.io/Blog/2022/08/30/immutable%20&amp;%20mutable/&title=迭代其和生成器"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jzhou3083.github.io/Blog/2022/08/30/immutable%20&amp;%20mutable/&is_video=false&description=迭代其和生成器"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=迭代其和生成器&body=Check out this article: https://jzhou3083.github.io/Blog/2022/08/30/immutable%20&amp;%20mutable/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jzhou3083.github.io/Blog/2022/08/30/immutable%20&amp;%20mutable/&title=迭代其和生成器"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/30/immutable%20&amp;%20mutable/&title=迭代其和生成器"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/30/immutable%20&amp;%20mutable/&title=迭代其和生成器"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/30/immutable%20&amp;%20mutable/&title=迭代其和生成器"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jzhou3083.github.io/Blog/2022/08/30/immutable%20&amp;%20mutable/&name=迭代其和生成器&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jzhou3083.github.io/Blog/2022/08/30/immutable%20&amp;%20mutable/&t=迭代其和生成器"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://jzhou3083.github.io/Blog/2022/08/30/Iterator%20&amp;%20Generator/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jzhou3083.github.io/Blog/2022/08/30/Iterator%20&amp;%20Generator/&text=迭代器和生成器"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jzhou3083.github.io/Blog/2022/08/30/Iterator%20&amp;%20Generator/&title=迭代器和生成器"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jzhou3083.github.io/Blog/2022/08/30/Iterator%20&amp;%20Generator/&is_video=false&description=迭代器和生成器"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=迭代器和生成器&body=Check out this article: https://jzhou3083.github.io/Blog/2022/08/30/Iterator%20&amp;%20Generator/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jzhou3083.github.io/Blog/2022/08/30/Iterator%20&amp;%20Generator/&title=迭代器和生成器"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/30/Iterator%20&amp;%20Generator/&title=迭代器和生成器"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/30/Iterator%20&amp;%20Generator/&title=迭代器和生成器"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jzhou3083.github.io/Blog/2022/08/30/Iterator%20&amp;%20Generator/&title=迭代器和生成器"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jzhou3083.github.io/Blog/2022/08/30/Iterator%20&amp;%20Generator/&name=迭代器和生成器&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jzhou3083.github.io/Blog/2022/08/30/Iterator%20&amp;%20Generator/&t=迭代器和生成器"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

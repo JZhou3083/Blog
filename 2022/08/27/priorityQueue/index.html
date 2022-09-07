@@ -14,7 +14,7 @@
 <meta property="og:description" content="Introduction优先队列是队列的一种，跟队列不一样的是优先队列的出队顺序是按照优先级来的，在某些情况下，我们需要找到元素集合中的最小或者最大元素，比如在医院等待的病人按照紧急程度来治疗。常见的应用有：  数据压缩：赫夫曼编码算法 最短路径算法：Dijkstra算法 最小生成树算法：Prim算法 事件驱动仿真：顾客排队算法 选择问题：查找k个最值 排序问题：堆排序  优先队列经常用堆来实现，">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-08-27T14:27:06.000Z">
-<meta property="article:modified_time" content="2022-08-30T13:58:40.565Z">
+<meta property="article:modified_time" content="2022-09-07T23:29:38.925Z">
 <meta property="article:author" content="Jing Zhou">
 <meta name="twitter:card" content="summary">
     
@@ -90,7 +90,7 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" aria-label="Previous post" href="/Blog/2022/08/30/immutable%20&%20mutable/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Previous post" href="/Blog/2022/08/30/Iterator%20&%20Generator/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
         <li><a class="icon" aria-label="Next post" href="/Blog/2022/08/23/Bisection_method/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
@@ -217,9 +217,14 @@
 <li>$heapify(x)$把数组转换成堆，线性时间复杂度$O(n)$，并且$in-place$（即空间复杂度$O(1)$）。</li>
 <li>$heapreplace(heap,item)$，先弹出堆顶再压入，比分步更高效。</li>
 </ul>
-<p>还有一些高阶的methods：<br>-$merge(*iterables,key&#x3D;None,reverse&#x3D;False)$，合并多个有序输入成一个有序输出（比如从多个$log$文件中合并时间戳），返回一个有序值的迭代器。$key$是排序的判断函数。类似$sorted(itertools.chaim(*iterables))$但是其返回的是迭代元素。<br>-$nlargest(n,iterable,key&#x3D;None)$返回有一个列表，元素是$前n$个最大值，等同于$sorted(iterable,key&#x3D;key,reverse&#x3D;True)[:n]$。<br>-$nsmallest(n,iterable,key&#x3D;None)$与上面类似。</p>
+<p>还有一些高阶的methods：</p>
+<ul>
+<li>$merge(*iterables,key&#x3D;None,reverse&#x3D;False)$，合并多个有序输入成一个有序输出（比如从多个$log$文件中合并时间戳），返回一个有序值的迭代器。$key$是排序的判断函数。类似$sorted(itertools.chaim(*iterables))$但是其返回的是迭代元素。</li>
+<li>$nlargest(n,iterable,key&#x3D;None)$返回有一个列表，元素是$前n$个最大值，等同于$sorted(iterable,key&#x3D;key,reverse&#x3D;True)[:n]$。</li>
+<li>$nsmallest(n,iterable,key&#x3D;None)$与上面类似。</li>
+</ul>
 <p>这些函数的调用都是$heap.func()$格式。</p>
-<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Python的优先队列就总结完了，建议可以去力扣刷一些例题熟悉一下。这里暂时不给出题目列表。 </p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Python的优先队列就总结完了，建议可以去力扣刷一些例题熟悉一下。这里暂时不给出题目列表。</p>
 
   </div>
 </article>
