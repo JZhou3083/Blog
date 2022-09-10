@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Introduction这篇文章主要是为了做个记录，之后会继续补充。 动态规划的实现方式动态规划有两种实现方式，根据问题不同情况来选择  从顶往下，对计算过的枝叶进行记忆，之后直接运用。思路比较简单，但是在深度比较大的问题中需要比较多的记忆空间。比如用递归法计算Fibonacci的时候。 从底往上，此时与贪心算法容易混淆。区别在于：贪心算法根据当前的状态用贪心策略作出抉择，然后下一个子问题为上一个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dynamic Programming">
+<meta property="og:url" content="https://jzhou3083.github.io/Blog/2022/09/10/Dynamic-Porgamming/index.html">
+<meta property="og:site_name" content="SeaNote">
+<meta property="og:description" content="Introduction这篇文章主要是为了做个记录，之后会继续补充。 动态规划的实现方式动态规划有两种实现方式，根据问题不同情况来选择  从顶往下，对计算过的枝叶进行记忆，之后直接运用。思路比较简单，但是在深度比较大的问题中需要比较多的记忆空间。比如用递归法计算Fibonacci的时候。 从底往上，此时与贪心算法容易混淆。区别在于：贪心算法根据当前的状态用贪心策略作出抉择，然后下一个子问题为上一个">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-09-10T12:36:20.000Z">
+<meta property="article:modified_time" content="2022-09-10T12:45:00.176Z">
+<meta property="article:author" content="Jing Zhou">
+<meta property="article:tag" content="Algorithms">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/Blog/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/Blog/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/Blog/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Dynamic Programming</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/Blog/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/Blog/">Home</a></li><!--
+     --><!--
+       --><li><a href="/Blog/resume/">Resume</a></li><!--
+     --><!--
+       --><li><a href="/Blog/categories/">Topics</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/JZhou3083">Projects</a></li><!--
+     --><!--
+       --><li><a href="/Blog/search/">Search</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/Blog/2022/08/30/BusProblem/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://jzhou3083.github.io/Blog/2022/09/10/Dynamic-Porgamming/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jzhou3083.github.io/Blog/2022/09/10/Dynamic-Porgamming/&text=Dynamic Programming"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jzhou3083.github.io/Blog/2022/09/10/Dynamic-Porgamming/&title=Dynamic Programming"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jzhou3083.github.io/Blog/2022/09/10/Dynamic-Porgamming/&is_video=false&description=Dynamic Programming"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Dynamic Programming&body=Check out this article: https://jzhou3083.github.io/Blog/2022/09/10/Dynamic-Porgamming/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jzhou3083.github.io/Blog/2022/09/10/Dynamic-Porgamming/&title=Dynamic Programming"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jzhou3083.github.io/Blog/2022/09/10/Dynamic-Porgamming/&title=Dynamic Programming"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jzhou3083.github.io/Blog/2022/09/10/Dynamic-Porgamming/&title=Dynamic Programming"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jzhou3083.github.io/Blog/2022/09/10/Dynamic-Porgamming/&title=Dynamic Programming"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jzhou3083.github.io/Blog/2022/09/10/Dynamic-Porgamming/&name=Dynamic Programming&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jzhou3083.github.io/Blog/2022/09/10/Dynamic-Porgamming/&t=Dynamic Programming"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F"><span class="toc-number">2.</span> <span class="toc-text">动态规划的实现方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0"><span class="toc-number">3.</span> <span class="toc-text">练习</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Dynamic Programming
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Jing Zhou</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-09-10T12:36:20.000Z" itemprop="datePublished">2022-09-10</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/Blog/tags/Algorithms/" rel="tag">Algorithms</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>这篇文章主要是为了做个记录，之后会继续补充。</p>
+<h2 id="动态规划的实现方式"><a href="#动态规划的实现方式" class="headerlink" title="动态规划的实现方式"></a>动态规划的实现方式</h2><p>动态规划有两种实现方式，根据问题不同情况来选择</p>
+<ol>
+<li>从顶往下，对计算过的枝叶进行记忆，之后直接运用。思路比较简单，但是在深度比较大的问题中需要比较多的记忆空间。比如用递归法计算Fibonacci的时候。</li>
+<li>从底往上，此时与贪心算法容易混淆。区别在于：贪心算法根据当前的状态用贪心策略作出抉择，然后下一个子问题为上一个抉择造成的后果买单。动态规划，当前做抉择基于下一个子问题最优作出抉择，是面向下一个子问题最有策略。（类似强化学习远见，但是没那么远见）</li>
+</ol>
+<h2 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h2><ol>
+<li>背包问题</li>
+<li>青蛙跳台阶</li>
+<li>求Fibonacci序列</li>
+</ol>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/Blog/">Home</a></li>
+         
+          <li><a href="/Blog/resume/">Resume</a></li>
+         
+          <li><a href="/Blog/categories/">Topics</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/JZhou3083">Projects</a></li>
+         
+          <li><a href="/Blog/search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F"><span class="toc-number">2.</span> <span class="toc-text">动态规划的实现方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0"><span class="toc-number">3.</span> <span class="toc-text">练习</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://jzhou3083.github.io/Blog/2022/09/10/Dynamic-Porgamming/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jzhou3083.github.io/Blog/2022/09/10/Dynamic-Porgamming/&text=Dynamic Programming"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jzhou3083.github.io/Blog/2022/09/10/Dynamic-Porgamming/&title=Dynamic Programming"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jzhou3083.github.io/Blog/2022/09/10/Dynamic-Porgamming/&is_video=false&description=Dynamic Programming"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Dynamic Programming&body=Check out this article: https://jzhou3083.github.io/Blog/2022/09/10/Dynamic-Porgamming/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jzhou3083.github.io/Blog/2022/09/10/Dynamic-Porgamming/&title=Dynamic Programming"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jzhou3083.github.io/Blog/2022/09/10/Dynamic-Porgamming/&title=Dynamic Programming"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jzhou3083.github.io/Blog/2022/09/10/Dynamic-Porgamming/&title=Dynamic Programming"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jzhou3083.github.io/Blog/2022/09/10/Dynamic-Porgamming/&title=Dynamic Programming"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jzhou3083.github.io/Blog/2022/09/10/Dynamic-Porgamming/&name=Dynamic Programming&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jzhou3083.github.io/Blog/2022/09/10/Dynamic-Porgamming/&t=Dynamic Programming"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2021-2022
+    Jing Zhou
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/Blog/">Home</a></li><!--
+     --><!--
+       --><li><a href="/Blog/resume/">Resume</a></li><!--
+     --><!--
+       --><li><a href="/Blog/categories/">Topics</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/JZhou3083">Projects</a></li><!--
+     --><!--
+       --><li><a href="/Blog/search/">Search</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/Blog/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>Dynamic Programming</title>
+      <link href="/Blog/2022/09/10/Dynamic-Porgamming/"/>
+      <url>/Blog/2022/09/10/Dynamic-Porgamming/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>这篇文章主要是为了做个记录，之后会继续补充。</p><h2 id="动态规划的实现方式"><a href="#动态规划的实现方式" class="headerlink" title="动态规划的实现方式"></a>动态规划的实现方式</h2><p>动态规划有两种实现方式，根据问题不同情况来选择</p><ol><li>从顶往下，对计算过的枝叶进行记忆，之后直接运用。思路比较简单，但是在深度比较大的问题中需要比较多的记忆空间。比如用递归法计算Fibonacci的时候。</li><li>从底往上，此时与贪心算法容易混淆。区别在于：贪心算法根据当前的状态用贪心策略作出抉择，然后下一个子问题为上一个抉择造成的后果买单。动态规划，当前做抉择基于下一个子问题最优作出抉择，是面向下一个子问题最有策略。（类似强化学习远见，但是没那么远见）</li></ol><h2 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h2><ol><li>背包问题</li><li>青蛙跳台阶</li><li>求Fibonacci序列</li></ol>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Algorithms </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>BusProblem</title>
       <link href="/Blog/2022/08/30/BusProblem/"/>
       <url>/Blog/2022/08/30/BusProblem/</url>
