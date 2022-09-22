@@ -4,6 +4,40 @@
   
     
     <entry>
+      <title>A learner to forecast the flow of River Test in Southampton</title>
+      <link href="/Blog/2022/09/22/SouthernWater-Riverflow-Forecasting/"/>
+      <url>/Blog/2022/09/22/SouthernWater-Riverflow-Forecasting/</url>
+      
+        <content type="html"><![CDATA[<h2 id="About-The-Project"><a href="#About-The-Project" class="headerlink" title="About The Project"></a>About The Project</h2><p>Hands off Flow (HOF) is a measurement of the river flow that triggers warning of when water supply company may be breaching their licence condition for water abstraction on the river to preserve water resource for plants and wildlife.</p><p>In the past eight months, Southampton has experienced the driest months in 131 years due to an extreme shortage of rainfall. The below graph, from the website of Southern Water,<br>shows the recent flow data of River Test, one of main water source in Southampton:<br><img src="/Blog/.io//Blog/2022/09/22/SouthernWater-Riverflow-Forecasting/testriverflowmld.jpg" alt="alt"></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> time-series-forecasting </tag>
+            
+            <tag> Data science </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>FloodWeather</title>
+      <link href="/Blog/2022/09/13/FloodWeather/"/>
+      <url>/Blog/2022/09/13/FloodWeather/</url>
+      
+        <content type="html"><![CDATA[<iframe title="Flood warnings in Hampshire" frameborder="0" width="355px" height="160px" scrolling="no" src="https://environment.data.gov.uk/flood-widgets/widgets/widget-Hampshire-horizontal.html"></iframe>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Dynamic Programming</title>
       <link href="/Blog/2022/09/10/Dynamic-Porgamming/"/>
       <url>/Blog/2022/09/10/Dynamic-Porgamming/</url>
