@@ -6,18 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="Introduction这篇文章主要是为了做个记录，之后会继续补充。 动态规划的实现方式动态规划有两种实现方式，根据问题不同情况来选择  从顶往下，对计算过的枝叶进行记忆，之后直接运用。思路比较简单，但是在深度比较大的问题中需要比较多的记忆空间。比如用递归法计算Fibonacci的时候。 从底往上，此时与贪心算法容易混淆。区别在于：贪心算法根据当前的状态用贪心策略作出抉择，然后下一个子问题为上一个">
+    <meta name="description" content="Introduction这篇文章主要是为了做个记录，之后会继续补充。 因为求职比较忙而动态规划属于算法的难点（预估需要1-3个月进行熟练），暂且对进几天刷的题目和阅读进行梳理。关于理解的部分主要来自两个博客,Dynamical Programming Patterns和动态规划精讲。更新于：2022&#x2F;11&#x2F;24。 动态规划概念首先我们要理解动态规划并不是一个具体的算法，而是一种">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Dynamic Programming">
 <meta property="og:url" content="https://jzhou3083.github.io/Blog/2022/09/10/Dynamic-Porgamming/index.html">
 <meta property="og:site_name" content="SeaNote">
-<meta property="og:description" content="Introduction这篇文章主要是为了做个记录，之后会继续补充。 动态规划的实现方式动态规划有两种实现方式，根据问题不同情况来选择  从顶往下，对计算过的枝叶进行记忆，之后直接运用。思路比较简单，但是在深度比较大的问题中需要比较多的记忆空间。比如用递归法计算Fibonacci的时候。 从底往上，此时与贪心算法容易混淆。区别在于：贪心算法根据当前的状态用贪心策略作出抉择，然后下一个子问题为上一个">
+<meta property="og:description" content="Introduction这篇文章主要是为了做个记录，之后会继续补充。 因为求职比较忙而动态规划属于算法的难点（预估需要1-3个月进行熟练），暂且对进几天刷的题目和阅读进行梳理。关于理解的部分主要来自两个博客,Dynamical Programming Patterns和动态规划精讲。更新于：2022&#x2F;11&#x2F;24。 动态规划概念首先我们要理解动态规划并不是一个具体的算法，而是一种">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2020/08/06/1-1.png">
 <meta property="article:published_time" content="2022-09-10T12:36:20.000Z">
-<meta property="article:modified_time" content="2022-09-10T12:45:00.176Z">
+<meta property="article:modified_time" content="2022-11-24T18:51:57.095Z">
 <meta property="article:author" content="Jing Zhou">
 <meta property="article:tag" content="Algorithms">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2020/08/06/1-1.png">
     
     
       
@@ -91,10 +93,10 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" aria-label="Previous post" href="/Blog/2022/09/13/FloodWeather/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Previous post" href="/Blog/2022/09/22/SouthernWater-Riverflow-Forecasting/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" aria-label="Next post" href="/Blog/2022/08/30/BusProblem/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Next post" href="/Blog/2022/08/27/priorityQueue/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -122,7 +124,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F"><span class="toc-number">2.</span> <span class="toc-text">动态规划的实现方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0"><span class="toc-number">3.</span> <span class="toc-text">练习</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%A6%82%E5%BF%B5"><span class="toc-number">2.</span> <span class="toc-text">动态规划概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E4%BC%98%E5%AD%90%E7%BB%93%E6%9E%84"><span class="toc-number">2.1.</span> <span class="toc-text">最优子结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E5%A4%8D%E5%AD%90%E9%97%AE%E9%A2%98"><span class="toc-number">2.2.</span> <span class="toc-text">重复子问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="toc-number">3.</span> <span class="toc-text">线性动态规划</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E4%B8%B2"><span class="toc-number">3.1.</span> <span class="toc-text">单串</span></a></li></ol></li></ol>
     </div>
   </span>
 </div>
@@ -167,17 +169,18 @@
 
   <div class="content" itemprop="articleBody">
     <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>这篇文章主要是为了做个记录，之后会继续补充。</p>
-<h2 id="动态规划的实现方式"><a href="#动态规划的实现方式" class="headerlink" title="动态规划的实现方式"></a>动态规划的实现方式</h2><p>动态规划有两种实现方式，根据问题不同情况来选择</p>
-<ol>
-<li>从顶往下，对计算过的枝叶进行记忆，之后直接运用。思路比较简单，但是在深度比较大的问题中需要比较多的记忆空间。比如用递归法计算Fibonacci的时候。</li>
-<li>从底往上，此时与贪心算法容易混淆。区别在于：贪心算法根据当前的状态用贪心策略作出抉择，然后下一个子问题为上一个抉择造成的后果买单。动态规划，当前做抉择基于下一个子问题最优作出抉择，是面向下一个子问题最有策略。（类似强化学习远见，但是没那么远见）</li>
-</ol>
-<h2 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h2><ol>
-<li>背包问题</li>
-<li>青蛙跳台阶</li>
-<li>求Fibonacci序列</li>
-</ol>
-
+<p>因为求职比较忙而动态规划属于算法的难点（预估需要1-3个月进行熟练），暂且对进几天刷的题目和阅读进行梳理。关于理解的部分主要来自两个博客,<a target="_blank" rel="noopener" href="https://leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns#distinct-ways">Dynamical Programming Patterns</a>和<a target="_blank" rel="noopener" href="https://leetcode.cn/leetbook/read/dynamic-programming-1-plus/xc9j6t/">动态规划精讲</a>。更新于：2022&#x2F;11&#x2F;24。</p>
+<h2 id="动态规划概念"><a href="#动态规划概念" class="headerlink" title="动态规划概念"></a>动态规划概念</h2><p>首先我们要理解动态规划并不是一个具体的算法，而是一种解决问题的思想：为了解决一个特定的复杂的问题，我们需要解决它的不同部分（子问题），然后根据用子问题的解得到原问题的解。这种思想的难点是怎么识别出拆分的思路，这个只能通过不断的练习和总结来培养。这种思路涉及到对两个概念的理解，最优子结构和重复子问题。</p>
+<h3 id="最优子结构"><a href="#最优子结构" class="headerlink" title="最优子结构"></a>最优子结构</h3><p>最优子结构规定的是子问题和原问题的关系。</p>
+<p>动态规划常常用来得到问题的最优解，我们把一个问题分解成多个子问题，然后递归地找到每一个子问题的最优解再组合起来。比如很有意思的<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/house-robber/">打家劫舍系列</a>, 小偷要么最后一个偷第4间或者最后一个偷第5间。所以最大收益解是这两个选择的最大收益中更大的那个。我们可以分别找到子问题的最大收益然后进行选择。</p>
+<p><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2020/08/06/1-1.png" alt="示意"></p>
+<p>显而易见动态规划是一种穷举的思路，而且与递归很类似。但是区别在于动态规划可以避免重复子问题</p>
+<h3 id="重复子问题"><a href="#重复子问题" class="headerlink" title="重复子问题"></a>重复子问题</h3><p>重复子问题规定的是子问题和子问题的关系。</p>
+<p>当我们在递归地寻找每个子问题的最优解的时候，可能会重复地遇到一些更小的子问题，此时会出现大量的重复计算而动态规划可以让我们保证每个重复的子问题只求解一次。如果没有重复的子问题，就没必要用动态规划，直接用普通递归就可以了。</p>
+<p>最著名的例子就是[斐波那契数列]，状态转移方程里面包含大量的重复计算，动态规划允许我们只保留前两个子问题的解，非常高效。</p>
+<p>由此可见，区分动态规划和分治算法的关键在于动态规划有重复子问题，区分贪心算法和动态规划的关键在于贪心只关心下一步的最优解，也就是之走全局树的最优路线，而动态规划本质是穷举，需要的话会记录过去所有的局部最优解。可见贪心的特点是复杂度低但是不保证全局最优，动态则全局最优但是复杂度高。在分步贪心策略不会影响的时候建议用更高效的贪心算法，一个例子是<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/">买卖股票的最佳时机II</a>。</p>
+<h2 id="线性动态规划"><a href="#线性动态规划" class="headerlink" title="线性动态规划"></a>线性动态规划</h2><p>动态规划解决问题最重要的是几个点：状态定义，状态转移，初始化和边界条件。线性动态规划是最常见一种，按照问题规划i从小到大转移过去，较大规模的问题的解依赖较小规模的问题的解。这一部分列举一些常见的题型。</p>
+<h3 id="单串"><a href="#单串" class="headerlink" title="单串"></a>单串</h3>
   </div>
 </article>
 
@@ -204,7 +207,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F"><span class="toc-number">2.</span> <span class="toc-text">动态规划的实现方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0"><span class="toc-number">3.</span> <span class="toc-text">练习</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%A6%82%E5%BF%B5"><span class="toc-number">2.</span> <span class="toc-text">动态规划概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E4%BC%98%E5%AD%90%E7%BB%93%E6%9E%84"><span class="toc-number">2.1.</span> <span class="toc-text">最优子结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E5%A4%8D%E5%AD%90%E9%97%AE%E9%A2%98"><span class="toc-number">2.2.</span> <span class="toc-text">重复子问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="toc-number">3.</span> <span class="toc-text">线性动态规划</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E4%B8%B2"><span class="toc-number">3.1.</span> <span class="toc-text">单串</span></a></li></ol></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">

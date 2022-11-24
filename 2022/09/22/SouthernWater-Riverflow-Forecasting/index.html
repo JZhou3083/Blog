@@ -13,14 +13,19 @@
 <meta property="og:site_name" content="SeaNote">
 <meta property="og:description" content="About The ProjectHands off Flow (HOF) is a measurement of the river flow that triggers warning of when water supply company may be breaching their licence condition for water abstraction on the river">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://jzhou3083.github.io/Blog/.io//Blog/2022/09/22/SouthernWater-Riverflow-Forecasting/testriverflowmld.jpg">
+<meta property="og:image" content="https://jzhou3083.github.io/Blog/images/SouthernWater/testriverflowmld.jpg">
+<meta property="og:image" content="https://jzhou3083.github.io/Blog/images/SouthernWater/HydroMap.jpg">
+<meta property="og:image" content="https://jzhou3083.github.io/Blog/images/SouthernWater/compare.png">
+<meta property="og:image" content="https://latex.codecogs.com/svg.image?SI&space;=&space;\frac{RMSE}{\overline{X}}=\frac{\sqrt{\frac{\sum_{x_i}^{N}(x_i-\hat{x_i})^2}{N}}}{\frac{\sum_{x_i}^{N}x_i}{N}}">
+<meta property="og:image" content="https://latex.codecogs.com/svg.image?R^{2}&space;=&space;1-\frac{RSS}{TSS}\\&space;">
+<meta property="og:image" content="https://jzhou3083.github.io/Blog/images/SouthernWater/cor.png">
 <meta property="article:published_time" content="2022-09-22T09:27:09.000Z">
-<meta property="article:modified_time" content="2022-09-22T09:52:35.032Z">
+<meta property="article:modified_time" content="2022-09-22T11:14:01.961Z">
 <meta property="article:author" content="Jing Zhou">
 <meta property="article:tag" content="time-series-forecasting">
 <meta property="article:tag" content="Data science">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://jzhou3083.github.io/Blog/.io//Blog/2022/09/22/SouthernWater-Riverflow-Forecasting/testriverflowmld.jpg">
+<meta name="twitter:image" content="https://jzhou3083.github.io/Blog/images/SouthernWater/testriverflowmld.jpg">
     
     
       
@@ -95,7 +100,7 @@
       <ul>
         
         
-        <li><a class="icon" aria-label="Next post" href="/Blog/2022/09/13/FloodWeather/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Next post" href="/Blog/2022/09/10/Dynamic-Porgamming/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -123,7 +128,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#About-The-Project"><span class="toc-number">1.</span> <span class="toc-text">About The Project</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#About-The-Project"><span class="toc-number">1.</span> <span class="toc-text">About The Project</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Methodlogy"><span class="toc-number">2.</span> <span class="toc-text">Methodlogy</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Data-collection"><span class="toc-number">2.1.</span> <span class="toc-text">Data collection</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Daily-Mean-Flow-m3-x2F-s"><span class="toc-number">2.1.1.</span> <span class="toc-text">1. Daily Mean Flow (m3&#x2F;s)</span></a></li></ol></li></ol></li></ol>
     </div>
   </span>
 </div>
@@ -168,7 +173,53 @@
 
   <div class="content" itemprop="articleBody">
     <h2 id="About-The-Project"><a href="#About-The-Project" class="headerlink" title="About The Project"></a>About The Project</h2><p>Hands off Flow (HOF) is a measurement of the river flow that triggers warning of when water supply company may be breaching their licence condition for water abstraction on the river to preserve water resource for plants and wildlife.</p>
-<p>In the past eight months, Southampton has experienced the driest months in 131 years due to an extreme shortage of rainfall. The below graph, from the website of Southern Water,<br>shows the recent flow data of River Test, one of main water source in Southampton:<br><img src="/Blog/.io//Blog/2022/09/22/SouthernWater-Riverflow-Forecasting/testriverflowmld.jpg" alt="alt"></p>
+<p>In the past eight months, Southampton has experienced the driest months in 131 years due to an extreme shortage of rainfall. In July, Southern Water introduced a ‘Temporary Use Ban(TUB)’ to all its customers in Hampshire and the Isle of Wight, restricting the unnecessary water usage such as watering a garden using a hosepipe. The below graph, from the website of Southern Water, shows the recent flow data of River Test, one of main water source in Southampton:</p>
+<p><img src="/Blog/images/SouthernWater/testriverflowmld.jpg" alt="HydroMap"></p>
+<p>This project thereby aims to conduct time series analysis on the flow readings of River Test by the gauging stations, and construct a predictive model. The main objectives of the project include:</p>
+<ol>
+<li>Analyse the flow of River Test using gauged data from Southern Water</li>
+<li>Construct a model that predicts river flow from climatic data, external data source will be utilized if needed</li>
+<li>Validate the model and automate the data collecting and prediction using APIs</li>
+<li>Make an APP for better UI</li>
+</ol>
+<h2 id="Methodlogy"><a href="#Methodlogy" class="headerlink" title="Methodlogy"></a>Methodlogy</h2><p>The target of this work is to provide a reusable pipeline for water availability forecasting. It provides also a comparative analysis about different forecasting strategies and models. Every datasets are differents from each other, so each dataset will be treated independantly following a general pipeline.</p>
+<p>The general methodology falls into three categories:</p>
+<ul>
+<li>data preparation: data collecting, imputing, cleansing and feature engineering.</li>
+<li>evaluation strategy: Expanding window cross validation</li>
+<li>modeling strategy: Ensemble learning</li>
+</ul>
+<h3 id="Data-collection"><a href="#Data-collection" class="headerlink" title="Data collection"></a>Data collection</h3><p>Data collection is a difficult task as climatic data of EA often suffers from significant discontinuities. The target is to collect at least 20 years of data for modelling, for which I exploited external data sources extensively if correlation analysis indicated good matching to the data of EA.</p>
+<h4 id="1-Daily-Mean-Flow-m3-x2F-s"><a href="#1-Daily-Mean-Flow-m3-x2F-s" class="headerlink" title="1. Daily Mean Flow (m3&#x2F;s)"></a>1. Daily Mean Flow (m3&#x2F;s)</h4><p>The schematic of the hydrology of the River Test downstream of Romsey, adopted from Environment Agency in 2011 from Environment Agency(EA):</p>
+<p><img src="/Blog/images/SouthernWater/HydroMap.jpg" alt="hydroMap"></p>
+<p>According to <a target="_blank" rel="noopener" href="https://www.southernwater.co.uk/media/7278/11-description_of_the_proposal-1.pdf">the draught permit application</a> by Southern Water(section 2.3.3), Testwood Bridge GS does not exist. Hence, the actual HOF data is obtained by summing the readings of the following gauge stations:</p>
+<ol>
+<li>River Great Test at Testwood</li>
+<li>River Blackwater at Ower</li>
+<li>Broadlands Fish Carrier at M27 TV1</li>
+<li>River Little test at Conagar Bridge</li>
+</ol>
+<p>(The interfacing module to Environment Agency database is the class <strong>ImportFromEA</strong> in <strong>EnvironAgency.py</strong>). However, the Testwood GS station of EA has a severe data missing issue, containing data from Apr 2018- Aug 2021 only and in low quality (unchecked estimation). Filling missing values is essential because rejecting data can significantly decrease the dataset size and forecasting reliability.</p>
+<p>To fill the gap, I imputed it with the flow readings of a Broadlands Gauging Station(GS) locating at slightly upstream of Conagar Bridge GS and Test Back GS stations(look at the hydrology map for a clearer idea), from National River Flow Archive(<a target="_blank" rel="noopener" href="https://nrfa.ceh.ac.uk/data/search">NRFA</a>). Given the proximity, it is possible to achieve the approximation. To validate my idea, I extract the data from all the stations:</p>
+<p><img src="/Blog/images/SouthernWater/compare.png" alt="compare"></p>
+<p>Then I compute the Scatter Index and the coefficient of determination R2-score between the two series (code can be found from <em>EDA.py</em>) and found that for the existing data, the SI and R2-score are around 0.1 and 0.91 respectively. This is an unexpected good approximation. The equations of SI:</p>
+<p align="center">
+<img src="https://latex.codecogs.com/svg.image?SI&space;=&space;\frac{RMSE}{\overline{X}}=\frac{\sqrt{\frac{\sum_{x_i}^{N}(x_i-\hat{x_i})^2}{N}}}{\frac{\sum_{x_i}^{N}x_i}{N}}" title="https://latex.codecogs.com/svg.image?SI = \frac{RMSE}{\overline{X}}=\frac{\sqrt{\frac{\sum_{x_i}^{N}(x_i-\hat{x_i})^2}{N}}}{\frac{\sum_{x_i}^{N}x_i}{N}}"/>
+</p>
+
+<p>and R2-score:</p>
+<p align="center">
+<img src="https://latex.codecogs.com/svg.image?R^{2}&space;=&space;1-\frac{RSS}{TSS}\\&space;" title="https://latex.codecogs.com/svg.image?R^{2} = 1-\frac{RSS}{TSS}\\ " class="center"/>
+</p>
+
+<p>where RSS is the sum of squares of residuals, TSS is the total sum of squares. To sumarize, the closer R2-score is to 1 and the SI is to 0, the better the estimation it is.<br>Considering there may be delay between the two data, I also ran correlation check on the two time series:</p>
+<p><img src="/Blog/images/SouthernWater/cor.png" alt="cross correlation"></p>
+<p>It is found that the greatest correlation lies on the day 0, which means readings between Broadlands GS and the sum of the other three has a negligible delay. (I also built a transfer model(<em>data&#x2F;tfModel.mat</em>) using system identification toolbox of MATLAB to model the water runoff between Broadlands and the other stations, whereas the model overfit due to the shortage of training data).</p>
+<p>Finally, output data of the model is therefore the sum of:</p>
+<ol>
+<li>Daily flow mean gauged at Broadlands GS from EA</li>
+<li>Daily flow mean gauged at Ower GS from NRFA</li>
+</ol>
 
   </div>
 </article>
@@ -196,7 +247,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#About-The-Project"><span class="toc-number">1.</span> <span class="toc-text">About The Project</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#About-The-Project"><span class="toc-number">1.</span> <span class="toc-text">About The Project</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Methodlogy"><span class="toc-number">2.</span> <span class="toc-text">Methodlogy</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Data-collection"><span class="toc-number">2.1.</span> <span class="toc-text">Data collection</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Daily-Mean-Flow-m3-x2F-s"><span class="toc-number">2.1.1.</span> <span class="toc-text">1. Daily Mean Flow (m3&#x2F;s)</span></a></li></ol></li></ol></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
