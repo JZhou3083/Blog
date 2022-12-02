@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="Introduction这篇文章主要是为了做个记录，之后会继续补充。 因为求职比较忙而动态规划属于算法的难点（预估需要1-3个月进行熟练），暂且对这几天刷的题目和阅读进行梳理。关于理解的部分主要来自两个博客,Dynamical Programming Patterns和动态规划精讲。更新于：2022&#x2F;11&#x2F;24。 动态规划概念首先我们要理解动态规划并不是一个具体的算法，而是一种">
+    <meta name="description" content="Introduction这篇文章主要是为了做个记录，之后会继续补充。 因为求职比较忙而动态规划属于算法的难点（预估需要1-3个月进行熟练），暂且对这几天刷的题目和阅读进行梳理。关于理解的部分主要来自两个博客:Dynamic programming和动态规划精讲。更新于：2022&#x2F;11&#x2F;24。 动态规划概念首先我们要理解动态规划并不是一个具体的算法，而是一种解决问题的思想：为了解">
 <meta property="og:type" content="article">
-<meta property="og:title" content="动态规划">
+<meta property="og:title" content="动态规划(Dynamic Programming)">
 <meta property="og:url" content="https://jzhou3083.github.io/Blog/2022/11/27/Dynamic-Porgamming/index.html">
 <meta property="og:site_name" content="SeaNote">
-<meta property="og:description" content="Introduction这篇文章主要是为了做个记录，之后会继续补充。 因为求职比较忙而动态规划属于算法的难点（预估需要1-3个月进行熟练），暂且对这几天刷的题目和阅读进行梳理。关于理解的部分主要来自两个博客,Dynamical Programming Patterns和动态规划精讲。更新于：2022&#x2F;11&#x2F;24。 动态规划概念首先我们要理解动态规划并不是一个具体的算法，而是一种">
+<meta property="og:description" content="Introduction这篇文章主要是为了做个记录，之后会继续补充。 因为求职比较忙而动态规划属于算法的难点（预估需要1-3个月进行熟练），暂且对这几天刷的题目和阅读进行梳理。关于理解的部分主要来自两个博客:Dynamic programming和动态规划精讲。更新于：2022&#x2F;11&#x2F;24。 动态规划概念首先我们要理解动态规划并不是一个具体的算法，而是一种解决问题的思想：为了解">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-11-27T15:27:06.000Z">
-<meta property="article:modified_time" content="2022-12-02T17:51:44.090Z">
+<meta property="article:modified_time" content="2022-12-02T17:58:55.524Z">
 <meta property="article:author" content="Jing Zhou">
 <meta name="twitter:card" content="summary">
     
@@ -36,7 +36,7 @@
       
     
     <!-- title -->
-    <title>动态规划</title>
+    <title>动态规划(Dynamic Programming)</title>
     <!-- styles -->
     
 <link rel="stylesheet" href="/Blog/css/style.css">
@@ -105,16 +105,16 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://jzhou3083.github.io/Blog/2022/11/27/Dynamic-Porgamming/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jzhou3083.github.io/Blog/2022/11/27/Dynamic-Porgamming/&text=动态规划"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jzhou3083.github.io/Blog/2022/11/27/Dynamic-Porgamming/&title=动态规划"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jzhou3083.github.io/Blog/2022/11/27/Dynamic-Porgamming/&is_video=false&description=动态规划"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=动态规划&body=Check out this article: https://jzhou3083.github.io/Blog/2022/11/27/Dynamic-Porgamming/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jzhou3083.github.io/Blog/2022/11/27/Dynamic-Porgamming/&title=动态规划"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jzhou3083.github.io/Blog/2022/11/27/Dynamic-Porgamming/&title=动态规划"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jzhou3083.github.io/Blog/2022/11/27/Dynamic-Porgamming/&title=动态规划"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jzhou3083.github.io/Blog/2022/11/27/Dynamic-Porgamming/&title=动态规划"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jzhou3083.github.io/Blog/2022/11/27/Dynamic-Porgamming/&name=动态规划&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jzhou3083.github.io/Blog/2022/11/27/Dynamic-Porgamming/&t=动态规划"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jzhou3083.github.io/Blog/2022/11/27/Dynamic-Porgamming/&text=动态规划(Dynamic Programming)"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jzhou3083.github.io/Blog/2022/11/27/Dynamic-Porgamming/&title=动态规划(Dynamic Programming)"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jzhou3083.github.io/Blog/2022/11/27/Dynamic-Porgamming/&is_video=false&description=动态规划(Dynamic Programming)"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=动态规划(Dynamic Programming)&body=Check out this article: https://jzhou3083.github.io/Blog/2022/11/27/Dynamic-Porgamming/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jzhou3083.github.io/Blog/2022/11/27/Dynamic-Porgamming/&title=动态规划(Dynamic Programming)"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jzhou3083.github.io/Blog/2022/11/27/Dynamic-Porgamming/&title=动态规划(Dynamic Programming)"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jzhou3083.github.io/Blog/2022/11/27/Dynamic-Porgamming/&title=动态规划(Dynamic Programming)"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jzhou3083.github.io/Blog/2022/11/27/Dynamic-Porgamming/&title=动态规划(Dynamic Programming)"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jzhou3083.github.io/Blog/2022/11/27/Dynamic-Porgamming/&name=动态规划(Dynamic Programming)&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jzhou3083.github.io/Blog/2022/11/27/Dynamic-Porgamming/&t=动态规划(Dynamic Programming)"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -131,7 +131,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        动态规划
+        动态规划(Dynamic Programming)
     </h1>
 
 
@@ -164,10 +164,10 @@
 
   <div class="content" itemprop="articleBody">
     <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>这篇文章主要是为了做个记录，之后会继续补充。</p>
-<p>因为求职比较忙而动态规划属于算法的难点（预估需要1-3个月进行熟练），暂且对这几天刷的题目和阅读进行梳理。关于理解的部分主要来自两个博客,<a target="_blank" rel="noopener" href="https://leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns#distinct-ways">Dynamical Programming Patterns</a>和<a target="_blank" rel="noopener" href="https://leetcode.cn/leetbook/read/dynamic-programming-1-plus/xc9j6t/">动态规划精讲</a>。更新于：2022&#x2F;11&#x2F;24。</p>
+<p>因为求职比较忙而动态规划属于算法的难点（预估需要1-3个月进行熟练），暂且对这几天刷的题目和阅读进行梳理。关于理解的部分主要来自两个博客:<a target="_blank" rel="noopener" href="https://leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns#distinct-ways">Dynamic programming</a>和<a target="_blank" rel="noopener" href="https://leetcode.cn/leetbook/read/dynamic-programming-1-plus/xc9j6t/">动态规划精讲</a>。更新于：2022&#x2F;11&#x2F;24。</p>
 <h2 id="动态规划概念"><a href="#动态规划概念" class="headerlink" title="动态规划概念"></a>动态规划概念</h2><p>首先我们要理解动态规划并不是一个具体的算法，而是一种解决问题的思想：为了解决一个特定的复杂的问题，我们需要解决它的不同部分（子问题），然后根据用子问题的解得到原问题的解。这种思想的难点是怎么识别出拆分的思路，这个只能通过不断的练习和总结来培养。这种思路涉及到对两个概念的理解，最优子结构和重复子问题。</p>
 <h3 id="最优子结构"><a href="#最优子结构" class="headerlink" title="最优子结构"></a>最优子结构</h3><p>最优子结构规定的是子问题和原问题的关系。</p>
-<p>动态规划常常用来得到问题的最优解，我们把一个问题分解成多个子问题，然后递归地找到每一个子问题的最优解再组合起来。比如很有意思的<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/house-robber/">打家劫舍系列</a>, 小偷要么最后一个偷第4间或者最后一个偷第5间。所以最大收益解是这两个选择的最大收益中更大的那个。我们可以分别找到子问题的最大收益然后进行选择。显然动态规划是一种穷举的思路，而且与递归很类似。但是区别在于动态规划可以避免重复子问题</p>
+<p>动态规划常常用来得到问题的最优解，我们把一个问题分解成多个子问题，然后递归地找到每一个子问题的最优解再组合起来。比如很有意思的<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/house-robber/">打家劫舍系列</a>, 小偷要么最后一个偷第4间或者最后一个偷第5间。所以最大收益解是这两个选择的最大收益中更大的那个。我们可以分别找到子问题的最大收益然后进行选择。显然动态规划是一种穷举的思路，而且与递归很类似。但是区别在于动态规划可以避免重复子问题。</p>
 <h3 id="重复子问题"><a href="#重复子问题" class="headerlink" title="重复子问题"></a>重复子问题</h3><p>重复子问题规定的是子问题和子问题的关系。</p>
 <p>当我们在递归地寻找每个子问题的最优解的时候，可能会重复地遇到一些更小的子问题，此时会出现大量的重复计算而动态规划可以让我们保证每个重复的子问题只求解一次。如果没有重复的子问题，就没必要用动态规划，直接用普通递归就可以了。最著名的例子就是[斐波那契数列]，状态转移方程里面包含大量的重复计算，动态规划允许我们只保留前两个子问题的解，非常高效。</p>
 <p>由此可见，区分动态规划和分治算法的关键在于动态规划有重复子问题，区分贪心算法和动态规划的关键在于贪心只关心下一步的最优解，也就是之走全局树的最优路线，而动态规划本质是穷举，需要的话会记录过去所有的局部最优解。可见贪心的特点是复杂度低但是不保证全局最优，动态则全局最优但是复杂度高。在分步贪心策略不会影响的时候建议用更高效的贪心算法，一个例子是<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/">买卖股票的最佳时机II</a>。</p>
@@ -205,16 +205,16 @@
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://jzhou3083.github.io/Blog/2022/11/27/Dynamic-Porgamming/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jzhou3083.github.io/Blog/2022/11/27/Dynamic-Porgamming/&text=动态规划"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jzhou3083.github.io/Blog/2022/11/27/Dynamic-Porgamming/&title=动态规划"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jzhou3083.github.io/Blog/2022/11/27/Dynamic-Porgamming/&is_video=false&description=动态规划"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=动态规划&body=Check out this article: https://jzhou3083.github.io/Blog/2022/11/27/Dynamic-Porgamming/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jzhou3083.github.io/Blog/2022/11/27/Dynamic-Porgamming/&title=动态规划"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jzhou3083.github.io/Blog/2022/11/27/Dynamic-Porgamming/&title=动态规划"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jzhou3083.github.io/Blog/2022/11/27/Dynamic-Porgamming/&title=动态规划"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jzhou3083.github.io/Blog/2022/11/27/Dynamic-Porgamming/&title=动态规划"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jzhou3083.github.io/Blog/2022/11/27/Dynamic-Porgamming/&name=动态规划&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jzhou3083.github.io/Blog/2022/11/27/Dynamic-Porgamming/&t=动态规划"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jzhou3083.github.io/Blog/2022/11/27/Dynamic-Porgamming/&text=动态规划(Dynamic Programming)"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jzhou3083.github.io/Blog/2022/11/27/Dynamic-Porgamming/&title=动态规划(Dynamic Programming)"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jzhou3083.github.io/Blog/2022/11/27/Dynamic-Porgamming/&is_video=false&description=动态规划(Dynamic Programming)"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=动态规划(Dynamic Programming)&body=Check out this article: https://jzhou3083.github.io/Blog/2022/11/27/Dynamic-Porgamming/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jzhou3083.github.io/Blog/2022/11/27/Dynamic-Porgamming/&title=动态规划(Dynamic Programming)"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jzhou3083.github.io/Blog/2022/11/27/Dynamic-Porgamming/&title=动态规划(Dynamic Programming)"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jzhou3083.github.io/Blog/2022/11/27/Dynamic-Porgamming/&title=动态规划(Dynamic Programming)"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jzhou3083.github.io/Blog/2022/11/27/Dynamic-Porgamming/&title=动态规划(Dynamic Programming)"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jzhou3083.github.io/Blog/2022/11/27/Dynamic-Porgamming/&name=动态规划(Dynamic Programming)&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jzhou3083.github.io/Blog/2022/11/27/Dynamic-Porgamming/&t=动态规划(Dynamic Programming)"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
