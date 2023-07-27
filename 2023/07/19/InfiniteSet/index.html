@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Introduction最近重温了一下离散数学，涉及无限集的阅读这里做个总结加强记忆。无限集合这个性质在计算机数学极为重要，属于算法研究的一个重要基础。先简要过一遍常见的几个概念：  Domain &amp; Codomain. 主域与从域: The set of all inputs for a function is called the domain; The set of all allo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="无限集合">
+<meta property="og:url" content="https://jzhou3083.github.io/Blog/2023/07/19/InfiniteSet/index.html">
+<meta property="og:site_name" content="SeaNote">
+<meta property="og:description" content="Introduction最近重温了一下离散数学，涉及无限集的阅读这里做个总结加强记忆。无限集合这个性质在计算机数学极为重要，属于算法研究的一个重要基础。先简要过一遍常见的几个概念：  Domain &amp; Codomain. 主域与从域: The set of all inputs for a function is called the domain; The set of all allo">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-07-19T12:27:10.000Z">
+<meta property="article:modified_time" content="2023-07-26T17:55:59.503Z">
+<meta property="article:author" content="Jing Zhou">
+<meta property="article:tag" content="离散数学">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/Blog/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/Blog/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/Blog/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>无限集合</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/Blog/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/Blog/">Home</a></li><!--
+     --><!--
+       --><li><a href="/Blog/resume/">Resume</a></li><!--
+     --><!--
+       --><li><a href="/Blog/categories/">Topics</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/JZhou3083">Projects</a></li><!--
+     --><!--
+       --><li><a href="/Blog/search/">Search</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/Blog/2023/03/20/RAM-vs-PRAM/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://jzhou3083.github.io/Blog/2023/07/19/InfiniteSet/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jzhou3083.github.io/Blog/2023/07/19/InfiniteSet/&text=无限集合"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jzhou3083.github.io/Blog/2023/07/19/InfiniteSet/&title=无限集合"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jzhou3083.github.io/Blog/2023/07/19/InfiniteSet/&is_video=false&description=无限集合"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=无限集合&body=Check out this article: https://jzhou3083.github.io/Blog/2023/07/19/InfiniteSet/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jzhou3083.github.io/Blog/2023/07/19/InfiniteSet/&title=无限集合"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jzhou3083.github.io/Blog/2023/07/19/InfiniteSet/&title=无限集合"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jzhou3083.github.io/Blog/2023/07/19/InfiniteSet/&title=无限集合"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jzhou3083.github.io/Blog/2023/07/19/InfiniteSet/&title=无限集合"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jzhou3083.github.io/Blog/2023/07/19/InfiniteSet/&name=无限集合&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jzhou3083.github.io/Blog/2023/07/19/InfiniteSet/&t=无限集合"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Infinite-Cardinality"><span class="toc-number">2.</span> <span class="toc-text">Infinite Cardinality</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Countable-Sets"><span class="toc-number">3.</span> <span class="toc-text">Countable Sets</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Power-sets-are-strictly-bigger"><span class="toc-number">4.</span> <span class="toc-text">Power sets are strictly bigger</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cantor-Diagonal-Arguments"><span class="toc-number">5.</span> <span class="toc-text">Cantor Diagonal Arguments</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        无限集合
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Jing Zhou</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-07-19T12:27:10.000Z" itemprop="datePublished">2023-07-19</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/Blog/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/Blog/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/" rel="tag">离散数学</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>最近重温了一下离散数学，涉及无限集的阅读这里做个总结加强记忆。无限集合这个性质在计算机数学极为重要，属于算法研究的一个重要基础。先简要过一遍常见的几个概念：</p>
+<ul>
+<li><p>Domain &amp; Codomain. 主域与从域: The set of all inputs for a function is called the domain; The set of all allowable outputs is called codomain. (输入集是主域，输出集是从域)</p>
+</li>
+<li><p>Surjection, or onto, if each element of codomain is mapped to by at least one element of the domain.</p>
+</li>
+<li><p>Injection, or one-to-one, if each element of the codomian is mapped to by at most one element of the domain.</p>
+</li>
+<li><p>Bijection: one-to-one and onto，一一对应</p>
+</li>
+<li><p>strict: “strictly smaller”</p>
+</li>
+</ul>
+<h2 id="Infinite-Cardinality"><a href="#Infinite-Cardinality" class="headerlink" title="Infinite Cardinality"></a>Infinite Cardinality</h2><ol>
+<li>$A\ strict \ B \iff NOT(A\ surj \ B)  \iff \  NOT(|A|\ge|B|) \iff \ |A|&lt;|B|$.</li>
+<li>For any sets A, B, C,<br>   1). $A\ surj \ B \iff B \ inj A$.<br>   2). $if\ A\ surj\ B\ and\ B\ surj\ C, then\ A\ surj\ C$.<br>   3). $if\ A\ bij \ B\ and \ B \ bij\ C, then\ A\ bij\ C$.<br>   4). $A\ bij\ B \iff B\ bij\ A$.</li>
+<li>[Schroder-Bernstein] For any sets A,B, if $A\ surj\ B\ and\ B\ surj \ A, then\ A\ bij \ B$.</li>
+<li>For all sets A, B, $A\ surj\ B\  or\  B\ surj\ A$.</li>
+<li>$A\ strict\ B\  and\  B\ strict\ C$ implies $A\ strict\ C$.</li>
+<li>Let A be a set and $b\notin A$. Then $A$ is infinite $\iff A\ bij\ A\cup${b}.</li>
+</ol>
+<h2 id="Countable-Sets"><a href="#Countable-Sets" class="headerlink" title="Countable Sets"></a>Countable Sets</h2><p>可数集合也可以说可列集，意思是可以一一列出。可数集有两种，一种是有限集合，一种是可数无限集合。总结起来有几个性质：</p>
+<ol>
+<li>A set, $C$ is countably infinite $\iff N\ bij\ C$.  set is countable $\iff$ it is finite or countably infinite.</li>
+<li>A set, $C$ is countable $\iff N \ surj \ C$. In fact, a nonempty set C is Countable $\iff$ there ia total surjective function $g: N \rightarrow C$.</li>
+<li>常见的countably infinite sets: $Z^+, Z, N\times N,Q^+, Z \times Z, Q$.</li>
+</ol>
+<h2 id="Power-sets-are-strictly-bigger"><a href="#Power-sets-are-strictly-bigger" class="headerlink" title="Power sets are strictly bigger"></a>Power sets are strictly bigger</h2><p>Power set, pow(A) is the set of all A’s subsets.Cantor has proved that for any set, $A$, $A\  strict\ pow(A)$.</p>
+<p>$pow(N)$ is uncountable. {0,1}$^{\omega}$ is uncountable.</p>
+<ul>
+<li>If U is uncountable set and $A\ surj\ U$, then $A$ is uncountable.</li>
+<li>If C is a countable set and $C\ surj\ A$, then $A$ is countable.</li>
+</ul>
+<h2 id="Cantor-Diagonal-Arguments"><a href="#Cantor-Diagonal-Arguments" class="headerlink" title="Cantor Diagonal Arguments"></a>Cantor Diagonal Arguments</h2><p>首先介绍 Finite Binary Strings: $B &#x3D; $ {$\emptyset, 0, 1, 00, 01, 10, 11, 000, 001, 010,011,…$}.That is, given a finite binary string $b_1b_2b_3…b_k$, its list position is $2^{length}+value(b_1b_2b_3…b_k)$.</p>
+<p>所有的计算机程序都是 Finite binary string, 也既是说，$|valid computer programme| \le |B| \le |Infinite|$.</p>
+<p>而Cantor 用Cantor Diagonalization反证了Infinite Binary Strings are not countable: $|B_\infty|&gt;|N|$,证明过程可见<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=L99N6YLBASM">video</a>.</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/Blog/">Home</a></li>
+         
+          <li><a href="/Blog/resume/">Resume</a></li>
+         
+          <li><a href="/Blog/categories/">Topics</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/JZhou3083">Projects</a></li>
+         
+          <li><a href="/Blog/search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Infinite-Cardinality"><span class="toc-number">2.</span> <span class="toc-text">Infinite Cardinality</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Countable-Sets"><span class="toc-number">3.</span> <span class="toc-text">Countable Sets</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Power-sets-are-strictly-bigger"><span class="toc-number">4.</span> <span class="toc-text">Power sets are strictly bigger</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cantor-Diagonal-Arguments"><span class="toc-number">5.</span> <span class="toc-text">Cantor Diagonal Arguments</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://jzhou3083.github.io/Blog/2023/07/19/InfiniteSet/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jzhou3083.github.io/Blog/2023/07/19/InfiniteSet/&text=无限集合"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jzhou3083.github.io/Blog/2023/07/19/InfiniteSet/&title=无限集合"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jzhou3083.github.io/Blog/2023/07/19/InfiniteSet/&is_video=false&description=无限集合"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=无限集合&body=Check out this article: https://jzhou3083.github.io/Blog/2023/07/19/InfiniteSet/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jzhou3083.github.io/Blog/2023/07/19/InfiniteSet/&title=无限集合"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jzhou3083.github.io/Blog/2023/07/19/InfiniteSet/&title=无限集合"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jzhou3083.github.io/Blog/2023/07/19/InfiniteSet/&title=无限集合"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jzhou3083.github.io/Blog/2023/07/19/InfiniteSet/&title=无限集合"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jzhou3083.github.io/Blog/2023/07/19/InfiniteSet/&name=无限集合&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jzhou3083.github.io/Blog/2023/07/19/InfiniteSet/&t=无限集合"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2021-2023
+    Jing Zhou
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/Blog/">Home</a></li><!--
+     --><!--
+       --><li><a href="/Blog/resume/">Resume</a></li><!--
+     --><!--
+       --><li><a href="/Blog/categories/">Topics</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/JZhou3083">Projects</a></li><!--
+     --><!--
+       --><li><a href="/Blog/search/">Search</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/Blog/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

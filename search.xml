@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>无限集合</title>
+      <link href="/Blog/2023/07/19/InfiniteSet/"/>
+      <url>/Blog/2023/07/19/InfiniteSet/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>最近重温了一下离散数学，涉及无限集的阅读这里做个总结加强记忆。无限集合这个性质在计算机数学极为重要，属于算法研究的一个重要基础。先简要过一遍常见的几个概念：</p><ul><li><p>Domain &amp; Codomain. 主域与从域: The set of all inputs for a function is called the domain; The set of all allowable outputs is called codomain. (输入集是主域，输出集是从域)</p></li><li><p>Surjection, or onto, if each element of codomain is mapped to by at least one element of the domain.</p></li><li><p>Injection, or one-to-one, if each element of the codomian is mapped to by at most one element of the domain.</p></li><li><p>Bijection: one-to-one and onto，一一对应</p></li><li><p>strict: “strictly smaller”</p></li></ul><h2 id="Infinite-Cardinality"><a href="#Infinite-Cardinality" class="headerlink" title="Infinite Cardinality"></a>Infinite Cardinality</h2><ol><li>$A\ strict \ B \iff NOT(A\ surj \ B)  \iff \  NOT(|A|\ge|B|) \iff \ |A|&lt;|B|$.</li><li>For any sets A, B, C,<br>   1). $A\ surj \ B \iff B \ inj A$.<br>   2). $if\ A\ surj\ B\ and\ B\ surj\ C, then\ A\ surj\ C$.<br>   3). $if\ A\ bij \ B\ and \ B \ bij\ C, then\ A\ bij\ C$.<br>   4). $A\ bij\ B \iff B\ bij\ A$.</li><li>[Schroder-Bernstein] For any sets A,B, if $A\ surj\ B\ and\ B\ surj \ A, then\ A\ bij \ B$.</li><li>For all sets A, B, $A\ surj\ B\  or\  B\ surj\ A$.</li><li>$A\ strict\ B\  and\  B\ strict\ C$ implies $A\ strict\ C$.</li><li>Let A be a set and $b\notin A$. Then $A$ is infinite $\iff A\ bij\ A\cup${b}.</li></ol><h2 id="Countable-Sets"><a href="#Countable-Sets" class="headerlink" title="Countable Sets"></a>Countable Sets</h2><p>可数集合也可以说可列集，意思是可以一一列出。可数集有两种，一种是有限集合，一种是可数无限集合。总结起来有几个性质：</p><ol><li>A set, $C$ is countably infinite $\iff N\ bij\ C$.  set is countable $\iff$ it is finite or countably infinite.</li><li>A set, $C$ is countable $\iff N \ surj \ C$. In fact, a nonempty set C is Countable $\iff$ there ia total surjective function $g: N \rightarrow C$.</li><li>常见的countably infinite sets: $Z^+, Z, N\times N,Q^+, Z \times Z, Q$.</li></ol><h2 id="Power-sets-are-strictly-bigger"><a href="#Power-sets-are-strictly-bigger" class="headerlink" title="Power sets are strictly bigger"></a>Power sets are strictly bigger</h2><p>Power set, pow(A) is the set of all A’s subsets.Cantor has proved that for any set, $A$, $A\  strict\ pow(A)$.</p><p>$pow(N)$ is uncountable. {0,1}$^{\omega}$ is uncountable.</p><ul><li>If U is uncountable set and $A\ surj\ U$, then $A$ is uncountable.</li><li>If C is a countable set and $C\ surj\ A$, then $A$ is countable.</li></ul><h2 id="Cantor-Diagonal-Arguments"><a href="#Cantor-Diagonal-Arguments" class="headerlink" title="Cantor Diagonal Arguments"></a>Cantor Diagonal Arguments</h2><p>首先介绍 Finite Binary Strings: $B &#x3D; $ {$\emptyset, 0, 1, 00, 01, 10, 11, 000, 001, 010,011,…$}.That is, given a finite binary string $b_1b_2b_3…b_k$, its list position is $2^{length}+value(b_1b_2b_3…b_k)$.</p><p>所有的计算机程序都是 Finite binary string, 也既是说，$|valid computer programme| \le |B| \le |Infinite|$.</p><p>而Cantor 用Cantor Diagonalization反证了Infinite Binary Strings are not countable: $|B_\infty|&gt;|N|$,证明过程可见<a href="https://www.youtube.com/watch?v=L99N6YLBASM">video</a>.</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 学习笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 离散数学 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>RAM vs PRAM 随笔</title>
       <link href="/Blog/2023/03/20/RAM-vs-PRAM/"/>
       <url>/Blog/2023/03/20/RAM-vs-PRAM/</url>
